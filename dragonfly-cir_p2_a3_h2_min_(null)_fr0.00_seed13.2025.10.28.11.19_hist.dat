@@ -1,0 +1,13 @@
+#WARNING:  Flow-histogram is invalid for n.failures>0 (i.e., this output) in the current version of INRFlow
+#Histograms for ./dragonfly-cir_p2_a3_h2_min_(null)_fr0.00_seed13.2025.10.28.11.19_hist.dat.
+#hi,pi,fi are indices for h, p and f, respectively. *n is normalized so that the bars add up to 1.
+#h: Server hop length histogram (server hop path length, number of occurrences)
+#p: Path length histogram (path length, number of occurrences)
+#f: Flows histogram (number of flows, number of uni-directional links with this many flows)
+       hi         h     nh        pi         p     np        fi         f     nf
+        1        50 1.00000         2         2 0.04000         0        47 0.27976 
+      nan       nan     nan         3         8 0.16000         1        60 0.35714 
+      nan       nan     nan         4        20 0.40000         2        43 0.25595 
+      nan       nan     nan         5        20 0.40000         3        12 0.07143 
+      nan       nan     nan       nan       nan     nan         4         5 0.02976 
+      nan       nan     nan       nan       nan     nan         6         1 0.00595 

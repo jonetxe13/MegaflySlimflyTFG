@@ -10,7 +10,7 @@
 #include "../inrflow/node.h"
 #include "../inrflow/misc.h"
 #include "../inrflow/globals.h"
-#include "dragonfly.h"
+#include "megafly.h"
 
 /*
  * Parameters (a,p,h) for the dragonfly topology;
@@ -51,245 +51,30 @@ static char routing_token[30];
  */
 long init_topo_dragonfly(long np, long *par) {
     //Check the parameters
-    if(np != 3) {
-        printf("3 parameters are needed for the dragonfly topology <p, a, h>\n");
+    if(np != 1) {
+        printf("1 parameter is needed for the megafly topology <radix>\n");
         exit(-1);
     }
-	if(par[0] < 1) {
-        printf("param_p must be a positive number; %ld has been inserted",par[2]);
-        exit(-1);
-    }
-    if(par[1] < 1) {
-        printf("param_a must be a positive number; %ld has been inserted",par[2]);
-        exit(-1);
-    }
-    if(par[2] < 1) {
-        printf("param_h must be a positive number; %ld has been inserted",par[2]);
+    if(par[0] < 1) {
+        printf("radix must be a positive number; %ld has been inserted",par[2]);
         exit(-1);
     }
 
-    param_p = par[0]; // number of servers per switch
-    param_a = par[1]; // number of switches per group
-    param_h = par[2]; // number of uplinks per switch
+    param_p = par[0]/2; // number of servers per switch
+    param_a = par[0]; // number of switches per group
+    param_h = par[0]/2; // number of uplinks per switch
 
 	// Calculate some useful values from the parameters
-    intra_ports = param_a - 1;
-    grps = (param_a * param_h) + 1;
+    intra_ports = param_a/2;
+    grps = ((param_a/2) * param_h) + 1;
     switches = param_a * grps;
     ports = param_a * (param_p + param_h + param_a - 1) * grps;
-    servers = param_p * switches;
+    servers = param_p * (switches/2);
 
 	// Boring stuff for printing and file generation
     switch(topo) {
         case DRAGONFLY_ABSOLUTE:
             sprintf(network_token,"dragonfly-abs");
-            break;
-        case DRAGONFLY_RELATIVE:
-            sprintf(network_token,"dragonfly-rel");
-            break;
-        case DRAGONFLY_CIRCULANT:
-            sprintf(network_token,"dragonfly-cir");
-            break;
-        case DRAGONFLY_NAUTILUS:
-            sprintf(network_token,"dragonfly-nau");
-            {
-            	long g,s,p;	// group, switch and port
-            	long next_grp, next_sw, next_port; // target group, switch and port
-            	long cw, ccw;	// distance for next connection: clockwise for + switches (cw) and counter-clockwise for - switches (ccw)
-
-				// to calculate connections between groups
-            	intergroup_connections=malloc(grps*sizeof(long**));
-            	for (g=0; g<grps;g++)
-				{
-					intergroup_connections[g]=malloc(param_a*sizeof(long*));
-					for (s=0; s<param_a;s++)
-					{
-						intergroup_connections[g][s]=malloc(param_h*sizeof(long));
-						for (p=0; p<param_h; p++)
-							intergroup_connections[g][s][p]=-1; //disconnected
-					}
-				}
-
-				// to store the port to go through to get from a group 'g' to a target group 'next_grp'
-            	intergroup_route=malloc(grps*sizeof(long*));
-            	for (g=0; g<grps;g++)
-				{
-					intergroup_route[g]=malloc(grps*sizeof(long));
-					for (next_grp=0; next_grp<grps; next_grp++)
-						intergroup_route[g][next_grp]=-1; // no route between these two groups.
-				}
-
-				// Let's calculate connections
-				for (g=0; g<grps;g++)
-				{
-					cw=1;	// switches + start connecting to the group at distance 1 clockwise
-					ccw=1;	// switches - start connecting to the group at distance 1 counter-clockwise
-					for (s=0; s<param_a;s++)
-					{
-						for (p=0; p<param_h; p++)
-						{
-							if(intergroup_connections[g][s][p]==-1) // still not connected
-							{
-								if (s%2 == 0) // + switch; connect clockwise
-								{
-									do	// ensure these groups are not connected already, skip to the next clockwise group
-									{
-										next_grp=(g+cw)%grps;
-										cw++;
-									} while (intergroup_route[g][next_grp]!=-1);
-								}
-								else	// - switch; connect counter-clockwise
-								{
-									do	// ensure these groups are not connected already, skip to the next group counter-clockwise
-									{
-										next_grp=(grps+g-ccw)%grps;
-										ccw++;
-									} while (intergroup_route[g][next_grp]!=-1);
-								}
-								next_sw=g%param_a;
-								next_port=0;
-								while(intergroup_connections[next_grp][next_sw][next_port]!=-1)
-								{
-									next_port++;
-									if (next_port>=param_h)
-									{
-										printf("Number of ports exceeded when creating dragonfly nautilus %ld\n",next_port);
-										exit(-1);
-									}
-								}
-								intergroup_connections[g][s][p]=(((next_grp*param_a)+next_sw)*param_h)+next_port;
-								intergroup_connections[next_grp][next_sw][next_port]=(((g*param_a)+s)*param_h)+p;
-
-								intergroup_route[g][next_grp]=(s*param_h)+p;
-								if (intergroup_route[next_grp][g]!=-1)
-								{
-									printf("There is already a route between groups %ld and %ld!\n",next_grp,g);
-									exit(-1);
-								}
-
-								intergroup_route[next_grp][g]=(next_sw*param_h)+next_port;
-							}
-						}
-					}
-				}
-            }
-            break;
-		case DRAGONFLY_HELIX:
-            sprintf(network_token,"dragonfly-hel");
-            {
-            	long g,s,p;	// group, switch and port
-            	long next_grp, next_sw, next_port; // target group, switch and port
-
-            	// to calculate connections between groups
-            	intergroup_connections=malloc(grps*sizeof(long**));
-            	for (g=0; g<grps;g++)
-				{
-					intergroup_connections[g]=malloc(param_a*sizeof(long*));
-					for (s=0; s<param_a;s++)
-					{
-						intergroup_connections[g][s]=malloc(param_h*sizeof(long));
-						for (p=0; p<param_h; p++)
-							intergroup_connections[g][s][p]=-1; //disconnected
-					}
-
-				}
-
-				// to store the port to go through to get from a group 'g' to a target group 'next_grp'
-            	intergroup_route=malloc(grps*sizeof(long*));
-            	for (g=0; g<grps;g++)
-				{
-					intergroup_route[g]=malloc(grps*sizeof(long));
-					for (next_grp=0; next_grp<grps; next_grp++)
-						intergroup_route[g][next_grp]=-1; // no route between these two groups.
-				}
-
-				for (g=0; g<grps; g++)  {
-					for (s=0; s<param_a; s++)  {
-						for(p=0; p<(param_h/2); p++){
-							next_grp = (g + s*(param_h/2) + p + 1)%grps;
-							next_sw = (s+1)%param_a;
-
-							next_port=(param_h/2)+(param_h%2);
-							while(intergroup_connections[next_grp][next_sw][next_port]!=-1)
-							{
-								next_port++;
-								if (next_port>=param_h)
-								{
-									printf("Number of ports exceeded when creating dragonfly helix %ld\n",next_port);
-									exit(-1);
-								}
-							}
-							intergroup_connections[g][s][p]=(((next_grp*param_a)+next_sw)*param_h)+next_port;
-							intergroup_connections[next_grp][next_sw][next_port]=(((g*param_a)+s)*param_h)+p;
-
-							intergroup_route[g][next_grp]=(s*param_h)+p;
-							if (intergroup_route[next_grp][g]!=-1 && intergroup_route[next_grp][g]!=(next_sw*param_h)+next_port)
-							{
-								printf("There is already a route between groups %ld and %ld!\n",next_grp,g);
-								//exit(-1);
-							}
-
-							intergroup_route[next_grp][g]=(next_sw*param_h)+next_port;
-						}
-						//Adding the extra edges if odd
-						if(param_h%2==1){
-							next_grp = (g + (param_h/2)*param_a + s + 1)%grps;
-							next_sw = (param_a - s - 1)%param_a;
-							next_port=(param_h/2);
-							if (g<next_grp){
-								while(intergroup_connections[next_grp][next_sw][next_port]!=-1)
-								{
-									next_port++;
-									if (next_port>=param_h)
-									{
-										printf("Number of ports exceeded when creating dragonfly helix %ld\n",next_port);
-										exit(-1);
-									}
-								}
-								intergroup_connections[g][s][p]=(((next_grp*param_a)+next_sw)*param_h)+next_port;
-								intergroup_connections[next_grp][next_sw][next_port]=(((g*param_a)+s)*param_h)+p;
-
-								intergroup_route[g][next_grp]=(s*param_h)+p;
-								if (intergroup_route[next_grp][g]!=-1 && intergroup_route[next_grp][g]!=(next_sw*param_h)+next_port)
-								{
-									printf("There is already a route between groups %ld and %ld!\n",next_grp,g);
-									exit(-1);
-								}
-
-								intergroup_route[next_grp][g]=(next_sw*param_h)+next_port;
-							}
-						}
-					}
-				}
-            }
-            break;
-		case DRAGONFLY_OTHER:
-            sprintf(network_token,"dragonfly-hel");
-            {
-            	long i;
-            	// Helix is simply a remapping of relative connections. These two variables translate from Relative numbering (orig) to Helix numbering (mapped) and vice versa.
-				other_orig2map=malloc(param_a*param_h*sizeof(long));
-				other_map2orig=malloc(param_a*param_h*sizeof(long));
-
-				for (i=0; i<param_a*param_h; i++)
-				{
-					if (i%param_h < (param_h/2))
-					{
-						other_orig2map[i]=(i%param_h)+((i/param_h)*(param_h/2));
-						other_map2orig[other_orig2map[i]]=i;
-					}
-					else if (param_h%2!=0 && (i%param_h==param_h-1))
-					{
-						other_orig2map[i]=(i/param_h)+((param_a*(param_h-1)/2));
-						other_map2orig[other_orig2map[i]]=i;
-					}
-					else
-					{
-						other_orig2map[i]=(param_a*(param_h-(param_h/2)))+((i%param_h)-(param_h/2))+((i/param_h)*(param_h/2));
-						other_map2orig[other_orig2map[i]]=i;
-					}
-				}
-            }
             break;
         default:
             printf("Not a valid dragonfly");
@@ -306,38 +91,11 @@ long init_topo_dragonfly(long np, long *par) {
 	    case DRAGONFLY_VALIANT:
 		sprintf(routing_token,"valiant");
 		break;
-	    case DRAGONFLY_QUICK_VALIANT_PRIVATE:
-		sprintf(routing_token,"quick-valiant-private");
-		break;
-	    case DRAGONFLY_QUICK_VALIANT_QUASIPRIVATE:
-		sprintf(routing_token,"quick-valiant-quasiprivate");
-		break;
-	    case DRAGONFLY_QUICK_VALIANT_LOCAL:
-		sprintf(routing_token,"quick-valiant-local");
-		break;
-	    case DRAGONFLY_QUICK_VALIANT_REMOTE:
-		sprintf(routing_token,"quick-valiant-remote");
-		break;
-	    case DRAGONFLY_QUICK_VALIANT_DUAL:
-		sprintf(routing_token,"quick-valiant-dual");
-		break;
 	    default:
 		printf("Not a Dragonfly-compatible routing!");
 		exit(-1);
 }
 
-    //
-    // switch(routing) {
-    //     case DRAGONFLY_MINIMUM:
-    //         sprintf(routing_token,"min");
-    //         break;
-    //     case DRAGONFLY_VALIANT:
-    //         sprintf(routing_token,"valiant");
-    //         break;
-    //     default:
-    //         printf("Not a Dragonfly-compatible routing!");
-    //         exit(-1);
-    // }
     return 0;
 }
 
@@ -401,36 +159,6 @@ tuple_t connection_dragonfly(long node, long port) {
                         next_grp = port_id;
                         next_port = grp_id-1;
                     }
-                    break;
-                case DRAGONFLY_RELATIVE:
-                    next_grp = (grp_id+port_id+1) % grps;
-                    next_port = (param_a*param_h) - (port_id+1);
-                    break;
-                case DRAGONFLY_CIRCULANT:
-                    if (port_id % 2){ // odd ports connect counterclockwise
-						next_grp = (grps+grp_id-(port_id/2)-1)%grps;
-						next_port = port_id-1;
-                    } else { // even ports connect clockwise
-                        next_grp = (grp_id+(port_id/2)+1)%grps;
-						if (port_id==grps-2) // will happen when param_h and param_a uneven, the last port connects with itself
-							next_port = port_id;
-						else
-							next_port = port_id+1;
-                    }
-                    break;
-                case DRAGONFLY_NAUTILUS:
-                	next_grp=intergroup_connections[grp_id][sw_id][port - param_p - intra_ports]/(param_h*param_a);
-                	next_port=intergroup_connections[grp_id][sw_id][port - param_p - intra_ports]%(param_h*param_a);
-                    break;
-                case DRAGONFLY_HELIX:
-                	next_grp=intergroup_connections[grp_id][sw_id][port - param_p - intra_ports]/(param_h*param_a);
-                	next_port=intergroup_connections[grp_id][sw_id][port - param_p - intra_ports]%(param_h*param_a);
-                    break;
-                case DRAGONFLY_OTHER:
-                    port_id = other_orig2map[port_id];
-                    next_grp = (grp_id+port_id+1) % grps;
-                    next_port = (param_a*param_h) - (port_id+1);
-                    next_port = other_map2orig[next_port];
                     break;
                 default:
                     printf("Not a valid dragonfly");
