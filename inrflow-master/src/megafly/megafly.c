@@ -121,21 +121,40 @@ tuple_t connection_dragonfly(long node, long port) {
     long gen_switch_id; // switch id in the general switch count
     long sw_id, grp_id, port_id; // switch (within a group), group and port id for calculating connections
     long next_grp, next_port; // group and port id of the target for calculating connections
-    if( node < servers ) { // The node is a server
+    if( node < servers ) { // The node is a server ESTO ES CORRECTO PARA MEGAFLY TMBN
         if( port == 0 ) {
             res.node = servers + (node / param_p) ; // The server's router
             res.port = node % param_p; // The server's port number
         } // servers only have one connection
     }
-    else{ // the node is a switch
+    else if(node <= (servers + (switches/2))) { // the node is a local switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
-        grp_id = gen_switch_id/param_a; // id of the group relative to other groups
+        grp_id = (gen_switch_id/(param_a/2)); // id of the group relative to other groups
+        if( port < param_p ) {// This is a downlink to a server 
+            res.node = grp_id*param_p*param_p + (gen_switch_id%param_a/2) + port; //coger el server
+            res.port = 0 ; // Every processor only has one port.
+        }
+        else if ( port < (2*param_p) ){ // Intra-group connection
+            sw_id = gen_switch_id % param_a;
+            port_id = port - param_p;
+            if (port_id>=sw_id){
+                res.node = servers + (grp_id * param_a) + port_id+1;
+                res.port = param_p + sw_id;
+            } else {
+                res.node = servers + (grp_id * param_a) + port_id;
+                res.port = param_p + sw_id-1;
+            }
+        }
+    }
+    else if(node > (servers + (switches/2))){ //the node is a global switch
+        gen_switch_id = node - servers; // id of the switch relative to other switches
+        grp_id = (gen_switch_id/(param_a/2)); // id of the group relative to other groups
         if( port < param_p ) {// This is a downlink to a server
             res.node = (gen_switch_id * param_p) + (port % param_p); // The sequence of the server
             res.port = 0 ; // Every processor only has one port.
         }
         else if ( port < ( param_p + intra_ports ) ){ // Intra-group connection
-            sw_id = gen_switch_id % param_a;
+            sw_id = (gen_switch_id % (param_a/2)); //id del switch local dentro del grupo
             port_id = port - param_p;
             if (port_id>=sw_id){
                 res.node = servers + (grp_id * param_a) + port_id+1;
@@ -170,11 +189,12 @@ tuple_t connection_dragonfly(long node, long port) {
             res.node = servers + (next_grp * param_a) + (next_port/param_h);
             res.port = param_p + intra_ports + (next_port%param_h);
         }
-        else {
-            // Should never get here
-            res.node = -1;
-            res.port = -1;
-        }
+
+    }
+    else {
+        // Should never get here
+        res.node = -1;
+        res.port = -1;
     }
     return res;
 }
