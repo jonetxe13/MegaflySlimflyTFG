@@ -135,14 +135,14 @@ tuple_t connection_dragonfly(long node, long port) {
             res.port = 0 ; // Every processor only has one port.
         }
         else if ( port < (2*param_p) ){ // Intra-group connection
-            sw_id = gen_switch_id % param_a;
+            sw_id = gen_switch_id % (param_a/2);
             port_id = port - param_p;
             if (port_id>=sw_id){
-                res.node = servers + (grp_id * param_a) + port_id+1;
-                res.port = param_p + sw_id;
+                res.node = servers + switches/2 + port_id+1;
+                res.port = sw_id;
             } else {
-                res.node = servers + (grp_id * param_a) + port_id;
-                res.port = param_p + sw_id-1;
+                res.node = servers + switches/2 + port_id;
+                res.port = sw_id-1;
             }
         }
     }
