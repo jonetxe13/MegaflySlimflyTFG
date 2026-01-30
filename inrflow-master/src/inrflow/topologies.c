@@ -18,6 +18,7 @@
 #include "../exanest/nesttree.h"
 #include "../exanest/nestghc.h"
 #include "../dragonfly/dragonfly.h"
+#include "../megafly/megafly.h"
 
 // Could use directly the defined values but will be useful in the future when accepting them as a parameter.
 topo_t topo;    ///< the topology we are modeling
@@ -534,6 +535,30 @@ void init_topology(){
             get_topo_param_tokens=get_topo_param_tokens_dragonfly;
             get_routing_param_tokens=get_routing_param_tokens_dragonfly;
             get_filename_params=get_filename_params_dragonfly;
+            break;
+        case MEGAFLY:
+            init_topo=init_topo_megafly;
+            finish_topo=finish_topo_megafly;
+            get_servers=get_servers_megafly;
+            get_switches=get_swithes_megafly;
+            get_ports=get_ports_megafly;
+            is_server=is_server_megafly;
+            get_server_i=get_server_i_megafly;
+            get_switch_i=get_switch_i_megafly;
+            node_to_server=node_to_server_megafly;
+            node_to_switch=node_to_switch_megafly;
+            get_radix=get_radix_megafly;
+            connection=connection_megafly;
+            init_routing=init_routing_megafly;
+            finish_route=finish_route_megafly;
+            get_n_paths_routing=get_n_paths_routing_megafly;
+            route=route_megafly;
+            get_network_token=get_network_token_megafly;
+            get_routing_token=get_routing_token_megafly;
+            get_topo_version=get_topo_version_megafly;
+            get_topo_param_tokens=get_topo_param_tokens_megafly;
+            get_routing_param_tokens=get_routing_param_tokens_megafly;
+            get_filename_params=get_filename_params_megafly;
             break;
         default:
             break;

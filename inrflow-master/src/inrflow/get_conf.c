@@ -131,6 +131,7 @@ literal_t topology_l[] = {
     { DRAGONFLY_HELIX,"dragonfly-hel"},
     { DRAGONFLY_HELIX,"dragonfly-helix"},
     { DRAGONFLY_HELIX,"dragonfly-other"},
+    { MEGAFLY,"megafly"},
     { JELLYFISH,"jellyfish"},
     { FATTREE,  "fattree"},
     { THINTREE, "thintree"},

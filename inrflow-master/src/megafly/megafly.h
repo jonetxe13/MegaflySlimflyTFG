@@ -1,51 +1,51 @@
 /*
- * dragonfly.h
+ * megafly.h
  *
  *  Created on: 3 Jul 2017
  *      Author: yzy
  */
 
-#ifndef DRAGONFLY_DRAGONFLY_H_
-#define DRAGONFLY_DRAGONFLY_H_
+#ifndef MEGAFLY_MEGAFLY_H_
+#define MEGAFLY_MEGAFLY_H_
 
 
 
-#endif /* DRAGONFLY_DRAGONFLY_H_ */
+#endif /* megafly*/
 
 
-long init_topo_dragonfly(long nparam, long *params); // Initialise the dragonfly topology
-tuple_t connection_dragonfly(long node, long port);
-void finish_topo_dragonfly();
+long init_topo_megafly(long nparam, long *params); // Initialise the megaflytopology
+tuple_t connection_megafly(long node, long port);
+void finish_topo_megafly();
 
-long init_routing_dragonfly(long src, long dst);
-long route_dragonfly(long current, long destination);
-void finish_route_dragonfly();
+long init_routing_megafly(long src, long dst);
+long route_megafly(long current, long destination);
+void finish_route_megafly();
 
 //long selecting_relative_global_port(long sg, long dg);
 
-long get_radix_dragonfly(long node); //Given a node ( router or server ), get the radix of the node
+long get_radix_megafly(long node); //Given a node ( router or server ), get the radix of the node
 
-long get_servers_dragonfly(); // Get the total number of servers
-long get_swithes_dragonfly();
-long get_ports_dragonfly();
-
-
-long is_server_dragonfly(long i);
-long get_server_i_dragonfly(long i);
-long get_switch_i_dragonfly(long i);
-long node_to_server_dragonfly(long i);
-long node_to_switch_dragonfly(long i);
-
-long get_n_paths_routing_dragonfly(long source, long destination);
+long get_servers_megafly(); // Get the total number of servers
+long get_swithes_megafly();
+long get_ports_megafly();
 
 
+long is_server_megafly(long i);
+long get_server_i_megafly(long i);
+long get_switch_i_megafly(long i);
+long node_to_server_megafly(long i);
+long node_to_switch_megafly(long i);
 
-char * get_network_token_dragonfly();
-char * get_routing_token_dragonfly();
-char * get_topo_version_dragonfly();
-char * get_topo_param_tokens_dragonfly();
-char * get_filename_params_dragonfly();
-char * get_routing_param_tokens_dragonfly();
+long get_n_paths_routing_megafly(long source, long destination);
+
+
+
+char * get_network_token_megafly();
+char * get_routing_token_megafly();
+char * get_topo_version_megafly();
+char * get_topo_param_tokens_megafly();
+char * get_filename_params_megafly();
+char * get_routing_param_tokens_megafly();
 /*
  * For global view, nodes are separately processors and routers, processors belong to [ 0 , terminals),
  * routers belong to [ terminals, routers + terminals ).
