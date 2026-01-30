@@ -9,17 +9,17 @@ mkdir -p "$OUTPUT_DIR"
 
 # Múltiples tamaños de red a probar
 TOPOLOGIES=(
-    "dragonfly_2_3_2"    # Pequeña: 42 servidores
-    "dragonfly_4_4_4"    # Mediana: 272 servidores
-    "dragonfly_6_6_6"    # Grande: 1512 servidores
+    "megafly_4"    # Pequeña: 42 servidores
+    # "dragonfly_4_4_4"    # Mediana: 272 servidores
+    # "dragonfly_6_6_6"    # Grande: 1512 servidores
 )
 
 # Algoritmos a comparar
 ROUTINGS=(
-    "dragonfly-min"
+    # "dragonfly-min"
     "dragonfly-valiant"
-    "dragonfly-quick-valiant-private"
-    "dragonfly-quick-valiant-local"
+    # "dragonfly-quick-valiant-private"
+    # "dragonfly-quick-valiant-local"
 )
 
 # Patrón de tráfico

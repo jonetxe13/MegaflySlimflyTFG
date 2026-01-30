@@ -34,7 +34,7 @@ OBJDIR_BUILD = build/obj
 DEP_BUILD =
 OUT_BUILD = build/bin/inrflow
 
-OBJ_BUILD = $(OBJDIR_BUILD)/src/inrflow/failures.o $(OBJDIR_BUILD)/src/inrflow/topologies.o $(OBJDIR_BUILD)/src/inrflow/network.o $(OBJDIR_BUILD)/src/knkstar/knkstar.o  $(OBJDIR_BUILD)/src/bcube/bcube.o $(OBJDIR_BUILD)/src/swcube/swcube.o $(OBJDIR_BUILD)/src/inrflow/get_conf.o $(OBJDIR_BUILD)/src/inrflow/literal.o $(OBJDIR_BUILD)/src/inrflow/main.o $(OBJDIR_BUILD)/src/inrflow/path_list.o $(OBJDIR_BUILD)/src/inrflow/reporting.o $(OBJDIR_BUILD)/src/inrflow/traffic.o $(OBJDIR_BUILD)/src/dpillar/dpillar.o $(OBJDIR_BUILD)/src/ficonn/ficonn.o $(OBJDIR_BUILD)/src/ficonn/routelist.o $(OBJDIR_BUILD)/src/gdcficonn/gdcficonn.o $(OBJDIR_BUILD)/src/fattree/fattree.o $(OBJDIR_BUILD)/src/torus/torus.o $(OBJDIR_BUILD)/src/exatree/exatree.o $(OBJDIR_BUILD)/src/exatorus/exatorus.o $(OBJDIR_BUILD)/src/hcnbcn/hcnbcn.o $(OBJDIR_BUILD)/src/gtree/gtree.o $(OBJDIR_BUILD)/src/exanest/nesttree.o $(OBJDIR_BUILD)/src/exanest/nestghc.o $(OBJDIR_BUILD)/src/thintree/thintree.o $(OBJDIR_BUILD)/src/dragonfly/dragonfly.o $(OBJDIR_BUILD)/src/jellyfish/jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/rg_gen.o $(OBJDIR_BUILD)/src/jellyfish/routing_jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/jellyfish_aux.o $(OBJDIR_BUILD)/src/inrflow/placement.o $(OBJDIR_BUILD)/src/inrflow/io.o $(OBJDIR_BUILD)/src/inrflow/node.o $(OBJDIR_BUILD)/src/inrflow/list.o $(OBJDIR_BUILD)/src/inrflow/applications.o $(OBJDIR_BUILD)/src/inrflow/workloads.o $(OBJDIR_BUILD)/src/inrflow/gen_trace.o $(OBJDIR_BUILD)/src/kernels/collectives.o $(OBJDIR_BUILD)/src/kernels/neighbours.o  $(OBJDIR_BUILD)/src/inrflow/storage.o $(OBJDIR_BUILD)/src/kernels/storageapps.o $(OBJDIR_BUILD)/src/kernels/pseudoapps.o $(OBJDIR_BUILD)/src/kernels/trace.o $(OBJDIR_BUILD)/src/inrflow/scheduling.o $(OBJDIR_BUILD)/src/inrflow/allocation.o $(OBJDIR_BUILD)/src/inrflow/mapping.o $(OBJDIR_BUILD)/src/inrflow/static_engine.o $(OBJDIR_BUILD)/src/inrflow/dynamic_engine.o $(OBJDIR_BUILD)/src/inrflow/electric_engine.o $(OBJDIR_BUILD)/src/inrflow/photonic_engine.o $(OBJDIR_BUILD)/src/inrflow/metrics.o $(OBJDIR_BUILD)/src/jellyfish/allocation_jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/allocation_jellyfish_strategies.o $(OBJDIR_BUILD)/src/euroexa/euroexa.o $(OBJDIR_BUILD)/src/euroexa/euroexa_tl.o
+OBJ_BUILD = $(OBJDIR_BUILD)/src/inrflow/failures.o $(OBJDIR_BUILD)/src/inrflow/topologies.o $(OBJDIR_BUILD)/src/inrflow/network.o $(OBJDIR_BUILD)/src/knkstar/knkstar.o  $(OBJDIR_BUILD)/src/bcube/bcube.o $(OBJDIR_BUILD)/src/swcube/swcube.o $(OBJDIR_BUILD)/src/inrflow/get_conf.o $(OBJDIR_BUILD)/src/inrflow/literal.o $(OBJDIR_BUILD)/src/inrflow/main.o $(OBJDIR_BUILD)/src/inrflow/path_list.o $(OBJDIR_BUILD)/src/inrflow/reporting.o $(OBJDIR_BUILD)/src/inrflow/traffic.o $(OBJDIR_BUILD)/src/dpillar/dpillar.o $(OBJDIR_BUILD)/src/ficonn/ficonn.o $(OBJDIR_BUILD)/src/ficonn/routelist.o $(OBJDIR_BUILD)/src/gdcficonn/gdcficonn.o $(OBJDIR_BUILD)/src/fattree/fattree.o $(OBJDIR_BUILD)/src/torus/torus.o $(OBJDIR_BUILD)/src/exatree/exatree.o $(OBJDIR_BUILD)/src/exatorus/exatorus.o $(OBJDIR_BUILD)/src/hcnbcn/hcnbcn.o $(OBJDIR_BUILD)/src/gtree/gtree.o $(OBJDIR_BUILD)/src/exanest/nesttree.o $(OBJDIR_BUILD)/src/exanest/nestghc.o $(OBJDIR_BUILD)/src/thintree/thintree.o $(OBJDIR_BUILD)/src/dragonfly/dragonfly.o $(OBJDIR_BUILD)/src/megafly/megafly.o $(OBJDIR_BUILD)/src/jellyfish/jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/rg_gen.o $(OBJDIR_BUILD)/src/jellyfish/routing_jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/jellyfish_aux.o $(OBJDIR_BUILD)/src/inrflow/placement.o $(OBJDIR_BUILD)/src/inrflow/io.o $(OBJDIR_BUILD)/src/inrflow/node.o $(OBJDIR_BUILD)/src/inrflow/list.o $(OBJDIR_BUILD)/src/inrflow/applications.o $(OBJDIR_BUILD)/src/inrflow/workloads.o $(OBJDIR_BUILD)/src/inrflow/gen_trace.o $(OBJDIR_BUILD)/src/kernels/collectives.o $(OBJDIR_BUILD)/src/kernels/neighbours.o  $(OBJDIR_BUILD)/src/inrflow/storage.o $(OBJDIR_BUILD)/src/kernels/storageapps.o $(OBJDIR_BUILD)/src/kernels/pseudoapps.o $(OBJDIR_BUILD)/src/kernels/trace.o $(OBJDIR_BUILD)/src/inrflow/scheduling.o $(OBJDIR_BUILD)/src/inrflow/allocation.o $(OBJDIR_BUILD)/src/inrflow/mapping.o $(OBJDIR_BUILD)/src/inrflow/static_engine.o $(OBJDIR_BUILD)/src/inrflow/dynamic_engine.o $(OBJDIR_BUILD)/src/inrflow/electric_engine.o $(OBJDIR_BUILD)/src/inrflow/photonic_engine.o $(OBJDIR_BUILD)/src/inrflow/metrics.o $(OBJDIR_BUILD)/src/jellyfish/allocation_jellyfish.o $(OBJDIR_BUILD)/src/jellyfish/allocation_jellyfish_strategies.o $(OBJDIR_BUILD)/src/euroexa/euroexa.o $(OBJDIR_BUILD)/src/euroexa/euroexa_tl.o
 
 all: build
 
@@ -60,6 +60,7 @@ before_build:
 	test -d $(OBJDIR_BUILD)/src/euroexa || mkdir -p $(OBJDIR_BUILD)/src/euroexa
 	test -d $(OBJDIR_BUILD)/src/jellyfish || mkdir -p $(OBJDIR_BUILD)/src/jellyfish
 	test -d $(OBJDIR_BUILD)/src/dragonfly || mkdir -p $(OBJDIR_BUILD)/src/dragonfly
+	test -d $(OBJDIR_BUILD)/src/megafly || mkdir -p $(OBJDIR_BUILD)/src/megafly
 	test -d $(OBJDIR_BUILD)/src/kernels || mkdir -p $(OBJDIR_BUILD)/src/kernels
 
 after_build: 
@@ -155,6 +156,9 @@ $(OBJDIR_BUILD)/src/jellyfish/jellyfish.o: src/jellyfish/jellyfish.c
 
 $(OBJDIR_BUILD)/src/dragonfly/dragonfly.o: src/dragonfly/dragonfly.c
 	$(CC) $(CFLAGS_BUILD) $(INC_BUILD) -c src/dragonfly/dragonfly.c -o $(OBJDIR_BUILD)/src/dragonfly/dragonfly.o
+
+$(OBJDIR_BUILD)/src/megafly/megafly.o: src/megafly/megafly.c
+	$(CC) $(CFLAGS_BUILD) $(INC_BUILD) -c src/megafly/megafly.c -o $(OBJDIR_BUILD)/src/megafly/megafly.o
 
 $(OBJDIR_BUILD)/src/jellyfish/rg_gen.o: src/jellyfish/rg_gen.c
 	$(CC) $(CFLAGS_BUILD) $(INC_BUILD) -c src/jellyfish/rg_gen.c -o $(OBJDIR_BUILD)/src/jellyfish/rg_gen.o
@@ -256,6 +260,7 @@ clean_build:
 	rm -rf $(OBJDIR_BUILD)/src/euroexa
 	rm -rf $(OBJDIR_BUILD)/src/jellyfish
 	rm -rf $(OBJDIR_BUILD)/src/dragonfly
+	rm -rf $(OBJDIR_BUILD)/src/megafly
 	rm -rf $(OBJDIR_BUILD)/src/kernels
 
 .PHONY: before_build after_build clean_build

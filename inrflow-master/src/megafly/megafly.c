@@ -73,8 +73,8 @@ long init_topo_megafly(long np, long *par) {
 
 	// Boring stuff for printing and file generation
     switch(topo) {
-        case MEGAFLY_ABSOLUTE:
-            sprintf(network_token,"megafly-abs");
+        case MEGAFLY:
+            sprintf(network_token,"megafly");
             break;
         default:
             printf("Not a valid megafly");
@@ -85,10 +85,10 @@ long init_topo_megafly(long np, long *par) {
     sprintf(filename_params,"p%ld_a%ld_h%ld",param_p,param_a,param_h);
 
     switch(routing) {
-	    case MEGAFLY_MINIMUM:
+	    case DRAGONFLY_MINIMUM:
 		sprintf(routing_token,"min");
 		break;
-	    case MEGAFLY_VALIANT:
+	    case DRAGONFLY_VALIANT:
 		sprintf(routing_token,"valiant");
 		break;
 	    default:
@@ -127,26 +127,22 @@ tuple_t connection_megafly(long node, long port) {
             res.port = node % param_p; // The server's port number
         } // servers only have one connection
     }
-    else if(node <= (servers + (switches/2))) { // the node is a local switch
+    else if(node < (servers + (switches/2))) { // the node is a local switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
         grp_id = (gen_switch_id/(param_a/2)); // id of the group relative to other groups
         if( port < param_p ) {// This is a downlink to a server 
-            res.node = grp_id*param_p*param_p + (gen_switch_id%param_a/2) + port; //coger el server
+            // res.node = grp_id*param_p*param_p + (gen_switch_id%(param_a/2))*param_p + port; //coger el server
+            res.node = gen_switch_id * param_p + port;
             res.port = 0 ; // Every processor only has one port.
         }
         else if ( port < (2*param_p) ){ // Intra-group connection
             sw_id = gen_switch_id % (param_a/2);
             port_id = port - param_p;
-            if (port_id>=sw_id){
-                res.node = servers + gen_switch_id + switches/2 + port_id+1;
-                res.port = sw_id;
-            } else {
-                res.node = servers + gen_switch_id + switches/2 + port_id;
-                res.port = sw_id-1;
-            }
+            res.node = servers + gen_switch_id + switches/2 - sw_id + port_id;
+            res.port = sw_id;
         }
     }
-    else if(node > (servers + (switches/2))){ //the node is a global switch
+    else if(node >= (servers + (switches/2))){ //the node is a global switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
         grp_id = ((gen_switch_id-(switches/2))/(param_a/2)); // id of the group relative to other groups
         // if( port < param_p ) {// This is a downlink to a server
@@ -155,38 +151,26 @@ tuple_t connection_megafly(long node, long port) {
         // }
         if (port < param_p){ // Intra-group connection
             sw_id = (gen_switch_id % (param_a/2)); //id del switch local dentro del grupo
-            port_id = port - param_p;
-            if (port_id>=sw_id){
-                res.node = servers + (gen_switch_id - switches/2) + port_id+1;
-                res.port = sw_id;
-            } else {
-                res.node = servers + (gen_switch_id - switches/2) + port_id;
-                res.port = sw_id-1;
-            }
+            // port_id = port;
+            res.node = servers + (gen_switch_id - switches/2) - sw_id + port;
+            res.port = sw_id+param_p;
+            // printf("DEBUG: Spine %ld port %ld -> Leaf %ld port %ld (sw_id=%ld, pp=%d)\n", node, port, res.node, res.port, sw_id, param_p);
+
         }
         else if (port < 2*param_p ) { // uplinks; many connections possible here
             sw_id = gen_switch_id % (param_a/2); // the switch id relative to the switch group
             port_id = port - param_p + (sw_id*param_h); // the port id relative to the switch group
 
-            /// Let's calculate the next group and its link, based on the connection arrangement.
-            switch(topo) {
-                case MEGAFLY_ABSOLUTE:
-                    if (port_id >= grp_id){
-                        next_grp = port_id+1;
-                        next_port = grp_id;
-                    } else {
-                        next_grp = port_id;
-                        next_port = grp_id-1;
-                    }
-                    break;
-                default:
-                    printf("Not a valid megafly");
-                    exit(-1);
-                    break;
+            if (port_id >= grp_id){
+                next_grp = port_id+1;
+                next_port = grp_id;
+            } else {
+                next_grp = port_id;
+                next_port = grp_id-1;
             }
 
 //            printf("%ld %ld %ld %ld\n",grp_id,sw_id,next_grp,next_port/param_h);
-            res.node = servers + gen_switch_id + (next_grp * (param_a/2)) + (next_port/param_h);
+            res.node = servers + (switches/2) + (next_grp * param_p) + (next_port/param_h);
             res.port = param_p + (next_port%param_h);
         }
 
@@ -267,46 +251,9 @@ long init_routing_megafly(long src, long dst) {
     proxy_grp = dst_grp;
     
     if (src_grp != dst_grp) {
-        if (routing == MEGAFLY_VALIANT) {
+        if (routing == DRAGONFLY_VALIANT) {
             proxy_grp = rand() % grps;
         } 
-        else if (routing == DRAGONFLY_QUICK_VALIANT_PRIVATE) {// the proxy is private for each source. If param_p == param_h each endpoint has a dedicated uplink/proxy
-            long r0 = (src * param_h) / param_p;  // first possble proxy 
-            long r1 = ((src + 1) * param_h) / param_p;  // last possble proxy
-            long rp; //choose a proxy (at random if more than 1 suitable)
-            
-            if (r1 - r0 < 2) // only 1 possible proxy; choose at random
-                rp = r0 % param_h;
-            else // more than 1 possible proxy; choose at random
-                rp = (r0 + (rand() % (r1 - r0))) % param_h;
-            
-            proxy_grp = ((network[servers + (src/param_p)].port[param_p + param_a - 1 + rp].neighbour.node) - servers) / param_a;
-        }
-        else if (routing == DRAGONFLY_QUICK_VALIANT_QUASIPRIVATE) {// the proxy is quasi private; the first half of uplinks is shared with the previous processor, the second half is shared with the next.
-            long r0 = (src * param_h) / param_p;// first possible proxy
-            long r2 = ((src + 2) * param_h) / param_p; // last possible proxy
-            long rp;//choose a proxy (at random if more than 1 suitable)
-            
-            if (r2 - r0 < 2)// only 1 possible proxy; choose r0
-                rp = r0 % param_h;
-            else// more than 1 possible proxy; choose at random
-                rp = (r0 + (rand() % (r2 - r0))) % param_h;
-            
-            proxy_grp = ((network[servers + (src/param_p)].port[param_p + param_a - 1 + rp].neighbour.node) - servers) / param_a;
-        }
-        else if (routing == DRAGONFLY_QUICK_VALIANT_LOCAL) {
-            proxy_grp = ((network[servers + (src/param_p)].port[param_p + param_a - 1 + (rand() % param_h)].neighbour.node) - servers) / param_a;// pick a neighbor to the local group at random
-        }
-        else if (routing == DRAGONFLY_QUICK_VALIANT_REMOTE) {
-            // Elegir un vecino del grupo remoto al azar
-            proxy_grp = ((network[servers + (dst/param_p)].port[param_p + param_a - 1 + (rand() % param_h)].neighbour.node) - servers) / param_a;// pick a neighbor to the remote group at random
-        }
-        else if (routing == DRAGONFLY_QUICK_VALIANT_DUAL) {
-            if (rand() % 2) // pick a neighbor to either the local or the remote group at random
-                proxy_grp = ((network[servers + (src/param_p)].port[param_p + param_a - 1 + (rand() % param_h)].neighbour.node) - servers) / param_a;// pick a local neighbor
-            else
-                proxy_grp = ((network[servers + (dst/param_p)].port[param_p + param_a - 1 + (rand() % param_h)].neighbour.node) - servers) / param_a;// pick a remote neighbor
-        }
     }
     
     return 1;
@@ -344,7 +291,7 @@ long route_megafly(long current, long destination) {
                     proxy_grp=dst_grp;
 
                 switch(topo){
-                    case MEGAFLY_ABSOLUTE:
+                    case MEGAFLY:
                         if (cur_grp>proxy_grp)
                             outport_grp=proxy_grp;
                         else
