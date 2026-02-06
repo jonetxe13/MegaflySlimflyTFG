@@ -181,48 +181,57 @@ tuple_t connection_slimfly(long node, long port) {
             res.port = node % param_p; // The server's port number
         } // servers only have one connection
     }
-    else if(node < (servers + (switches/2))) { // the node is a switch
+    else if(node < (servers + switches)) { // the node is a switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
-        grp_global = (gen_switch_id/2); // id of the group relative to other groups
+        grp_global = (gen_switch_id/(switches/2)); // id of the group relative to other groups
         if( port < param_p ) {// This is a downlink to a server 
             // res.node = grp_id*param_p*param_p + (gen_switch_id%(param_a/2))*param_p + port; //coger el server
             res.node = gen_switch_id * param_p + port;
             res.port = 0 ; // Every processor only has one port.
         }
-        else if ( port < (2+param_p) ){ // Intra-group connection
+        else if ( port < (2+param_p) ){ // Intra-group connection (solo hay 2 conexiones intragroup seguro???
             sw_id = gen_switch_id % (param_a);
             sw_subgroup = gen_switch_id/param_q;
             port_id = port - param_p;
-            int sw_dest = 0;
-
-            if(grp_global == 0){
-                for(int i = 0; i<param_q; i++){
-                    for(int j = 0; j<param_q/2; j++){
-                        if(abs(sw_id-i) == param_x[j]){
-                            res.node = node + j;
-                            res.port = j;
-                        }
-                    }
-                }
-            }
-            else if(grp_global == 1){
-                for(int i = 0; i<param_q; i++){
-                    for(int j = 0; j<param_q/2; j++){
-                        if(abs(sw_id-i) == param_x2[j]){
-                            res.node = node + j;
-                            res.port = j;
-                        }
-                    }
-                }
-            }
+            int indice = sw_id-param_x[port_id];
+            if(indice < 0) indice += param_q;
+            res.node = indice + servers + param_q*sw_subgroup;
+            res.port = port;
         }
         else{ //uplinks a la otra mitad
+            sw_id = gen_switch_id % (param_a);
+            sw_subgroup = gen_switch_id/param_q;
+            port_id = port - param_p - 2;
+
+            int m, x, y, c; 
+
+            if(grp_global==0){
+                y = sw_id;
+                x = sw_subgroup;
+            }
+            else{
+                c = sw_id;
+                m = sw_subgroup%param_q;
+            }
             for(int i = 0; i<param_q; i++){
-                for(int j = 0; j<param_q/2; j++){
-                    if( == param_x2[j]){
-                        res.node = node + j;
-                        res.port = j;
+                for(int j = 0; j<param_q; j++){
+                    if(grp_global==0){
+                        if((i*x+j)%param_q == y){
+                            c = j;
+                            m = i; 
+                            res.node = node + m*param_q + switches/2 + c;
+                            res.port = port;
+                        }
                     }
+                    else{
+                        if((m*i+c)%param_q == j){
+                            y = j;
+                            x = i;
+                            res.node = node + x*param_q - switches/2+ y;
+                            res.port = port;
+                        }
+                    }
+
                 }
             }
         }
