@@ -19,6 +19,7 @@
 #include "../exanest/nestghc.h"
 #include "../dragonfly/dragonfly.h"
 #include "../megafly/megafly.h"
+#include "../slimfly/slimfly.h"
 
 // Could use directly the defined values but will be useful in the future when accepting them as a parameter.
 topo_t topo;    ///< the topology we are modeling
@@ -559,6 +560,30 @@ void init_topology(){
             get_topo_param_tokens=get_topo_param_tokens_megafly;
             get_routing_param_tokens=get_routing_param_tokens_megafly;
             get_filename_params=get_filename_params_megafly;
+            break;
+        case SLIMFLY:
+            init_topo=init_topo_slimfly;
+            finish_topo=finish_topo_slimfly;
+            get_servers=get_servers_slimfly;
+            get_switches=get_swithes_slimfly;
+            get_ports=get_ports_slimfly;
+            is_server=is_server_slimfly;
+            get_server_i=get_server_i_slimfly;
+            get_switch_i=get_switch_i_slimfly;
+            node_to_server=node_to_server_slimfly;
+            node_to_switch=node_to_switch_slimfly;
+            get_radix=get_radix_slimfly;
+            connection=connection_slimfly;
+            init_routing=init_routing_slimfly;
+            finish_route=finish_route_slimfly;
+            get_n_paths_routing=get_n_paths_routing_slimfly;
+            route=route_slimfly;
+            get_network_token=get_network_token_slimfly;
+            get_routing_token=get_routing_token_slimfly;
+            get_topo_version=get_topo_version_slimfly;
+            get_topo_param_tokens=get_topo_param_tokens_slimfly;
+            get_routing_param_tokens=get_routing_param_tokens_slimfly;
+            get_filename_params=get_filename_params_slimfly;
             break;
         default:
             break;

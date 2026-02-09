@@ -119,10 +119,14 @@ long init_topo_slimfly(long np, long *par) {
         if(es_generador) break;
     
     }
+    param_x = malloc((param_q/2)*sizeof(int));
+    param_x2 = malloc((param_q/2)*sizeof(int));
 
-    for (int i = 0; i<param_q-2; i++) {
-        if(i%2==0) param_x[i]=((int)pow(param_gen, i*2))%param_q;
-        if((i+1)%2!=0) param_x2[i]=((int)pow(param_gen, i+1))%param_q;
+    for (int i = 0; i<param_q-1; i++) {
+        if(i%2==0) param_x[i/2]=((int)pow(param_gen, i))%param_q;
+        if(i%2!=0) param_x2[i/2]=((int)pow(param_gen, i))%param_q;
+        printf("param_x: %d", param_x[i/2]);
+        printf("param_x2: %d", param_x2[i/2]);
     }
 
     // Boring stuff for printing and file generation
@@ -154,7 +158,8 @@ long init_topo_slimfly(long np, long *par) {
 }
 
 void finish_topo_slimfly(){
-
+    free(param_x);
+    free(param_x2);
 }
 
 long get_servers_slimfly(){
@@ -183,7 +188,7 @@ tuple_t connection_slimfly(long node, long port) {
     }
     else if(node < (servers + switches)) { // the node is a switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
-        grp_global = (gen_switch_id/(switches/2)); // id of the group relative to other groups
+        grp_global = (gen_switch_id/(param_q*param_q)); // id of the group relative to other groups
         if( port < param_p ) {// This is a downlink to a server 
             // res.node = grp_id*param_p*param_p + (gen_switch_id%(param_a/2))*param_p + port; //coger el server
             res.node = gen_switch_id * param_p + port;
@@ -191,11 +196,23 @@ tuple_t connection_slimfly(long node, long port) {
         }
         else if ( port < (2+param_p) ){ // Intra-group connection (solo hay 2 conexiones intragroup seguro???
             sw_id = gen_switch_id % (param_a);
-            sw_subgroup = gen_switch_id/param_q;
+            sw_subgroup = (gen_switch_id%(param_q*param_q))/param_q;
             port_id = port - param_p;
-            int indice = sw_id-param_x[port_id];
-            if(indice < 0) indice += param_q;
-            res.node = indice + servers + param_q*sw_subgroup;
+            int indice;
+            if(grp_global == 0){
+                // if(port_id==0)
+                   indice = (sw_id+param_x[port_id])%param_q;
+                // else
+                //    indice = (sw_id-param_x[port_id]+param_q)%param_q;
+            }
+            else{
+                // if(port_id==0)
+                   indice = (sw_id+param_x2[port_id])%param_q;
+                // else
+                //    indice = (sw_id-param_x2[port_id]+param_q)%param_q;
+            }
+            // if(indice < 0) indice += param_q;
+            res.node = indice + servers + param_q*sw_subgroup + param_q*param_q*grp_global;
             res.port = port;
         }
         else{ //uplinks a la otra mitad
@@ -207,28 +224,39 @@ tuple_t connection_slimfly(long node, long port) {
 
             if(grp_global==0){
                 y = sw_id;
-                x = sw_subgroup;
+                x = sw_subgroup%param_q;
             }
             else{
                 c = sw_id;
                 m = sw_subgroup%param_q;
             }
+
+            int dest_id = port_id;
+            int count_sol = 0;
             for(int i = 0; i<param_q; i++){
                 for(int j = 0; j<param_q; j++){
                     if(grp_global==0){
                         if((i*x+j)%param_q == y){
-                            c = j;
-                            m = i; 
-                            res.node = node + m*param_q + switches/2 + c;
-                            res.port = port;
+                            if(count_sol == dest_id){
+                                c = j;
+                                m = i; 
+                                res.node = servers + param_q*param_q + m*param_q + c;
+                                res.port = port;
+                                break;
+                            }
+                            count_sol++;
                         }
                     }
                     else{
                         if((m*i+c)%param_q == j){
-                            y = j;
-                            x = i;
-                            res.node = node + x*param_q - switches/2+ y;
-                            res.port = port;
+                            if(count_sol == dest_id){
+                                y = j;
+                                x = i;
+                                res.node = servers + x*param_q + y;
+                                res.port = port;
+                                break;
+                            }
+                            count_sol++;
                         }
                     }
 
@@ -411,85 +439,3 @@ long route_slimfly(long current, long destination) {
     }
 }
 
-// // # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// long route_slimfly(long current, long destination) {
-//     long cur_sw, dst_sw;
-//     long cur_grp, dst_grp;
-//     long outport_sw, outport_grp;
-//     long tmp;
-//
-//
-//     if(current<servers) // Still in the source server, only port 0 is available.
-//         return 0;
-//     else{
-//         cur_sw=current-servers;
-//         dst_sw=destination/param_p;
-//         if (cur_sw==dst_sw) // Already in the destination switch, just go down the appropriate port.
-//             return destination%param_p;
-//         else{
-//             cur_grp=cur_sw/param_a;
-//             dst_grp=dst_sw/param_a;
-//             if (cur_grp==dst_grp) {// in the same group as the destination; pick the port to the adequate switch
-//                 if (cur_sw>dst_sw)
-//                     return param_p+(dst_sw%param_a);
-//                 else
-//                     return param_p+(dst_sw%param_a)-1;
-//             }
-//             else { // need to swap to a different group
-//                 if (cur_grp==proxy_grp)
-//                     proxy_grp=dst_grp;
-//
-//                 switch(topo){
-//                     case MEGAFLY:
-//                         if (cur_grp>proxy_grp)
-//                             outport_grp=proxy_grp;
-//                         else
-//                             outport_grp=proxy_grp-1;
-//                         break;
-//                     case DRAGONFLY_RELATIVE:
-//                         outport_grp=(grps+(proxy_grp-cur_grp)-1)%grps;
-//                         break;
-//                     case DRAGONFLY_CIRCULANT:
-//                         tmp=proxy_grp-cur_grp;
-//                         if (abs(tmp)>(grps/2)){
-//                             if (tmp>0)
-//                                 tmp-=grps;
-//                             else
-//                                 tmp+=grps;
-//                         }
-//                         outport_grp=(abs(tmp)-1)*2;
-//                         if(tmp<0)
-//                             outport_grp+=1;
-// 			    if(outport_grp==grps-1){ // It can happen with uneven param_a and param_h that one of the chords
-// 			    outport_grp--;
-//                         }
-//                         break;
-//                     case DRAGONFLY_NAUTILUS:
-//                     	outport_grp=intergroup_route[cur_grp][proxy_grp];
-//                         break;
-//                     case DRAGONFLY_HELIX:
-//                     	outport_grp=intergroup_route[cur_grp][proxy_grp];
-//                         break;
-//                     case DRAGONFLY_OTHER:
-//                         outport_grp=other_map2orig[(grps+(proxy_grp-cur_grp)-1)%grps];
-//                         break;
-//                     default:
-//                         printf("Not a valid megafly");
-//                         exit(-1);
-//                         break;
-//
-//                 }
-//                 // outport_grp has the port within the group that is connected to the destination group. Now we need to check whether this port is in the local switch or we need to go to a different switch in our group.
-//                 outport_sw=outport_grp/param_h;
-//                 if (outport_sw==(cur_sw%param_a)) // Great!!! it's in the current switch
-//                     return (outport_grp%param_h)+param_p+intra_ports;
-//                 else{	// Aw! Another extra hop to get there
-//                     if ((cur_sw%param_a)>outport_sw)
-//                         return param_p+(outport_sw);
-//                     else
-//                         return param_p+(outport_sw)-1;
-//                 }
-//             }
-//         }
-//     }
-// }

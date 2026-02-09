@@ -1,51 +1,51 @@
 /*
- * megafly.h
+ * slimfly.h
  *
  *  Created on: 3 Jul 2017
  *      Author: yzy
  */
 
-#ifndef MEGAFLY_MEGAFLY_H_
-#define MEGAFLY_MEGAFLY_H_
+#ifndef SLIMFLY_SLIMFLY_H_
+#define SLIMFLY_SLIMFLY_H_
 
 
 
-#endif /* megafly*/
+#endif /* slimfly*/
 
 
-long init_topo_megafly(long nparam, long *params); // Initialise the megaflytopology
-tuple_t connection_megafly(long node, long port);
-void finish_topo_megafly();
+long init_topo_slimfly(long nparam, long *params); // Initialise theslimfly 
+tuple_t connection_slimfly(long node, long port);
+void finish_topo_slimfly();
 
-long init_routing_megafly(long src, long dst);
-long route_megafly(long current, long destination);
-void finish_route_megafly();
+long init_routing_slimfly(long src, long dst);
+long route_slimfly(long current, long destination);
+void finish_route_slimfly();
 
 //long selecting_relative_global_port(long sg, long dg);
 
-long get_radix_megafly(long node); //Given a node ( router or server ), get the radix of the node
+long get_radix_slimfly(long node); //Given a node ( router or server ), get the radix of the node
 
-long get_servers_megafly(); // Get the total number of servers
-long get_swithes_megafly();
-long get_ports_megafly();
-
-
-long is_server_megafly(long i);
-long get_server_i_megafly(long i);
-long get_switch_i_megafly(long i);
-long node_to_server_megafly(long i);
-long node_to_switch_megafly(long i);
-
-long get_n_paths_routing_megafly(long source, long destination);
+long get_servers_slimfly(); // Get the total number of servers
+long get_swithes_slimfly();
+long get_ports_slimfly();
 
 
+long is_server_slimfly(long i);
+long get_server_i_slimfly(long i);
+long get_switch_i_slimfly(long i);
+long node_to_server_slimfly(long i);
+long node_to_switch_slimfly(long i);
 
-char * get_network_token_megafly();
-char * get_routing_token_megafly();
-char * get_topo_version_megafly();
-char * get_topo_param_tokens_megafly();
-char * get_filename_params_megafly();
-char * get_routing_param_tokens_megafly();
+long get_n_paths_routing_slimfly(long source, long destination);
+
+
+
+char * get_network_token_slimfly();
+char * get_routing_token_slimfly();
+char * get_topo_version_slimfly();
+char * get_topo_param_tokens_slimfly();
+char * get_filename_params_slimfly();
+char * get_routing_param_tokens_slimfly();
 /*
  * For global view, nodes are separately processors and routers, processors belong to [ 0 , terminals),
  * routers belong to [ terminals, routers + terminals ).
