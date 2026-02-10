@@ -72,18 +72,22 @@ long init_topo_slimfly(long np, long *par) {
 
     param_q = par[0]; // number of switches per group
     // check wether q is a prime of the form q = 4w+delta
-    //
-    param_k = (3*param_q - param_delta[0])/2;
+    param_k = (3*param_q - param_delta[2])/2; //links a otros routers
     switches = 2*param_q*param_q; //number of switches
     param_p = ceil(param_k/2); // number of servers per switch
     servers = param_p * switches;
     param_a = param_q; // number of switches per group
     param_h = param_q; // number of uplinks per switch
+    printf("q: %d \n", param_q);
+    printf("k: %d \n", param_k);
+    printf("switches: %d \n", switches);
+    printf("p: %d \n", param_p);
 
+    printf("servers: %d \n", servers);
 	// Calculate some useful values from the parameters
-    intra_ports = param_a*2;
+    intra_ports = (param_q-1)/2;
     grps = param_q*2;
-    ports = (param_k+param_p)*switches;
+    // ports = (param_q+param_p)*switches;
 
     //calcular el Galois Field con q
     int param_field[param_q];
@@ -200,20 +204,16 @@ tuple_t connection_slimfly(long node, long port) {
             port_id = port - param_p;
             int indice;
             if(grp_global == 0){
-                // if(port_id==0)
-                   indice = (sw_id+param_x[port_id])%param_q;
-                // else
-                //    indice = (sw_id-param_x[port_id]+param_q)%param_q;
+                indice = (sw_id+param_x[port_id])%param_q;
             }
             else{
-                // if(port_id==0)
-                   indice = (sw_id+param_x2[port_id])%param_q;
-                // else
-                //    indice = (sw_id-param_x2[port_id]+param_q)%param_q;
+                indice = (sw_id+param_x2[port_id])%param_q;
             }
-            // if(indice < 0) indice += param_q;
+
             res.node = indice + servers + param_q*sw_subgroup + param_q*param_q*grp_global;
-            res.port = port;
+            int offset = intra_ports/2;
+
+            res.port = param_p + (port_id+offset)%intra_ports;
         }
         else{ //uplinks a la otra mitad
             sw_id = gen_switch_id % (param_a);
