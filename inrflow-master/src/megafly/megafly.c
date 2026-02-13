@@ -145,10 +145,6 @@ tuple_t connection_megafly(long node, long port) {
     else if(node >= (servers + (switches/2))){ //the node is a global switch
         gen_switch_id = node - servers; // id of the switch relative to other switches
         grp_id = ((gen_switch_id-(switches/2))/(param_a/2)); // id of the group relative to other groups
-        // if( port < param_p ) {// This is a downlink to a server
-        //     res.node = servers + (switches/2) + port; // The sequence of the server
-        //     res.port = 0 ; // Every processor only has one port.
-        // }
         if (port < param_p){ // Intra-group connection
             sw_id = (gen_switch_id % (param_a/2)); //id del switch local dentro del grupo
             // port_id = port;
@@ -157,7 +153,7 @@ tuple_t connection_megafly(long node, long port) {
             // printf("DEBUG: Spine %ld port %ld -> Leaf %ld port %ld (sw_id=%ld, pp=%d)\n", node, port, res.node, res.port, sw_id, param_p);
 
         }
-        else if (port < 2*param_p ) { // uplinks; many connections possible here
+        else if (port < 2*param_p ) { // uplinks;
             sw_id = gen_switch_id % (param_a/2); // the switch id relative to the switch group
             port_id = port - param_p + (sw_id*param_h); // the port id relative to the switch group
 
@@ -245,16 +241,10 @@ long get_n_paths_routing_megafly(long src, long dst){
 }
 
 long init_routing_megafly(long src, long dst) {
-    long src_grp = src/(param_p*param_a);
-    long dst_grp = dst/(param_p*param_a);
+    long src_grp = src/(param_p*(param_a/2));
+    long dst_grp = dst/(param_p*(param_a/2));
 
     proxy_grp = dst_grp;
-    
-    if (src_grp != dst_grp) {
-        if (routing == DRAGONFLY_VALIANT) {
-            proxy_grp = rand() % grps;
-        } 
-    }
     
     return 1;
 }
@@ -277,157 +267,112 @@ long route_megafly(long current, long destination) {
     if (current < servers) { // Servidor -> Switch
         return 0;
     } 
-    
-    // --- 1. Identificar dónde estamos y a dónde vamos ---
-    cur_sw = current - servers;
-    dst_sw = destination / param_p; // ID del switch Leaf destino (0..9)
+    else if((current-servers) < (switches/2)){ //current es leaf switch
+        cur_sw = current-servers;
+        cur_grp = cur_sw/(param_a/2);
+        dst_sw=destination/(param_p);
+        dst_grp=dst_sw/(param_a/2);
 
-    // Calcular Grupo ACTUAL
-    if (cur_sw < (switches/2)) { // Soy un LEAF
-        cur_grp = cur_sw / leafs_per_grp;
-    } else { // Soy un SPINE
-        cur_grp = (cur_sw - (switches/2)) / spines_per_grp;
-    }
-
-    // Calcular Grupo DESTINO (El destino siempre es un Leaf)
-    dst_grp = dst_sw / leafs_per_grp;
-
-    // --- 2. Lógica de Enrutamiento ---
-
-    // CASO A: MISMO GRUPO
-    if (cur_grp == dst_grp) {
-        if (cur_sw < (switches/2)) { 
-            // Soy LEAF. Destino es otro Leaf (o yo mismo).
-            if (cur_sw == dst_sw) return destination % param_p; // Llegué. Downlink.
-            
-            // Si es otro Leaf del mismo grupo, subo a CUALQUIER Spine.
-            // (El Spine bajará al Leaf correcto).
-            // Retornamos el primer uplink (o random si quisieras balancear)
-            return param_p; 
-        } else {
-            // Soy SPINE. Tengo conexión directa a todos los Leafs de mi grupo.
-            // Averiguo qué Leaf es dentro del grupo (0..1)
-            long dest_leaf_idx = dst_sw % leafs_per_grp;
-            // El puerto de bajada al Leaf 'k' es el puerto 'k'.
-            return dest_leaf_idx;
+        if(cur_grp==dst_grp){//mismo grupo
+            outport_grp = param_p + (dst_sw%(param_a/2));
         }
-    }
-
-    // CASO B: OTRO GRUPO (Inter-group)
-    else {
-        // Lógica de Proxy (Dragonfly MIN)
-        if (cur_grp == proxy_grp) proxy_grp = dst_grp;
-        
-        // Calcular grupo intermedio (outport_grp)
-        // Nota: Esto asume topología "Dragonfly 1D" o "Megafly" canónica
-        if (cur_grp > proxy_grp) outport_grp = proxy_grp;
-        else outport_grp = proxy_grp - 1;
-
-        // ¿Qué Spine de mi grupo tiene el cable hacia 'outport_grp'?
-        // En connection_megafly: global_port_id = port_id
-        // sw_id = global_port_id / param_h
-        spine_idx_needed = outport_grp / param_h;
-
-        if (cur_sw < (switches/2)) {
-            // Soy LEAF. Debo subir al Spine que tiene el enlace global.
-            // El puerto de subida hacia el Spine 'k' es 'param_p + k'.
-            return param_p + spine_idx_needed;
-        } else {
-            // Soy SPINE.
-            my_spine_idx = (cur_sw - (switches/2)) % spines_per_grp;
-
-            if (my_spine_idx == spine_idx_needed) {
-                // ¡Soy yo! Tengo el enlace.
-                // Puerto global = param_p + (outport_grp % param_h)
-                return param_p + (outport_grp % param_h);
-            } else {
-                // No soy yo. Estoy en el Spine incorrecto.
-                // Esto no debería pasar en MIN routing si el Leaf eligió bien.
-                // Pero si pasa (tráfico inyectado en Spine), bajamos a un Leaf random para rebotar.
-                return 0; 
+        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<dst_grp){
+                 outport_grp = param_p+(dst_grp-1)/param_h;
+            }
+            else{
+                 outport_grp = param_p+dst_grp/param_h;
             }
         }
     }
+    else if(current-servers < switches){//current es spine switch
+        
+    }
+
 }
 
-// // # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // long route_megafly(long current, long destination) {
 //     long cur_sw, dst_sw;
 //     long cur_grp, dst_grp;
-//     long outport_sw, outport_grp;
-//     long tmp;
+//     long outport_grp;
+//     long spine_idx_needed;  // Qué spine (0..1) tiene el enlace global
+//     long my_spine_idx;      // Si soy spine, cuál soy (0..1)
 //
+//     // Constantes locales para claridad
+//     long leafs_per_grp = param_a / 2;
+//     long spines_per_grp = param_a / 2;
 //
-//     if(current<servers) // Still in the source server, only port 0 is available.
+//     if (current < servers) { // Servidor -> Switch
 //         return 0;
-//     else{
-//         cur_sw=current-servers;
-//         dst_sw=destination/param_p;
-//         if (cur_sw==dst_sw) // Already in the destination switch, just go down the appropriate port.
-//             return destination%param_p;
-//         else{
-//             cur_grp=cur_sw/param_a;
-//             dst_grp=dst_sw/param_a;
-//             if (cur_grp==dst_grp) {// in the same group as the destination; pick the port to the adequate switch
-//                 if (cur_sw>dst_sw)
-//                     return param_p+(dst_sw%param_a);
-//                 else
-//                     return param_p+(dst_sw%param_a)-1;
-//             }
-//             else { // need to swap to a different group
-//                 if (cur_grp==proxy_grp)
-//                     proxy_grp=dst_grp;
+//     } 
+//     
+//     // --- 1. Identificar dónde estamos y a dónde vamos ---
+//     cur_sw = current - servers;
+//     dst_sw = destination / param_p; // ID del switch Leaf destino (0..9)
 //
-//                 switch(topo){
-//                     case MEGAFLY:
-//                         if (cur_grp>proxy_grp)
-//                             outport_grp=proxy_grp;
-//                         else
-//                             outport_grp=proxy_grp-1;
-//                         break;
-//                     case DRAGONFLY_RELATIVE:
-//                         outport_grp=(grps+(proxy_grp-cur_grp)-1)%grps;
-//                         break;
-//                     case DRAGONFLY_CIRCULANT:
-//                         tmp=proxy_grp-cur_grp;
-//                         if (abs(tmp)>(grps/2)){
-//                             if (tmp>0)
-//                                 tmp-=grps;
-//                             else
-//                                 tmp+=grps;
-//                         }
-//                         outport_grp=(abs(tmp)-1)*2;
-//                         if(tmp<0)
-//                             outport_grp+=1;
-// 			    if(outport_grp==grps-1){ // It can happen with uneven param_a and param_h that one of the chords
-// 			    outport_grp--;
-//                         }
-//                         break;
-//                     case DRAGONFLY_NAUTILUS:
-//                     	outport_grp=intergroup_route[cur_grp][proxy_grp];
-//                         break;
-//                     case DRAGONFLY_HELIX:
-//                     	outport_grp=intergroup_route[cur_grp][proxy_grp];
-//                         break;
-//                     case DRAGONFLY_OTHER:
-//                         outport_grp=other_map2orig[(grps+(proxy_grp-cur_grp)-1)%grps];
-//                         break;
-//                     default:
-//                         printf("Not a valid megafly");
-//                         exit(-1);
-//                         break;
+//     // Calcular Grupo ACTUAL
+//     if (cur_sw < (switches/2)) { // Soy un LEAF
+//         cur_grp = cur_sw / leafs_per_grp;
+//     } else { // Soy un SPINE
+//         cur_grp = (cur_sw - (switches/2)) / spines_per_grp;
+//     }
 //
-//                 }
-//                 // outport_grp has the port within the group that is connected to the destination group. Now we need to check whether this port is in the local switch or we need to go to a different switch in our group.
-//                 outport_sw=outport_grp/param_h;
-//                 if (outport_sw==(cur_sw%param_a)) // Great!!! it's in the current switch
-//                     return (outport_grp%param_h)+param_p+intra_ports;
-//                 else{	// Aw! Another extra hop to get there
-//                     if ((cur_sw%param_a)>outport_sw)
-//                         return param_p+(outport_sw);
-//                     else
-//                         return param_p+(outport_sw)-1;
-//                 }
+//     // Calcular Grupo DESTINO (El destino siempre es un Leaf)
+//     dst_grp = dst_sw / leafs_per_grp;
+//
+//     // --- 2. Lógica de Enrutamiento ---
+//
+//     // CASO A: MISMO GRUPO
+//     if (cur_grp == dst_grp) {
+//         if (cur_sw < (switches/2)) { 
+//             // Soy LEAF. Destino es otro Leaf (o yo mismo).
+//             if (cur_sw == dst_sw) return destination % param_p; // Llegué. Downlink.
+//             
+//             // Si es otro Leaf del mismo grupo, subo a CUALQUIER Spine.
+//             // (El Spine bajará al Leaf correcto).
+//             // Retornamos el primer uplink (o random si quisieras balancear)
+//             return param_p; 
+//         } else {
+//             // Soy SPINE. Tengo conexión directa a todos los Leafs de mi grupo.
+//             // Averiguo qué Leaf es dentro del grupo (0..1)
+//             long dest_leaf_idx = dst_sw % leafs_per_grp;
+//             // El puerto de bajada al Leaf 'k' es el puerto 'k'.
+//             return dest_leaf_idx;
+//         }
+//     }
+//
+//     // CASO B: OTRO GRUPO (Inter-group)
+//     else {
+//         // Lógica de Proxy (Dragonfly MIN)
+//         if (cur_grp == proxy_grp) proxy_grp = dst_grp;
+//         
+//         // Calcular grupo intermedio (outport_grp)
+//         // Nota: Esto asume topología "Dragonfly 1D" o "Megafly" canónica
+//         if (cur_grp > proxy_grp) outport_grp = proxy_grp;
+//         else outport_grp = proxy_grp - 1;
+//
+//         // ¿Qué Spine de mi grupo tiene el cable hacia 'outport_grp'?
+//         // En connection_megafly: global_port_id = port_id
+//         // sw_id = global_port_id / param_h
+//         spine_idx_needed = outport_grp / param_h;
+//
+//         if (cur_sw < (switches/2)) {
+//             // Soy LEAF. Debo subir al Spine que tiene el enlace global.
+//             // El puerto de subida hacia el Spine 'k' es 'param_p + k'.
+//             return param_p + spine_idx_needed;
+//         } else {
+//             // Soy SPINE.
+//             my_spine_idx = (cur_sw - (switches/2)) % spines_per_grp;
+//
+//             if (my_spine_idx == spine_idx_needed) {
+//                 // ¡Soy yo! Tengo el enlace.
+//                 // Puerto global = param_p + (outport_grp % param_h)
+//                 return param_p + (outport_grp % param_h);
+//             } else {
+//                 // No soy yo. Estoy en el Spine incorrecto.
+//                 // Esto no debería pasar en MIN routing si el Leaf eligió bien.
+//                 // Pero si pasa (tráfico inyectado en Spine), bajamos a un Leaf random para rebotar.
+//                 return 0; 
 //             }
 //         }
 //     }
