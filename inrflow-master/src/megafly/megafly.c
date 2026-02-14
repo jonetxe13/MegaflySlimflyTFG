@@ -273,22 +273,41 @@ long route_megafly(long current, long destination) {
         dst_sw=destination/(param_p);
         dst_grp=dst_sw/(param_a/2);
 
-        if(cur_grp==dst_grp){//mismo grupo
+        if(cur_sw==dst_sw){//downlink a server
+            outport_grp = destination%param_p;
+        }
+        else if(cur_grp==dst_grp){//mismVo grupo
             outport_grp = param_p + (dst_sw%(param_a/2));
         }
         else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
             if(cur_grp<dst_grp){
-                 outport_grp = param_p+(dst_grp-1)/param_h;
+                 outport_grp = param_p+((dst_grp-1)/param_h);
             }
             else{
-                 outport_grp = param_p+dst_grp/param_h;
+                 outport_grp = param_p+(dst_grp/param_h);
             }
         }
     }
     else if(current-servers < switches){//current es spine switch
-        
+        cur_sw = current-servers-(switches/2);
+        cur_grp = cur_sw/(param_a/2);
+        dst_sw=destination/(param_p);
+        dst_grp=dst_sw/(param_a/2);
+
+        if(cur_grp==dst_grp){//mismVo grupo
+            outport_grp = dst_sw%(param_a/2);
+        }
+        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<dst_grp){
+                 outport_grp = (param_a/2)+(dst_grp-1)%param_h;
+            }
+            else{
+                 outport_grp = (param_a/2)+(dst_grp%param_h);
+            }
+        }
     }
 
+    return outport_grp;
 }
 
 // long route_megafly(long current, long destination) {
