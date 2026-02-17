@@ -334,124 +334,102 @@ void finish_route_slimfly(){
 }
 
 
-long route_slimfly(long current, long destination) {
-    if (current < servers) return 0; // Servidor -> Switch
 
-    long cur_sw = current - servers;
-    long dst_sw = destination / param_p;
+long route_slimfly(long current, long destination){
+    long outport = 0;
+    int cur_sw, dst_sw, cur_grp, dst_grp;
 
-    // Si ya estamos en el switch de destino, entregar al servidor
-    if (cur_sw == dst_sw) {
-        return destination % param_p;
-    }
+    dst_sw = destination/param_p;
 
-    // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
-    // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
-    long switches_per_subgraph = param_q * param_q;
-    long cur_subgraph = cur_sw / switches_per_subgraph;
-    long dst_subgraph = dst_sw / switches_per_subgraph;
-
-    // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
-    if (cur_subgraph == dst_subgraph) {
-        // En Slim Fly mínima, si el destino está en el mismo subgrafo
-        // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
-        // Por ahora, devolvemos un puerto local (del p en adelante)
-        // Para comprobar si funciona, enviamos al primer puerto de red disponible
-        return param_p; 
-    } 
+    if(current < servers) return 0; //el current es un server as ique puerto 0
     
-    // CASO 2: Distinto Subgrafo (Salto Global)
-    else {
-        // Aquí es donde se usa el salto global.
-        // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
-        // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
-        return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
+    else{
+        cur_sw = current - servers;
+        cur_grp = ((current-servers)-(switches/2))/param_q;
+
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // long route_slimfly(long current, long destination) {
-//     long cur_sw, dst_sw;
-//     long cur_grp, dst_grp;
-//     long outport_grp;
-//     long spine_idx_needed;  // Qué spine (0..1) tiene el enlace global
-//     long my_spine_idx;      // Si soy spine, cuál soy (0..1)
+//     if (current < servers) return 0; // Servidor -> Switch
 //
-//     // Constantes locales para claridad
-//     long leafs_per_grp = param_a / 2;
-//     long spines_per_grp = param_a / 2;
+//     long cur_sw = current - servers;
+//     long dst_sw = destination / param_p;
 //
-//     if (current < servers) { // Servidor -> Switch
-//         return 0;
+//     // Si ya estamos en el switch de destino, entregar al servidor
+//     if (cur_sw == dst_sw) {
+//         return destination % param_p;
+//     }
+//
+//     // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
+//     // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
+//     long switches_per_subgraph = param_q * param_q;
+//     long cur_subgraph = cur_sw / switches_per_subgraph;
+//     long dst_subgraph = dst_sw / switches_per_subgraph;
+//
+//     // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
+//     if (cur_subgraph == dst_subgraph) {
+//         // En Slim Fly mínima, si el destino está en el mismo subgrafo
+//         // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
+//         // Por ahora, devolvemos un puerto local (del p en adelante)
+//         // Para comprobar si funciona, enviamos al primer puerto de red disponible
+//         return param_p; 
 //     } 
 //     
-//     // --- 1. Identificar dónde estamos y a dónde vamos ---
-//     cur_sw = current - servers;
-//     dst_sw = destination / param_p; // ID del switch Leaf destino (0..9)
-//
-//     // Calcular Grupo ACTUAL
-//     if (cur_sw < (switches/2)) { // Soy un LEAF
-//         cur_grp = cur_sw / leafs_per_grp;
-//     } else { // Soy un SPINE
-//         cur_grp = (cur_sw - (switches/2)) / spines_per_grp;
-//     }
-//
-//     // Calcular Grupo DESTINO (El destino siempre es un Leaf)
-//     dst_grp = dst_sw / leafs_per_grp;
-//
-//     // --- 2. Lógica de Enrutamiento ---
-//
-//     // CASO A: MISMO GRUPO
-//     if (cur_grp == dst_grp) {
-//         if (cur_sw < (switches/2)) { 
-//             // Soy LEAF. Destino es otro Leaf (o yo mismo).
-//             if (cur_sw == dst_sw) return destination % param_p; // Llegué. Downlink.
-//             
-//             // Si es otro Leaf del mismo grupo, subo a CUALQUIER Spine.
-//             // (El Spine bajará al Leaf correcto).
-//             // Retornamos el primer uplink (o random si quisieras balancear)
-//             return param_p; 
-//         } else {
-//             // Soy SPINE. Tengo conexión directa a todos los Leafs de mi grupo.
-//             // Averiguo qué Leaf es dentro del grupo (0..1)
-//             long dest_leaf_idx = dst_sw % leafs_per_grp;
-//             // El puerto de bajada al Leaf 'k' es el puerto 'k'.
-//             return dest_leaf_idx;
-//         }
-//     }
-//
-//     // CASO B: OTRO GRUPO (Inter-group)
+//     // CASO 2: Distinto Subgrafo (Salto Global)
 //     else {
-//         // Lógica de Proxy (Dragonfly MIN)
-//         if (cur_grp == proxy_grp) proxy_grp = dst_grp;
-//         
-//         // Calcular grupo intermedio (outport_grp)
-//         // Nota: Esto asume topología "Dragonfly 1D" o "slimfly" canónica
-//         if (cur_grp > proxy_grp) outport_grp = proxy_grp;
-//         else outport_grp = proxy_grp - 1;
-//
-//         // ¿Qué Spine de mi grupo tiene el cable hacia 'outport_grp'?
-//         // En connection_slimfly: global_port_id = port_id
-//         // sw_id = global_port_id / param_h
-//         spine_idx_needed = outport_grp / param_h;
-//
-//         if (cur_sw < (switches/2)) {
-//             // Soy LEAF. Debo subir al Spine que tiene el enlace global.
-//             // El puerto de subida hacia el Spine 'k' es 'param_p + k'.
-//             return param_p + spine_idx_needed;
-//         } else {
-//             // Soy SPINE.
-//             my_spine_idx = (cur_sw - (switches/2)) % spines_per_grp;
-//
-//             if (my_spine_idx == spine_idx_needed) {
-//                 // ¡Soy yo! Tengo el enlace.
-//                 // Puerto global = param_p + (outport_grp % param_h)
-//                 return param_p + (outport_grp % param_h);
-//             } else {
-//                 // No soy yo. Estoy en el Spine incorrecto.
-//                 // Esto no debería pasar en MIN routing si el Leaf eligió bien.
-//                 // Pero si pasa (tráfico inyectado en Spine), bajamos a un Leaf random para rebotar.
-//                 return 0; 
-//             }
-//         }
+//         // Aquí es donde se usa el salto global.
+//         // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
+//         // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
+//         return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
 //     }
 // }
-
