@@ -337,19 +337,51 @@ void finish_route_slimfly(){
 
 long route_slimfly(long current, long destination){
     long outport = 0;
-    int cur_sw, dst_sw, cur_grp, dst_grp;
+    int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
 
     dst_sw = destination/param_p;
+    dst_grp_global = dst_sw/(switches/2);
+    dst_grp = (dst_sw%(switches/2))/param_q;
+
+    int dst_c, dst_m, cur_y, cur_x;
+
+    dst_c = dst_sw%param_q;
+    dst_m = dst_grp;
 
     if(current < servers) return 0; //el current es un server as ique puerto 0
     
     else{
         cur_sw = current - servers;
-        cur_grp = ((current-servers)-(switches/2))/param_q;
+        cur_grp_global = cur_sw/(switches/2);
+        cur_grp = (cur_sw%(switches/2))/param_q;
 
+        cur_y = cur_sw%param_q;
+        cur_x = cur_grp;
+
+        if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
+            outport = destination%param_p;
+        }
+        else if(cur_x==dst_m && (cur_y == (dst_m*cur_x + dst_c)%param_q)){ //están a distancia 1
+            if(cur_y < dst_c){
+                outport = param_q + 0; //hacia delante
+            }
+            else{
+                outport = param_q + 1; //hacia atras
+            }
+        }
+        else{
+
+            int intermedio_m, intermedio_c;
+            intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
+            intermedio_c = cur_y - (intermedio_m*cur_x);
+
+
+            //buscar puerto que corresponde a ese switch
+
+        }
     }
 
-
+    return outport;
 }
 
 
