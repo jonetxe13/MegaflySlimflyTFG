@@ -358,18 +358,24 @@ long route_slimfly(long current, long destination){
         cur_y = cur_sw%param_q;
         cur_x = cur_grp;
 
+        int distancia = 0;
+        int *grupo_x = cur_grp_global ? param_x2 : param_x;
+        for(int i = 0; i<param_q/2; i++){
+            if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
+        }
+
         if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
             outport = destination%param_p;
         }
-        else if(cur_x==dst_m && (cur_y == (dst_m*cur_x + dst_c)%param_q)){ //están a distancia 1
-            if(cur_y < dst_c){
-                outport = param_q + 0; //hacia delante
+        else if(cur_x==dst_m && distancia == 1){ //están a distancia 1
+                if(cur_y < dst_c){
+                    outport = param_q + 0; //hacia delante
+                }
+                else{
+                    outport = param_q + 1; //hacia atras
+                }
             }
-            else{
-                outport = param_q + 1; //hacia atras
-            }
-        }
-        else{
+        else{//si no saltar al otro grupo y volver
 
             int intermedio_m, intermedio_c;
             intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
@@ -377,10 +383,8 @@ long route_slimfly(long current, long destination){
 
 
             //buscar puerto que corresponde a ese switch
-
         }
     }
-
     return outport;
 }
 
