@@ -23,7 +23,9 @@ static long param_h; ///< h: Number of uplinks
 static int param_w; ///< w: Number to generate the prime power q
 static int param_q; ///< q: prime power
 static int param_k; ///< k: network radix
-static int param_delta[3]={-1, 0, 1}; ///< delta: generator of q
+static int param_delta_opt[3]={-1, 0, 1}; ///< delta: generator of q
+static int param_delta_final; ///< delta: generator of q
+static int param_l; ///< l: part of q definition
 
 
 int param_gen;
@@ -72,20 +74,31 @@ long init_topo_slimfly(long np, long *par) {
 
     param_q = par[0]; // number of switches per group
     // check wether q is a prime of the form q = 4w+delta
-    param_k = (3*param_q - param_delta[2])/2; //links a otros routers
+    for (int j = 0; j<100; j++) {
+        for (int i = 0; i<3; i++) {
+            if(param_q == (4*j + param_delta_opt[i])){
+                    param_delta_final = param_delta_opt[i];
+                    param_l = j;
+                    printf("param_delta_final: %d\n", param_delta_final);
+                    break;
+            }
+        
+        }
+    }
+    param_k = (3*param_q - param_delta_final)/2; //links a otros routers
     switches = 2*param_q*param_q; //number of switches
     param_p = ceil(param_k/2); // number of servers per switch
     servers = param_p * switches;
     param_a = param_q; // number of switches per group
     param_h = param_q; // number of uplinks per switch
-    printf("q: %d \n", param_q);
-    printf("k: %d \n", param_k);
+    // printf("q: %d \n", param_q);
+    // printf("k: %d \n", param_k);
     printf("switches: %d \n", switches);
     printf("p: %d \n", param_p);
 
     printf("servers: %d \n", servers);
 	// Calculate some useful values from the parameters
-    intra_ports = (param_q-1)/2;
+    intra_ports = ((param_q- param_delta_final)/2);
     grps = param_q*2;
     // ports = (param_q+param_p)*switches;
 
@@ -123,15 +136,34 @@ long init_topo_slimfly(long np, long *par) {
         if(es_generador) break;
     
     }
-    param_x = malloc((param_q/2)*sizeof(int));
-    param_x2 = malloc((param_q/2)*sizeof(int));
 
-    for (int i = 0; i<param_q-1; i++) {
-        if(i%2==0) param_x[i/2]=((int)pow(param_gen, i))%param_q;
-        if(i%2!=0) param_x2[i/2]=((int)pow(param_gen, i))%param_q;
-        printf("param_x: %d", param_x[i/2]);
-        printf("param_x2: %d", param_x2[i/2]);
+    if(param_q%4==1){
+        param_x = malloc((param_q/2)*sizeof(int));
+        param_x2 = malloc((param_q/2)*sizeof(int));
+        for (int i = 0; i<param_q-1; i++) {
+            if(i%2==0) param_x[i/2]=((int)pow(param_gen, i))%param_q;
+            if(i%2!=0) param_x2[i/2]=((int)pow(param_gen, i))%param_q;
+            printf("param_x: %d", param_x[i/2]);
+            printf("param_x2: %d", param_x2[i/2]);
+        }
     }
+    else if(param_q%4 == 3){
+        param_x = malloc(((param_q/2) +1)*sizeof(int));
+        param_x2 = malloc(((param_q/2) +1)*sizeof(int));
+        for (int i = 0; i<(2*param_l)-1; i+=2) {
+            param_x[i/2]=((int)pow(param_gen, i))%param_q;
+            param_x[param_l+i/2]=((int)pow(param_gen, 2*param_l-1+i))%param_q;
+            printf("param_x en %d: %d**%d \n", i/2, param_gen, i);
+            printf("param_x en %d: %d**%d\n", i/2, param_gen, 2*param_l-1+i);
+
+            param_x2[i/2]=((int)pow(param_gen, i+1))%param_q;
+            param_x2[param_l+i/2]=((int)pow(param_gen, 2*param_l+i))%param_q;
+            printf("param_x2 en %d: %d**%d\n", i/2, param_gen, i+1);
+            printf("param_x2 en %d: %d**%d\n", i/2, param_gen, 2*param_l+i);
+            
+        }
+    }
+
 
     // Boring stuff for printing and file generation
     switch(topo) {
@@ -198,7 +230,7 @@ tuple_t connection_slimfly(long node, long port) {
             res.node = gen_switch_id * param_p + port;
             res.port = 0 ; // Every processor only has one port.
         }
-        else if ( port < (2+param_p) ){ // Intra-group connection (solo hay 2 conexiones intragroup seguro???
+        else if ( port < (intra_ports+param_p) ){ // Intra-group connection (solo hay 2 conexiones intragroup seguro???
             sw_id = gen_switch_id % (param_a);
             sw_subgroup = (gen_switch_id%(param_q*param_q))/param_q;
             port_id = port - param_p;
@@ -211,15 +243,22 @@ tuple_t connection_slimfly(long node, long port) {
             }
 
             res.node = indice + servers + param_q*sw_subgroup + param_q*param_q*grp_global;
-            int offset = intra_ports/2;
-
-            res.port = param_p + (port_id+offset)%intra_ports;
+            // int offset = intra_ports/2;
+            //
+            // res.port = param_p + (port_id+offset)%intra_ports;
+            int *grupo_x = (grp_global == 0) ? param_x : param_x2;
+            int inv_val = (param_q - grupo_x[port_id]) % param_q;
+            int ret_port_id = -1;
+            for (int j = 0; j < intra_ports; j++) {
+                if (grupo_x[j] == inv_val) { ret_port_id = j; break; }
+            }
+            res.port = param_p + ret_port_id;
         }
         else{ //uplinks a la otra mitad
             int local_id = (gen_switch_id%(param_q*param_q));
             sw_subgroup = local_id/param_q;
             sw_id = local_id%param_q;
-            port_id = port - param_p - 2;
+            port_id = port - param_p - intra_ports;
 
             int m, x, y, c; 
             int return_port_id;
@@ -230,7 +269,7 @@ tuple_t connection_slimfly(long node, long port) {
                 m=port_id;
                 c=(y-(m*x)%param_q + param_q)%param_q;
                 res.node = servers + param_q*param_q + m*param_q + c;
-                res.port = x + 2 + param_p;
+                res.port = x + intra_ports + param_p;
                 // printf("Hacia SG1 -> Nodo Destino: %ld | Puerto Retorno: %ld\n", res.node, res.port);
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
@@ -245,7 +284,7 @@ tuple_t connection_slimfly(long node, long port) {
                 x=port_id;
                 y=(m*x + c)%param_q;
                 res.node = servers + x*param_q + y;
-                res.port = m + 2 + param_p;
+                res.port = m + intra_ports + param_p;
                 // printf("Hacia SG0 -> Nodo Destino: %ld | Puerto Retorno: %ld\n", res.node, res.port);
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
@@ -335,137 +374,103 @@ void finish_route_slimfly(){
 
 
 
-long route_slimfly(long current, long destination){
-    long outport = 0;
-    int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
-
-    dst_sw = destination/param_p;
-    dst_grp_global = dst_sw/(switches/2);
-    dst_grp = (dst_sw%(switches/2))/param_q;
-
-    int dst_c, dst_m, cur_y, cur_x;
-
-    dst_c = dst_sw%param_q;
-    dst_m = dst_grp;
-
-    if(current < servers) return 0; //el current es un server as ique puerto 0
-    
-    else{
-        cur_sw = current - servers;
-        cur_grp_global = cur_sw/(switches/2);
-        cur_grp = (cur_sw%(switches/2))/param_q;
-
-        cur_y = cur_sw%param_q;
-        cur_x = cur_grp;
-
-        int distancia = 0;
-        int *grupo_x = cur_grp_global ? param_x2 : param_x;
-        for(int i = 0; i<param_q/2; i++){
-            if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
-        }
-
-        if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
-            outport = destination%param_p;
-        }
-        else if(cur_x==dst_m && distancia == 1){ //están a distancia 1
-                if(cur_y < dst_c){
-                    outport = param_q + 0; //hacia delante
-                }
-                else{
-                    outport = param_q + 1; //hacia atras
-                }
-            }
-        else{//si no saltar al otro grupo y volver
-
-            int intermedio_m, intermedio_c;
-            intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
-            intermedio_c = cur_y - (intermedio_m*cur_x);
-
-
-            //buscar puerto que corresponde a ese switch
-        }
-    }
-    return outport;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// long route_slimfly(long current, long destination) {
-//     if (current < servers) return 0; // Servidor -> Switch
+// long route_slimfly(long current, long destination){
+//     long outport = 0;
+//     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
 //
-//     long cur_sw = current - servers;
-//     long dst_sw = destination / param_p;
+//     dst_sw = destination/param_p;
+//     dst_grp_global = dst_sw/(switches/2);
+//     dst_grp = (dst_sw%(switches/2))/param_q;
 //
-//     // Si ya estamos en el switch de destino, entregar al servidor
-//     if (cur_sw == dst_sw) {
-//         return destination % param_p;
-//     }
+//     int dst_c, dst_m, cur_y, cur_x;
 //
-//     // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
-//     // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
-//     long switches_per_subgraph = param_q * param_q;
-//     long cur_subgraph = cur_sw / switches_per_subgraph;
-//     long dst_subgraph = dst_sw / switches_per_subgraph;
+//     dst_c = dst_sw%param_q;
+//     dst_m = dst_grp;
 //
-//     // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
-//     if (cur_subgraph == dst_subgraph) {
-//         // En Slim Fly mínima, si el destino está en el mismo subgrafo
-//         // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
-//         // Por ahora, devolvemos un puerto local (del p en adelante)
-//         // Para comprobar si funciona, enviamos al primer puerto de red disponible
-//         return param_p; 
-//     } 
+//     if(current < servers) return 0; //el current es un server as ique puerto 0
 //     
-//     // CASO 2: Distinto Subgrafo (Salto Global)
-//     else {
-//         // Aquí es donde se usa el salto global.
-//         // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
-//         // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
-//         return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
+//     else{
+//         cur_sw = current - servers;
+//         cur_grp_global = cur_sw/(switches/2);
+//         cur_grp = (cur_sw%(switches/2))/param_q;
+//
+//         cur_y = cur_sw%param_q;
+//         cur_x = cur_grp;
+//
+//         int distancia = 0;
+//         int *grupo_x = cur_grp_global ? param_x2 : param_x;
+//         for(int i = 0; i<param_q/2; i++){
+//             if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
+//         }
+//
+//         if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
+//             outport = destination%param_p;
+//         }
+//         else if(cur_x==dst_m && distancia == 1){ //están a distancia 1
+//                 if(cur_y < dst_c){
+//                     outport = param_q + 0; //hacia delante
+//                 }
+//                 else{
+//                     outport = param_q + 1; //hacia atras
+//                 }
+//             }
+//         else{//si no saltar al otro grupo y volver
+//
+//             int intermedio_m, intermedio_c;
+//             intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
+//             intermedio_c = cur_y - (intermedio_m*cur_x);
+//
+//
+//             //buscar puerto que corresponde a ese switch
+//         }
 //     }
+//     return outport;
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+long route_slimfly(long current, long destination) {
+    if (current < servers) return 0; // Servidor -> Switch
+
+    long cur_sw = current - servers;
+    long dst_sw = destination / param_p;
+
+    // Si ya estamos en el switch de destino, entregar al servidor
+    if (cur_sw == dst_sw) {
+        return destination % param_p;
+    }
+
+    // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
+    // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
+    long switches_per_subgraph = param_q * param_q;
+    long cur_subgraph = cur_sw / switches_per_subgraph;
+    long dst_subgraph = dst_sw / switches_per_subgraph;
+
+    // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
+    if (cur_subgraph == dst_subgraph) {
+        // En Slim Fly mínima, si el destino está en el mismo subgrafo
+        // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
+        // Por ahora, devolvemos un puerto local (del p en adelante)
+        // Para comprobar si funciona, enviamos al primer puerto de red disponible
+        return param_p; 
+    } 
+    
+    // CASO 2: Distinto Subgrafo (Salto Global)
+    else {
+        // Aquí es donde se usa el salto global.
+        // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
+        // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
+        return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
+    }
+}
