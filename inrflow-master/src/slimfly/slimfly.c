@@ -58,6 +58,27 @@ extern char filename_params[100];
 static char *routing_param_tokens[1]= {"max_paths"};
 static char routing_token[30];
 
+
+int* ordenar_grupo(int *grupo_x){
+    int aux = 0;
+
+    for(int i = 0; i<param_q/2; i++){
+        for(int j = i; j<param_q/2; j++){
+            if(grupo_x[i]>grupo_x[j]){
+                aux = grupo_x[i];
+                grupo_x[i] = grupo_x[j];
+                grupo_x[j] = aux;
+
+            }
+        }
+    }
+
+    for(int i = 0; i<param_q/2; i++)
+        printf("x[%d]=%d\n", i, grupo_x[i]);
+
+    return grupo_x;
+}
+
 /**
  * declare the number of global connections between groups;
  */
@@ -164,6 +185,8 @@ long init_topo_slimfly(long np, long *par) {
         }
     }
 
+    param_x = ordenar_grupo(param_x);
+    param_x2 = ordenar_grupo(param_x2);
 
     // Boring stuff for printing and file generation
     switch(topo) {
@@ -198,6 +221,8 @@ void finish_topo_slimfly(){
     free(param_x2);
 }
 
+
+
 long get_servers_slimfly(){
     return servers;
 }
@@ -216,6 +241,9 @@ tuple_t connection_slimfly(long node, long port) {
     long gen_switch_id; // switch id in the general switch count
     int sw_id, sw_subgroup, grp_global, port_id; // switch (within a group), group and port id for calculating connections
     long next_grp, next_port; // group and port id of the target for calculating connections
+    //
+
+
     if( node < servers ) { // The node is a server ESTO ES CORRECTO PARA slimflyTMBN
         if( port == 0 ) {
             res.node = servers + (node / param_p) ; // The server's router
@@ -374,103 +402,105 @@ void finish_route_slimfly(){
 
 
 
-// long route_slimfly(long current, long destination){
-//     long outport = 0;
-//     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
-//
-//     dst_sw = destination/param_p;
-//     dst_grp_global = dst_sw/(switches/2);
-//     dst_grp = (dst_sw%(switches/2))/param_q;
-//
-//     int dst_c, dst_m, cur_y, cur_x;
-//
-//     dst_c = dst_sw%param_q;
-//     dst_m = dst_grp;
-//
-//     if(current < servers) return 0; //el current es un server as ique puerto 0
-//     
-//     else{
-//         cur_sw = current - servers;
-//         cur_grp_global = cur_sw/(switches/2);
-//         cur_grp = (cur_sw%(switches/2))/param_q;
-//
-//         cur_y = cur_sw%param_q;
-//         cur_x = cur_grp;
-//
-//         int distancia = 0;
-//         int *grupo_x = cur_grp_global ? param_x2 : param_x;
-//         for(int i = 0; i<param_q/2; i++){
-//             if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
-//         }
-//
-//         if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
-//             outport = destination%param_p;
-//         }
-//         else if(cur_x==dst_m && distancia == 1){ //están a distancia 1
-//                 if(cur_y < dst_c){
-//                     outport = param_q + 0; //hacia delante
-//                 }
-//                 else{
-//                     outport = param_q + 1; //hacia atras
-//                 }
-//             }
-//         else{//si no saltar al otro grupo y volver
-//
-//             int intermedio_m, intermedio_c;
-//             intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
-//             intermedio_c = cur_y - (intermedio_m*cur_x);
-//
-//
-//             //buscar puerto que corresponde a ese switch
-//         }
-//     }
-//     return outport;
-// }
+long route_slimfly(long current, long destination){
+    long outport = 0;
+    int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
 
+    dst_sw = destination/param_p;
+    dst_grp_global = dst_sw/(switches/2);
+    dst_grp = (dst_sw%(switches/2))/param_q;
 
+    int dst_c, dst_m, cur_y, cur_x;
 
+    dst_c = dst_sw%param_q;
+    dst_m = dst_grp;
 
-
-
-
-
-
-
-
-
-
-
-long route_slimfly(long current, long destination) {
-    if (current < servers) return 0; // Servidor -> Switch
-
-    long cur_sw = current - servers;
-    long dst_sw = destination / param_p;
-
-    // Si ya estamos en el switch de destino, entregar al servidor
-    if (cur_sw == dst_sw) {
-        return destination % param_p;
-    }
-
-    // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
-    // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
-    long switches_per_subgraph = param_q * param_q;
-    long cur_subgraph = cur_sw / switches_per_subgraph;
-    long dst_subgraph = dst_sw / switches_per_subgraph;
-
-    // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
-    if (cur_subgraph == dst_subgraph) {
-        // En Slim Fly mínima, si el destino está en el mismo subgrafo
-        // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
-        // Por ahora, devolvemos un puerto local (del p en adelante)
-        // Para comprobar si funciona, enviamos al primer puerto de red disponible
-        return param_p; 
-    } 
+    if(current < servers) return 0; //el current es un server as ique puerto 0
     
-    // CASO 2: Distinto Subgrafo (Salto Global)
-    else {
-        // Aquí es donde se usa el salto global.
-        // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
-        // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
-        return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
+    else{
+        cur_sw = current - servers;
+        cur_grp_global = cur_sw/(switches/2);
+        cur_grp = (cur_sw%(switches/2))/param_q;
+
+        cur_y = cur_sw%param_q;
+        cur_x = cur_grp;
+
+        int distancia = 0;
+        int *grupo_x = cur_grp_global ? param_x2 : param_x;
+        for(int i = 0; i<param_q/2; i++){
+            if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
+        }
+
+        if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
+            outport = destination%param_p;
+        }
+        else if(cur_x==dst_m && cur_grp_global == dst_grp_global){ //mismo subgrupo
+            int offset=0;
+            for(int i = 0; i<param_q/2 + 1; i++){
+                if(abs(cur_y-dst_c) == grupo_x[i]){
+                    offset = i;
+                    outport = param_p + offset; //hacia delante, mal, mirar como seleccionaba los puertos
+                }
+            }
+            outport = param_p + 1; //hacia atras
+        }
+        else{//si no saltar al otro grupo y volver
+
+            int intermedio_m, intermedio_c;
+            intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
+            intermedio_c = cur_y - (intermedio_m*cur_x);
+
+
+            //buscar puerto que corresponde a ese switch
+        }
     }
+    return outport;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// long route_slimfly(long current, long destination) {
+//     if (current < servers) return 0; // Servidor -> Switch
+//
+//     long cur_sw = current - servers;
+//     long dst_sw = destination / param_p;
+//
+//     // Si ya estamos en el switch de destino, entregar al servidor
+//     if (cur_sw == dst_sw) {
+//         return destination % param_p;
+//     }
+//
+//     // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
+//     // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
+//     long switches_per_subgraph = param_q * param_q;
+//     long cur_subgraph = cur_sw / switches_per_subgraph;
+//     long dst_subgraph = dst_sw / switches_per_subgraph;
+//
+//     // // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
+//     // if (cur_subgraph == dst_subgraph) {
+//     //     // En Slim Fly mínima, si el destino está en el mismo subgrafo
+//     //     // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
+//     //     // Por ahora, devolvemos un puerto local (del p en adelante)
+//     //     // Para comprobar si funciona, enviamos al primer puerto de red disponible
+//     //     return param_p; 
+//     // } 
+//     // 
+//     // // CASO 2: Distinto Subgrafo (Salto Global)
+//     // else {
+//     //     // Aquí es donde se usa el salto global.
+//     //     // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
+//     //     // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
+//     //     return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
+//     // }
+// }
