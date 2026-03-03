@@ -291,7 +291,6 @@ tuple_t connection_slimfly(long node, long port) {
 
             int m, x, y, c; 
             int return_port_id;
-            // printf("SWITCH ACTUAL: %ld | PUERTO ENTRADA: %ld | port_id(x o m): %d\n", gen_switch_id, port, port_id);
             if(grp_global==0){
                 y =sw_id;
                 x = sw_subgroup;
@@ -299,7 +298,6 @@ tuple_t connection_slimfly(long node, long port) {
                 c=(y-(m*x)%param_q + param_q)%param_q;
                 res.node = servers + param_q*param_q + m*param_q + c;
                 res.port = x + intra_ports + param_p;
-                // printf("Hacia SG1 -> Nodo Destino: %ld | Puerto Retorno: %ld\n", res.node, res.port);
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
                 // printf("y: %d\n", y);
@@ -314,7 +312,6 @@ tuple_t connection_slimfly(long node, long port) {
                 y=(m*x + c)%param_q;
                 res.node = servers + x*param_q + y;
                 res.port = m + intra_ports + param_p;
-                // printf("Hacia SG0 -> Nodo Destino: %ld | Puerto Retorno: %ld\n", res.node, res.port);
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
                 // printf("y: %d\n", y);
@@ -436,28 +433,61 @@ long route_slimfly(long current, long destination){
             outport = destination%param_p;
         }
         else if(cur_x==dst_m && cur_grp_global == dst_grp_global){ //mismo subgrupo (comprobar que esté bien)
-            int offset=0;
-            for(int i = 0; i<param_q/2 + 1; i++){ //buscar primero si con un solo salto se puede llegar
+            int directo=0;
+            for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
                 if((cur_y+grupo_x[i])%param_q == dst_c){ 
-                    offset = i;
-                    outport = param_p + offset; //no creo que esté igual que en la definicion de las conexiones
+                    directo = 1;
+                    outport = param_p + i; 
+                    break;
                 }
             }
-            if(!offset){
-                for(int i = 0; i<param_q/2 + 1; i++){//buscar los dos saltos que den el id del destino
-                    for(int j = 0; j<param_q/2 + 1; j++){
+            if(!directo){
+                for(int i = 0; i<param_tam_gal; i++){//buscar los dos saltos que den el id del destino
+                    for(int j = 0; j<param_tam_gal; j++){
                         if((cur_y+grupo_x[i]+grupo_x[j])%param_q == dst_c){ 
-                            offset = i;
-                            outport = param_p + offset; //no creo que esté igual que en la definicion de las conexiones
+                            outport = param_p + i; 
+                            break;
                         }
                     }
                 }
             }
         }
-        else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global
+        else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            int directo=0;
             //caso en el que el salto global del switch actual ya deja a distancia 1
-            
+            int dst_y_salto_global;
+            if(cur_grp_global == 0) //calcular la "y o c" a la que saltar
+                dst_y_salto_global = (cur_y - dst_m*cur_x)%param_q;
+            else
+                dst_y_salto_global = (dst_c - cur_x*dst_m)%param_q;
+                
+            for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
+                if((dst_y_salto_global+grupo_x[i])%param_q == dst_c){ 
+                    directo = 1;
+                    outport = param_p + intra_ports + cur_x; 
+                    break;
+                }
+            }
+
             //caso en el que el salto global del switch actual no deja a distancia 1
+            if(!directo){//buscar el switch dentro del subgrupo desde el que se llega directo??
+                for(int i = 0; i<param_tam_gal; i++){
+                    if(cur_grp_global == 0){
+                        if((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x)%param_q == dst_c){ 
+                            outport = param_p + i; 
+                            break;
+                        }
+                    }
+                    else{
+                        if((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x)%param_q == dst_c){ 
+                            outport = param_p + i; 
+                            break;
+                        }
+
+                    }
+                }
+
+            }
         }
         else{//si no saltar al otro grupo y volver
 
@@ -467,6 +497,7 @@ long route_slimfly(long current, long destination){
 
 
             //buscar puerto que corresponde a ese switch
+            outport = param_q + intra_ports + cur_x;
         }
     }
     return outport;
