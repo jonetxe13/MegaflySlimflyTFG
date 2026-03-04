@@ -59,7 +59,6 @@ extern char filename_params[100];
 static char *routing_param_tokens[1]= {"max_paths"};
 static char routing_token[30];
 
-
 int* ordenar_grupo(int *grupo_x){
     int aux = 0;
 
@@ -94,22 +93,24 @@ long init_topo_slimfly(long np, long *par) {
         exit(-1);
     }
 
+    int out = 0;
     param_q = par[0]; // number of switches per group
     // check wether q is a prime of the form q = 4w+delta
     for (int j = 0; j<100; j++) {
         for (int i = 0; i<3; i++) {
             if(param_q == (4*j + param_delta_opt[i])){
+                out = 1;
                     param_delta_final = param_delta_opt[i];
                     param_l = j;
                     printf("param_delta_final: %d\n", param_delta_final);
                     break;
             }
-        
         }
+        if(out) break;
     }
     param_k = (3*param_q - param_delta_final)/2; //links a otros routers
     switches = 2*param_q*param_q; //number of switches
-    param_p = ceil(param_k/2); // number of servers per switch
+    param_p = (param_k+1)/2; // number of servers per switch
     servers = param_p * switches;
     param_a = param_q; // number of switches per group
     param_h = param_q; // number of uplinks per switch
@@ -123,7 +124,7 @@ long init_topo_slimfly(long np, long *par) {
     intra_ports = ((param_q- param_delta_final)/2);
     grps = param_q*2;
     param_tam_gal = (param_q - param_delta_final)/2;
-    // ports = (param_q+param_p)*switches;
+    ports = (param_k+param_p)*switches;
 
     //calcular el Galois Field con q
     int param_field[param_q];
@@ -164,8 +165,8 @@ long init_topo_slimfly(long np, long *par) {
         param_x = malloc(param_tam_gal*sizeof(int));
         param_x2 = malloc(param_tam_gal*sizeof(int));
         for (int i = 0; i<param_q-1; i++) {
-            if(i%2==0) param_x[i/2]=((int)pow(param_gen, i))%param_q;
-            if(i%2!=0) param_x2[i/2]=((int)pow(param_gen, i))%param_q;
+            if(i%2==0) param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
+            if(i%2!=0) param_x2[i/2]=mod(((int)pow(param_gen, i)),param_q);
             // printf("param_x: %d", param_x[i/2]);
             // printf("param_x2: %d", param_x2[i/2]);
         }
@@ -174,13 +175,13 @@ long init_topo_slimfly(long np, long *par) {
         param_x = malloc(param_tam_gal*sizeof(int));
         param_x2 = malloc(param_tam_gal*sizeof(int));
         for (int i = 0; i<(2*param_l)-1; i+=2) {
-            param_x[i/2]=((int)pow(param_gen, i))%param_q;
-            param_x[param_l+i/2]=((int)pow(param_gen, 2*param_l-1+i))%param_q;
+            param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
+            param_x[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l-1+i)),param_q);
             // printf("param_x en %d: %d**%d \n", i/2, param_gen, i);
             // printf("param_x en %d: %d**%d\n", i/2, param_gen, 2*param_l-1+i);
 
-            param_x2[i/2]=((int)pow(param_gen, i+1))%param_q;
-            param_x2[param_l+i/2]=((int)pow(param_gen, 2*param_l+i))%param_q;
+            param_x2[i/2]=mod(((int)pow(param_gen, i+1)),param_q);
+            param_x2[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l+i)),param_q);
             // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, i+1);
             // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, 2*param_l+i);
             
@@ -206,17 +207,14 @@ long init_topo_slimfly(long np, long *par) {
 
     sprintf(filename_params,"p%ld_a%ld_h%ld",param_p,param_a,param_h);
 
-  //   switch(routing) {
-	 //    case DRAGONFLY_MINIMUM:
-		// sprintf(routing_token,"min");
-		// break;
-	 //    case DRAGONFLY_VALIANT:
-		// sprintf(routing_token,"valiant");
-		// break;
-	 //    default:
-		// printf("Not a slimfly-compatible routing!");
-		// exit(-1);
-// }
+    switch(routing) {
+	    case DRAGONFLY_MINIMUM:
+		sprintf(routing_token,"min");
+		break;
+	    default:
+		printf("Not a slimfly-compatible routing!");
+		exit(-1);
+    }
 
     return 0;
 }
@@ -270,12 +268,12 @@ tuple_t connection_slimfly(long node, long port) {
             int indice;
 
             int *grupo_x = grp_global ? param_x2 : param_x;
-            indice = (sw_id+grupo_x[port_id])%param_q;
+            indice = mod((sw_id+grupo_x[port_id]),param_q);
 
             res.node = indice + servers + param_q*sw_subgroup + param_q*param_q*grp_global;
 
             //buscr el inverso del salto
-            int inverso = (param_q-grupo_x[port_id])%param_q;
+            int inverso = mod((param_q-grupo_x[port_id]),param_q);
             for (int i = 0; i < intra_ports; i++) {
                 if (grupo_x[i] == inverso) {
                     res.port = i + param_p;
@@ -295,7 +293,7 @@ tuple_t connection_slimfly(long node, long port) {
                 y =sw_id;
                 x = sw_subgroup;
                 m=port_id;
-                c=(y-(m*x)%param_q + param_q)%param_q;
+                c=mod((y-(m*x)%param_q + param_q),param_q);
                 res.node = servers + param_q*param_q + m*param_q + c;
                 res.port = x + intra_ports + param_p;
                 // printf("res.node %ld\n", res.node);
@@ -309,7 +307,7 @@ tuple_t connection_slimfly(long node, long port) {
                 c = sw_id;
                 m = sw_subgroup;
                 x=port_id;
-                y=(m*x + c)%param_q;
+                y=mod((m*x + c),param_q);
                 res.node = servers + x*param_q + y;
                 res.port = m + intra_ports + param_p;
                 // printf("res.node %ld\n", res.node);
@@ -413,6 +411,7 @@ long route_slimfly(long current, long destination){
     dst_c = dst_sw%param_q;
     dst_m = dst_grp;
 
+
     if(current < servers) return 0; //el current es un server as ique puerto 0
     
     else{
@@ -422,9 +421,14 @@ long route_slimfly(long current, long destination){
 
         cur_y = cur_sw%param_q;
         cur_x = cur_grp;
+//     if (verbose > 0) {
+//     printf("[ROUTING] CurSw: %ld (G%d, %d, %d) -> DstSw: %ld (G%d, %d, %d)\n", 
+//             cur_sw, cur_grp_global, cur_x, cur_y, dst_sw, dst_grp_global, dst_m, dst_c);
+// }
 
         int distancia = 0;
         int *grupo_x = cur_grp_global ? param_x2 : param_x;
+        int *grupo_x2 = cur_grp_global ? param_x : param_x2;
         // for(int i = 0; i<param_q/2; i++){
         //     if(abs(cur_y-dst_c) == grupo_x[i]) distancia = 1;
         // }
@@ -435,20 +439,23 @@ long route_slimfly(long current, long destination){
         else if(cur_x==dst_m && cur_grp_global == dst_grp_global){ //mismo subgrupo (comprobar que esté bien)
             int directo=0;
             for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
-                if((cur_y+grupo_x[i])%param_q == dst_c){ 
+                if(mod((cur_y+grupo_x[i]),param_q) == dst_c){ 
                     directo = 1;
                     outport = param_p + i; 
                     break;
                 }
             }
             if(!directo){
+                int out = 0;
                 for(int i = 0; i<param_tam_gal; i++){//buscar los dos saltos que den el id del destino
                     for(int j = 0; j<param_tam_gal; j++){
-                        if((cur_y+grupo_x[i]+grupo_x[j])%param_q == dst_c){ 
+                        if(mod((cur_y+grupo_x[i]+grupo_x[j]),param_q) == dst_c){ 
+                            out = 1;
                             outport = param_p + i; 
                             break;
                         }
                     }
+                    if(out) break;
                 }
             }
         }
@@ -457,29 +464,36 @@ long route_slimfly(long current, long destination){
             //caso en el que el salto global del switch actual ya deja a distancia 1
             int dst_y_salto_global;
             if(cur_grp_global == 0) //calcular la "y o c" a la que saltar
-                dst_y_salto_global = (cur_y - dst_m*cur_x)%param_q;
+                dst_y_salto_global = mod((cur_y - dst_m*cur_x),param_q);
             else
-                dst_y_salto_global = (dst_c - cur_x*dst_m)%param_q;
+                dst_y_salto_global = mod((cur_y + cur_x*dst_m),param_q);
                 
+            if(dst_y_salto_global == dst_c) {
+                outport = param_p + intra_ports + dst_m;
+                directo=1;
+            }
+
+            if(!directo){
             for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
-                if((dst_y_salto_global+grupo_x[i])%param_q == dst_c){ 
+                if(mod((dst_y_salto_global+grupo_x2[i]),param_q) == dst_c){ 
                     directo = 1;
-                    outport = param_p + intra_ports + cur_x; 
+                    outport = param_p + intra_ports + dst_m; 
                     break;
                 }
+            }
             }
 
             //caso en el que el salto global del switch actual no deja a distancia 1
             if(!directo){//buscar el switch dentro del subgrupo desde el que se llega directo??
                 for(int i = 0; i<param_tam_gal; i++){
                     if(cur_grp_global == 0){
-                        if((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x)%param_q == dst_c){ 
+                        if(mod((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x),param_q) == dst_c){ 
                             outport = param_p + i; 
                             break;
                         }
                     }
                     else{
-                        if((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x)%param_q == dst_c){ 
+                        if(mod((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x),param_q) == dst_c){ 
                             outport = param_p + i; 
                             break;
                         }
@@ -489,15 +503,19 @@ long route_slimfly(long current, long destination){
 
             }
         }
-        else{//si no saltar al otro grupo y volver
+        else if(cur_grp_global == dst_grp_global && cur_x != dst_m){//si no saltar al otro grupo y volver
 
             int intermedio_m, intermedio_c;
-            intermedio_m = (cur_y-dst_c)/(cur_x-dst_m);
+            intermedio_m = mod((cur_y-dst_c),param_q)/mod((cur_x-dst_m),param_q);
             intermedio_c = cur_y - (intermedio_m*cur_x);
 
 
             //buscar puerto que corresponde a ese switch
-            outport = param_q + intra_ports + cur_x;
+            outport = param_p + intra_ports + cur_x;
+        }
+        else{
+            outport = param_p;
+            printf("error, no entra en ningun if dentro del routing: x: %d; y: %d; m: %d; c: %d;\n", cur_x,cur_y,dst_m,dst_c);
         }
     }
     return outport;
