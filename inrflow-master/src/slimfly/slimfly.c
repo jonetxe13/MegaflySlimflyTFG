@@ -397,6 +397,9 @@ void finish_route_slimfly(){
 }
 
 
+int swInicio=45, swDestino=38;
+int ruta[5] = {0,0,0,0,0};
+int indice = 0;
 
 long route_slimfly(long current, long destination){
     long outport = 0;
@@ -411,6 +414,7 @@ long route_slimfly(long current, long destination){
     dst_c = dst_sw%param_q;
     dst_m = dst_grp;
 
+    ruta[0] = swInicio;
 
     if(current < servers) return 0; //el current es un server as ique puerto 0
     
@@ -458,6 +462,10 @@ long route_slimfly(long current, long destination){
                     if(out) break;
                 }
             }
+            if(cur_sw == ruta[indice] && dst_sw == swDestino){
+                indice++;
+                ruta[indice] = cur_y+grupo_x[outport-param_p] < param_q ? cur_sw + grupo_x[outport-param_p] : mod(cur_sw + grupo_x[outport-param_p], param_q);
+            }
         }
         else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global !!!!!!!!!!!!!!!!!!!!!!!!!!!!
             int directo=0;
@@ -502,69 +510,55 @@ long route_slimfly(long current, long destination){
                 }
 
             }
+
+            if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
+                indice++;
+                if(outport<param_p+intra_ports)
+                    ruta[indice] = cur_sw+mod(cur_y+grupo_x[outport-param_p],param_q);
+                else{
+                    if(!cur_grp_global){
+                        ruta[indice] = dst_y_salto_global + switches/2 + dst_m*param_q;
+                    }
+                    else{
+                        ruta[indice] = dst_y_salto_global + dst_m*param_q;
+                        
+                    }
+                }
+            }
         }
         else if(cur_grp_global == dst_grp_global && cur_x != dst_m){//si no saltar al otro grupo y volver
 
             int intermedio_m, intermedio_c;
-            intermedio_m = mod((cur_y-dst_c),param_q)/mod((cur_x-dst_m),param_q);
+            intermedio_m = mod((cur_y-dst_c)/(cur_x-dst_m),param_q);
             intermedio_c = cur_y - (intermedio_m*cur_x);
 
 
             //buscar puerto que corresponde a ese switch
             outport = param_p + intra_ports + cur_x;
+
+            if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
+                indice++;
+                if(!cur_grp_global){
+                    ruta[indice] = intermedio_c + switches/2 + intermedio_m*param_q;
+                }
+                else{
+                    ruta[indice] = intermedio_c + intermedio_m*param_q;
+                    
+                }
+            }
+
         }
         else{
             outport = param_p;
             printf("error, no entra en ningun if dentro del routing: x: %d; y: %d; m: %d; c: %d;\n", cur_x,cur_y,dst_m,dst_c);
         }
     }
+    if(ruta[3] != 0)
+        printf("ruta de sw%d a sw%d", swInicio, swDestino);
+    for(int i = 0; i<5; i++){
+        printf("%d -> ", ruta[i]);
+    }
+    printf("\n");
     return outport;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// long route_slimfly(long current, long destination) {
-//     if (current < servers) return 0; // Servidor -> Switch
-//
-//     long cur_sw = current - servers;
-//     long dst_sw = destination / param_p;
-//
-//     // Si ya estamos en el switch de destino, entregar al servidor
-//     if (cur_sw == dst_sw) {
-//         return destination % param_p;
-//     }
-//
-//     // --- Lógica Estilo Dragonfly adaptada a Slim Fly ---
-//     // En Slim Fly tenemos 2 subgrafos (grupos) de q^2 switches cada uno
-//     long switches_per_subgraph = param_q * param_q;
-//     long cur_subgraph = cur_sw / switches_per_subgraph;
-//     long dst_subgraph = dst_sw / switches_per_subgraph;
-//
-//     // CASO 1: Mismo Subgrafo (Conexiones locales X o X')
-//     if (cur_subgraph == dst_subgraph) {
-//         // En Slim Fly mínima, si el destino está en el mismo subgrafo
-//         // y no es vecino directo, se llega a través de otro switch del mismo subgrafo.
-//         // Por ahora, devolvemos un puerto local (del p en adelante)
-//         // Para comprobar si funciona, enviamos al primer puerto de red disponible
-//         return param_p; 
-//     } 
-//
-//     // CASO 2: Distinto Subgrafo (Salto Global)
-//     else {
-//         // Aquí es donde se usa el salto global.
-//         // En tu log vimos que el puerto 5 es el que conecta con el otro subgrafo.
-//         // Si no hemos llegado y el destino está "al otro lado", saltamos por el puerto global.
-//         return param_p + (param_k / 2); // Esto suele apuntar a los enlaces globales
-//     }
-// }
