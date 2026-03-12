@@ -1,0 +1,2492 @@
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->27
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->27
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->26; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->37
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->28
+directo: sw1->0 --- sw2->25
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->39; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->41; siguiente sw es: 1
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->47
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->42
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->37
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->28
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->45
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->43
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->30
+dist 3 grupo destino: sw1->0 --- sw2->38
+dist 3 grupo destino: sw1->0 --- sw2->42
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->48
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->38
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+dist 3 grupo actual: sw1->0 --- sw2->49; siguiente sw es: 4
+dist 3 grupo destino: sw1->0 --- sw2->43
+dist 3 grupo destino: sw1->0 --- sw2->48
+directo: sw1->0 --- sw2->45
+dist 3 grupo destino: sw1->0 --- sw2->47
+dist 3 grupo actual: sw1->0 --- sw2->29; siguiente sw es: 4
+directo: sw1->0 --- sw2->30
+directo: sw1->0 --- sw2->25
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->45
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->44; siguiente sw es: 4
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->40
+dist 3 grupo actual: sw1->0 --- sw2->34; siguiente sw es: 4
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->35
+dist 3 grupo destino: sw1->0 --- sw2->33
+directo: sw1->0 --- sw2->35
+dist 3 grupo actual: sw1->0 --- sw2->31; siguiente sw es: 1
+dist 3 grupo actual: sw1->0 --- sw2->36; siguiente sw es: 1
+dist 3 grupo destino: sw1->0 --- sw2->32
+dist 3 grupo destino: sw1->0 --- sw2->32
+directo: sw1->0 --- sw2->25
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1
+directo: sw1->0 --- sw2->35
+directo: sw1->0 --- sw2->40
+directo: sw1->0 --- sw2->30
+dist 3 grupo actual: sw1->0 --- sw2->46; siguiente sw es: 1

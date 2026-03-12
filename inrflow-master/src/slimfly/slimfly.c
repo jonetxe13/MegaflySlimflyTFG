@@ -124,7 +124,7 @@ long init_topo_slimfly(long np, long *par) {
     intra_ports = ((param_q- param_delta_final)/2);
     grps = param_q*2;
     param_tam_gal = (param_q - param_delta_final)/2;
-    ports = (param_k+param_p)*switches;
+    ports = (param_k+param_p)*switches + servers;
 
     //calcular el Galois Field con q
     int param_field[param_q];
