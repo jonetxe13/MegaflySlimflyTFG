@@ -78,6 +78,15 @@ int* ordenar_grupo(int *grupo_x){
 
     return grupo_x;
 }
+// Función para calcular el inverso modular (a^-1 mod m)
+int modInverse(int a, int m) {
+    a = mod(a, m);
+    for (int x = 1; x < m; x++) {
+        if (mod(a * x, m) == 1)
+            return x;
+    }
+    return 1; // Debería existir si q es primo y a != 0
+}
 
 /**
  * declare the number of global connections between groups;
@@ -397,7 +406,7 @@ void finish_route_slimfly(){
 }
 
 
-int swInicio=45, swDestino=38;
+int swInicio=45, swDestino=36;
 int ruta[5] = {0,0,0,0,0};
 int indice = 0;
 
@@ -464,7 +473,7 @@ long route_slimfly(long current, long destination){
             }
             if(cur_sw == ruta[indice] && dst_sw == swDestino){
                 indice++;
-                ruta[indice] = cur_y+grupo_x[outport-param_p] < param_q ? cur_sw + grupo_x[outport-param_p] : mod(cur_sw + grupo_x[outport-param_p], param_q);
+                ruta[indice] = cur_y+grupo_x[outport-param_p] < param_q ? (cur_sw + grupo_x[outport-param_p]) : cur_grp_global*(switches/2) + cur_x*param_q + mod(cur_y + grupo_x[outport-param_p], param_q);
             }
         }
         else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -528,17 +537,50 @@ long route_slimfly(long current, long destination){
         }
         else if(cur_grp_global == dst_grp_global && cur_x != dst_m){//si no saltar al otro grupo y volver
 
-            int intermedio_m, intermedio_c;
-            intermedio_m = mod((cur_y-dst_c)/(cur_x-dst_m),param_q);
-            intermedio_c = cur_y - (intermedio_m*cur_x);
 
+            int intermedio_m, intermedio_c;
+            // if(cur_grp_global==0){
+            // intermedio_m = mod((cur_y-dst_c)/(cur_x-dst_m),param_q);
+            // intermedio_c = cur_y - (intermedio_m*cur_x);
+            // }
+            // else{
+            // intermedio_m = mod((int)ceil((dst_c-cur_y)/(cur_x-dst_m)),param_q);
+            // intermedio_c = cur_y + (intermedio_m*cur_x);
+            // }
+            //
+            //
+
+            int diff_y, diff_x, inv_x;
+
+    // Calculamos m = (y - y') / (x - x') mod q
+    if (cur_grp_global == 0) {
+        diff_y = mod(cur_y - dst_c, param_q); // dst_c actúa como y'
+        diff_x = mod(cur_x - dst_m, param_q); // dst_m actúa como x'
+        
+        inv_x = modInverse(diff_x, param_q);
+        intermedio_m = mod(diff_y * inv_x, param_q);
+        
+        // c = y - mx mod q
+        intermedio_c = mod(cur_y - (intermedio_m * cur_x), param_q);
+    } 
+    else {
+        // Para el grupo 1, la ecuación de conexión suele ser x = my + c o similar
+        // Ajusta según la definición exacta de tu implementación de Slim Fly
+        diff_y = mod(dst_c - cur_y, param_q);
+        diff_x = mod(cur_x - dst_m, param_q);
+        
+        inv_x = modInverse(diff_x, param_q);
+        intermedio_m = mod(diff_y * inv_x, param_q);
+        
+        intermedio_c = mod(cur_y + (intermedio_m * cur_x), param_q);
+    }
 
             //buscar puerto que corresponde a ese switch
-            outport = param_p + intra_ports + cur_x;
+            outport = param_p + intra_ports + intermedio_m;
 
             if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
                 indice++;
-                if(!cur_grp_global){
+                if(cur_grp_global==0){
                     ruta[indice] = intermedio_c + switches/2 + intermedio_m*param_q;
                 }
                 else{
@@ -553,12 +595,13 @@ long route_slimfly(long current, long destination){
             printf("error, no entra en ningun if dentro del routing: x: %d; y: %d; m: %d; c: %d;\n", cur_x,cur_y,dst_m,dst_c);
         }
     }
-    if(ruta[3] != 0)
+    if(ruta[2] != 0){
         printf("ruta de sw%d a sw%d", swInicio, swDestino);
     for(int i = 0; i<5; i++){
         printf("%d -> ", ruta[i]);
     }
     printf("\n");
+    }
     return outport;
 }
 
