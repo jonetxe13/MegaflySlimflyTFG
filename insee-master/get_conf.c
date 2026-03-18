@@ -231,6 +231,7 @@ literal_t topology_l[] = {
     { DRAGONFLY_HELIX, "dragonfly-hel"},
     { DRAGONFLY_HELIX, "dragonfly-helix"},
     { DRAGONFLY_OTHER, "dragonfly-other"},// What is this variant???
+    {MEGAFLY, "megafly"},
 	LITERAL_END
 };
 
@@ -583,6 +584,17 @@ void get_option(char * option) {
 				panic("3 parameters are needed for constructing a dragonfly topology");
 
 			radix = param_h + param_p + param_a - 1;
+		}
+		else if(topo==MEGAFLY){
+			param = strtok(NULL, sep);
+			if (param)
+				radix = atoi(param); // number of servers per switch
+			else
+				panic("3 parameters are needed for constructing a dragonfly topology: p,a,h");
+			stDown = param_p = radix/2; //number of servers per local switch
+			param_a = radix; //number of switches per group
+			param_h = param_p; //number of uplinks per global switch
+
 		}
 		else if (topo==ICUBE){
 			param = strtok(NULL, sep);

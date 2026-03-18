@@ -300,6 +300,9 @@ bool_t check_rr_arbitrary_voq(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_dragonfly_arithmetic(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_dragonfly_dally(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_dragonfly_dally_adap(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_megafly_dally(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_megafly_dally_adap(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_spanning_tree(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_arbitrary_inc_hop(packet_t * pkt, dim *d, way *w);
 
@@ -378,11 +381,13 @@ routing_r graph_rr_static(long source, long destination);
 routing_r graph_rnd_static(long source, long destination);
 routing_r graph_rr_adaptive(long source, long destination);
 routing_r dragonfly_rr (long source, long destination);
+routing_r megafly_rr (long source, long destination);
 routing_r spanning_tree_rr(long source, long destination);
 
 extern struct spanning_tree_routing_table_t *s_t_routing_table;
 
 long route_dragonfly(long current, long destination, long proxy);
+long route_megafly(long current, long destination, long proxy);
 
 void create_fattree();
 void create_slimtree();
@@ -391,6 +396,8 @@ void create_icube();
 void create_graph();
 void create_dragonfly();
 void finish_dragonfly();
+void create_megafly();
+void finish_megafly();
 
 /* In get_conf.c */
 extern literal_t vc_l[];
