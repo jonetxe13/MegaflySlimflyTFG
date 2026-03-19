@@ -79,6 +79,7 @@ extern long pnodes_z;
 
 extern long nswitches;
 
+extern long param_q; ///< q: Prime number that defines slimfly graph
 extern long param_p; ///< p: Number of servers connected to each switch
 extern long param_a; ///< a: Number of switches in each group
 extern long param_h; ///< h: Number of uplinks
@@ -303,6 +304,9 @@ bool_t check_rr_dragonfly_dally_adap(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_megafly_dally(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_megafly_dally_adap(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_slimfly_arithmetic(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_slimfly_dally(packet_t * pkt, dim *d, way *w);
+bool_t check_rr_slimfly_dally_adap(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_spanning_tree(packet_t * pkt, dim *d, way *w);
 bool_t check_rr_arbitrary_inc_hop(packet_t * pkt, dim *d, way *w);
 
@@ -382,12 +386,14 @@ routing_r graph_rnd_static(long source, long destination);
 routing_r graph_rr_adaptive(long source, long destination);
 routing_r dragonfly_rr (long source, long destination);
 routing_r megafly_rr (long source, long destination);
+routing_r slimfly_rr (long source, long destination);
 routing_r spanning_tree_rr(long source, long destination);
 
 extern struct spanning_tree_routing_table_t *s_t_routing_table;
 
 long route_dragonfly(long current, long destination, long proxy);
 long route_megafly(long current, long destination, long proxy);
+long route_slimfly(long current, long destination, long proxy);
 
 void create_fattree();
 void create_slimtree();
@@ -398,6 +404,8 @@ void create_dragonfly();
 void finish_dragonfly();
 void create_megafly();
 void finish_megafly();
+void create_slimfly();
+void finish_slimfly();
 
 /* In get_conf.c */
 extern literal_t vc_l[];

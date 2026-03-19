@@ -552,28 +552,28 @@ long route_slimfly(long current, long destination){
 
             int diff_y, diff_x, inv_x;
 
-    // Calculamos m = (y - y') / (x - x') mod q
-    if (cur_grp_global == 0) {
-        diff_y = mod(cur_y - dst_c, param_q); // dst_c actúa como y'
-        diff_x = mod(cur_x - dst_m, param_q); // dst_m actúa como x'
-        
-        inv_x = modInverse(diff_x, param_q);
-        intermedio_m = mod(diff_y * inv_x, param_q);
-        
-        // c = y - mx mod q
-        intermedio_c = mod(cur_y - (intermedio_m * cur_x), param_q);
-    } 
-    else {
-        // Para el grupo 1, la ecuación de conexión suele ser x = my + c o similar
-        // Ajusta según la definición exacta de tu implementación de Slim Fly
-        diff_y = mod(dst_c - cur_y, param_q);
-        diff_x = mod(cur_x - dst_m, param_q);
-        
-        inv_x = modInverse(diff_x, param_q);
-        intermedio_m = mod(diff_y * inv_x, param_q);
-        
-        intermedio_c = mod(cur_y + (intermedio_m * cur_x), param_q);
-    }
+            // Calculamos m = (y - y') / (x - x') mod q
+            if (cur_grp_global == 0) {
+                diff_y = mod(cur_y - dst_c, param_q); // dst_c actúa como y'
+                diff_x = mod(cur_x - dst_m, param_q); // dst_m actúa como x'
+                
+                inv_x = modInverse(diff_x, param_q);
+                intermedio_m = mod(diff_y * inv_x, param_q);
+                
+                // c = y - mx mod q
+                intermedio_c = mod(cur_y - (intermedio_m * cur_x), param_q);
+            } 
+            else {
+                // Para el grupo 1, la ecuación de conexión suele ser x = my + c o similar
+                // Ajusta según la definición exacta de tu implementación de Slim Fly
+                diff_y = mod(dst_c - cur_y, param_q);
+                diff_x = mod(cur_x - dst_m, param_q);
+                
+                inv_x = modInverse(diff_x, param_q);
+                intermedio_m = mod(diff_y * inv_x, param_q);
+                
+                intermedio_c = mod(cur_y + (intermedio_m * cur_x), param_q);
+            }
 
             //buscar puerto que corresponde a ese switch
             outport = param_p + intra_ports + intermedio_m;
