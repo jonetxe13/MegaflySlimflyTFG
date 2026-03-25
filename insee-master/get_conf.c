@@ -600,12 +600,108 @@ void get_option(char * option) {
 		else if(topo==SLIMFLY){
 			param = strtok(NULL, sep);
 			if (param)
-				radix = atoi(param); // number of servers per switch
+				param_q = atoi(param); // number of servers per switch
 			else
 				panic("3 parameters are needed for constructing a dragonfly topology: p,a,h");
-			stDown = param_p = radix/2; //number of servers per local switch
-			param_a = radix; //number of switches per group
-			param_h = param_p; //number of uplinks per global switch
+			// stDown = param_p = radix/2; //number of servers per local switch
+			// param_a = radix; //number of switches per group
+			// param_h = param_p; //number of uplinks per global switch
+		    int out = 0;
+		    // param_delta_opt[3] = {-1,0,1};
+		    int param_l;
+		    // check wether q is a prime of the form q = 4w+delta
+		    for (int j = 0; j<100; j++) {
+			for (int i = 0; i<3; i++) {
+			    if(param_q == (4*j + param_delta_opt[i])){
+				out = 1;
+				    param_delta_final = param_delta_opt[i];
+				    param_l = j;
+				    // printf("param_delta_final: %d\n", param_delta_final);
+				    break;
+			    }
+			}
+			if(out) break;
+		    }
+		    param_k = (3*param_q - param_delta_final)/2; //links a otros routers
+		    switches = 2*param_q*param_q; //number of switches
+		    param_p = (param_k+1)/2; // number of servers per switch
+		    servers = param_p * switches;
+		    param_a = param_q; // number of switches per group
+		    param_h = param_q; // number of uplinks per switch
+		    // printf("q: %d \n", param_q);
+		    // printf("k: %d \n", param_k);
+		    printf("switches: %d \n", switches);
+		    printf("p: %d \n", param_p);
+
+		    printf("servers: %d \n", servers);
+			// Calculate some useful values from the parameters
+		    intra_ports = ((param_q- param_delta_final)/2);
+		    grps = param_q*2;
+		    param_tam_gal = (param_q - param_delta_final)/2;
+		    int ports = (param_k+param_p)*switches + servers;
+
+		    //calcular el Galois Field con q
+		    int param_field[param_q];
+		    for (int i = 0; i<param_q; i++) {
+			param_field[i]=i;
+		    }
+
+		    //mirar como buscar generadores de galois fields eficientemente
+		    int contador[param_q-1];
+		    int param_gen;
+
+		    for (int i = 2; i<param_q; i++) {
+			param_gen = i;
+
+			for (int i2 = 0; i2<param_q-1; i2++) contador[i2] = 0;
+
+			for (int j = 0; j<param_q-1; j++) {
+			    int prueba_gen = (int)pow(param_gen, j);
+
+			    for (int k = 1; k<param_q; k++) {
+
+				if((prueba_gen%param_q)==param_field[k]){
+				    contador[k-1] = 1;
+				    break;
+				}
+			    }
+			}
+			int es_generador = 1;
+			for (int i3 = 0; i3<param_q-1; i3++) 
+			    if(contador[i3] == 0){
+				es_generador = 0;
+				break;
+			    }
+			if(es_generador) break;
+		    
+		    }
+		    
+		    // int *param_x, *param_x2;
+		    param_x = malloc(param_tam_gal*sizeof(int));
+		    param_x2 = malloc(param_tam_gal*sizeof(int));
+
+		    if(param_q%4==1){
+			for (int i = 0; i<param_q-1; i++) {
+			    if(i%2==0) param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
+			    if(i%2!=0) param_x2[i/2]=mod(((int)pow(param_gen, i)),param_q);
+			    // printf("param_x: %d", param_x[i/2]);
+			    // printf("param_x2: %d", param_x2[i/2]);
+			}
+		    }
+		    else if(param_q%4 == 3){
+			for (int i = 0; i<(2*param_l)-1; i+=2) {
+			    param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
+			    param_x[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l-1+i)),param_q);
+			    // printf("param_x en %d: %d**%d \n", i/2, param_gen, i);
+			    // printf("param_x en %d: %d**%d\n", i/2, param_gen, 2*param_l-1+i);
+
+			    param_x2[i/2]=mod(((int)pow(param_gen, i+1)),param_q);
+			    param_x2[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l+i)),param_q);
+			    // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, i+1);
+			    // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, 2*param_l+i);
+			    
+			}
+		    }
 
 		}
 		else if (topo==ICUBE){
@@ -1177,6 +1273,26 @@ void verify_conf(void) {
 			printf("         Setting imode to SHORTEST!!!\n");
 			inj_mode=SHORTEST_INJ;
 		}
+	}
+	else if(topo==MEGAFLY){
+		grps = (param_a/2)*param_h + 1;
+		intra_ports = param_p;
+		nprocs = param_p*(param_a/2)*grps;
+		NUMNODES = nprocs + (param_a*grps);
+		req_mode = ARBITRARY_REQ;
+		if (routing == DIMENSION_ORDER_ROUTING) 
+			routing = STATIC_ROUTING;
+
+		if (vc_management == DALLY_MANAGEMENT) 
+			vc_management = DF_DALLY_MANAGEMENT;
+	}
+	else if(topo==SLIMFLY){
+		intra_ports = param_p*(param_a/2)*grps;
+		grps = (param_a/2)*param_h + 1;
+		nprocs = param_p*(param_a/2)*grps;
+		NUMNODES = nprocs + (param_a*grps);
+		req_mode = ARBITRARY_REQ;
+
 	} else if (topo==ICUBE){
 		nprocs = stDown * (nodes_x*nodes_y*nodes_z);
 		NUMNODES = (stDown+1) * (nodes_x*nodes_y*nodes_z);
@@ -1449,7 +1565,7 @@ void verify_conf(void) {
 	if (topo!=ICUBE && (req_mode==ICUBE_REQ || vc_management==ICUBE_MANAGEMENT))
 		panic("Only for indirect cubes");
 	if (( topo!=FATTREE && topo!=THINTREE && topo!=SLIMTREE && topo!=RRG && topo != EXA && topo != GDBG && topo != KAUTZ &&
-		  topo!=DRAGONFLY_RND && topo!=DRAGONFLY_ABSOLUTE && topo!=DRAGONFLY_RELATIVE && topo!=DRAGONFLY_CIRCULANT&& topo!=DRAGONFLY_NAUTILUS && topo!=DRAGONFLY_HELIX && topo!=DRAGONFLY_OTHER
+		  topo!=DRAGONFLY_RND && topo!=DRAGONFLY_ABSOLUTE && topo!=DRAGONFLY_RELATIVE && topo!=DRAGONFLY_CIRCULANT&& topo!=DRAGONFLY_NAUTILUS && topo!=DRAGONFLY_HELIX && topo!=MEGAFLY && topo!=DRAGONFLY_OTHER
 		 ) && (req_mode==ARBITRARY_REQ || vc_management==TREE_MANAGEMENT))
 		panic("Tree request and/or management selected for a not supported topology");
 	if (topo>CUBE)

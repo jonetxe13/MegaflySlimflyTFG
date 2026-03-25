@@ -79,8 +79,10 @@ void init_functions (void) {
             max_dst = nodes_x+nodes_y+nodes_z-2;
         else if (topo<=CUBE)
             max_dst = nodes_x+nodes_y+nodes_z;
-        else if (topo==DRAGONFLY_ABSOLUTE || topo==DRAGONFLY_RELATIVE || topo==DRAGONFLY_RND || topo==DRAGONFLY_CIRCULANT || topo==DRAGONFLY_NAUTILUS || topo==DRAGONFLY_HELIX || topo==DRAGONFLY_OTHER)
+        else if (topo==DRAGONFLY_ABSOLUTE || topo==DRAGONFLY_RELATIVE || topo==DRAGONFLY_RND || topo==DRAGONFLY_CIRCULANT || topo==DRAGONFLY_NAUTILUS || topo==DRAGONFLY_HELIX || topo==DRAGONFLY_OTHER || topo==MEGAFLY)
             max_dst = 7;
+        else if(topo==SLIMFLY)
+                max_dst = 5;
         else if (topo == RRG || topo == EXA || topo == GDBG || topo == KAUTZ)
             max_dst = nswitches;
         else if (topo<INDIRECT)
@@ -273,6 +275,16 @@ void init_functions (void) {
                 check_rr = check_rr_slimtree_arithmetic;
             else
                 check_rr = check_rr_slimtree_adaptive;
+            break;
+        case SLIMFLY:
+            // check_rr_slimfly_dally
+            calc_rr = slimfly_rr;
+            // check_rr = check_rr_slimfly_dally;
+            break;
+        case MEGAFLY:
+            // check_rr_slimfly_dally
+            calc_rr = megafly_rr;
+            check_rr = check_rr_megafly_dally;
             break;
         case DRAGONFLY_ABSOLUTE:
         case DRAGONFLY_RELATIVE:

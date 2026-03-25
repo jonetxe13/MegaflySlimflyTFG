@@ -79,10 +79,16 @@ extern long pnodes_z;
 
 extern long nswitches;
 
+extern int switches, servers;
 extern long param_q; ///< q: Prime number that defines slimfly graph
+extern int param_k; ///< k: radix in slimfly
 extern long param_p; ///< p: Number of servers connected to each switch
 extern long param_a; ///< a: Number of switches in each group
 extern long param_h; ///< h: Number of uplinks
+extern int param_delta_opt[3];
+extern int param_delta_final;
+extern int param_tam_gal;
+extern int *param_x, *param_x2;
 
 extern long grps; ///< Total number of groups
 extern long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group

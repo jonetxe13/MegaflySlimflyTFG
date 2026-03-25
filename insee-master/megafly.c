@@ -13,22 +13,22 @@
  * Parameters (a,p,h) for the dragonfly topology;
  */
 
-long param_p; ///< p: Number of servers connected to each switch
-long param_a; ///< a: Number of switches in each group
-long param_h; ///< h: Number of uplinks
+extern long param_p; ///< p: Number of servers connected to each switch
+extern long param_a; ///< a: Number of switches in each group
+extern long param_h; ///< h: Number of uplinks
 
-long grps; ///< Total number of groups
-long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
+extern long grps; ///< Total number of groups
+extern long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
 
-long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
+extern long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
 
-long max_paths;
+extern long max_paths;
 
-long *other_orig2map;
-long *other_map2orig;
+extern long *other_orig2map;
+extern long *other_map2orig;
 
-long ***intergroup_connections; ///< Stores the port (overall intergroup port = (next_group*param_a*param_h) + next port) connected to a given local group, switch and port; e.g., intergroup_connections[g][s][p] stores to what group is connected port p of switch s in group g. Used for several variants (Helix, Nautilux and Random).
-long **intergroup_route;		///< Stores the output port within a group that connects to another group; e.g., intergroup_route[g0][g1] stores the group port in g0 that connects to g1. Used for several variants (Helix, Nautilux and Random).
+extern long ***intergroup_connections; ///< Stores the port (overall intergroup port = (next_group*param_a*param_h) + next port) connected to a given local group, switch and port; e.g., intergroup_connections[g][s][p] stores to what group is connected port p of switch s in group g. Used for several variants (Helix, Nautilux and Random).
+extern long **intergroup_route;		///< Stores the output port within a group that connects to another group; e.g., intergroup_route[g0][g1] stores the group port in g0 that connects to g1. Used for several variants (Helix, Nautilux and Random).
 
 /**
  * Calculates the neighbor for a given node and port
@@ -87,7 +87,7 @@ tuple_t connection_megafly(long node, long port) {
 			    next_grp=port_id;
 			    next_port=grp_id-1;
 			}
-		res.node = nprocs + (next_grp * param_p) + (next_port/param_h);
+		res.node = nprocs + (switches/2) + (next_grp * param_p) + (next_port/param_h);
 		res.port = param_p + (next_port%param_h);
 	    }
     }
@@ -160,17 +160,28 @@ routing_r megafly_rr(long source, long destination) {
     long dst_grp = destination/(param_p*(param_a/2));
     long proxy_grp;
     long cur=source;
+    long next_port;
 
     if (source == destination)
         panic("Self-sent packet\n");
 
-    res.rr = alloc(8 * sizeof(long));
-    res.rr[7] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
+    res.rr = alloc(16 * sizeof(long));
+    res.rr[15] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
     res.size=0;
 
     proxy_grp=dst_grp;
     while(cur!=destination){
-        res.rr[res.size]=route_megafly(cur,destination,proxy_grp);
+        if (res.size >= 16) {
+            panic("¡Bucle infinito detectado en el enrutamiento Megafly!");
+        }
+        next_port = route_megafly(cur, destination, proxy_grp);
+        // printf("DEBUG: Routing de %ld a %ld. Size actual: %ld; next_port: %ld\n", source, destination, res.size, next_port);
+        // if (next_port >= 0 && next_port < radix) {
+        //     printf("Destino fisico: Nodo %ld\n", network[cur].nbor[next_port]);
+        // } else {
+        //     printf("¡PUERTO INVALIDO!\n");
+        // }
+        res.rr[res.size]=next_port;
         cur=network[cur].nbor[res.rr[res.size]];
         res.size++;
     }
@@ -189,7 +200,7 @@ routing_r megafly_rr(long source, long destination) {
 long route_megafly(long current, long destination, long proxy) {
     long cur_sw, dst_sw;
     long cur_grp, dst_grp;
-    long outport_sw, outport_grp;
+    long outport_sw, outport_grp = -1;
     long tgt_grp;	// the target group, it can be the destination group, or a proxy if valiant (or qvaliant) are used
     long tmp;
 
@@ -223,7 +234,7 @@ long route_megafly(long current, long destination, long proxy) {
             }
         }
     }
-    else if(current-nprocs< switches){//current es spine switch
+    else if(current-nprocs < switches){//current es spine switch
         cur_sw = current-nprocs-(switches/2);
         cur_grp = cur_sw/(param_a/2);
         dst_sw=destination/(param_p);

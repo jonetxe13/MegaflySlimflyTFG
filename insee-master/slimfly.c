@@ -14,22 +14,40 @@
  */
 
 long param_q; ///< q: Prime number that defines the graph
-long param_p; ///< p: Number of servers connected to each switch
-long param_a; ///< a: Number of switches in each group
-long param_h; ///< h: Number of uplinks
+ extern long param_p; ///< p: Number of servers connected to each switch
+ extern long param_a; ///< a: Number of switches in each group
+ extern long param_h; ///< h: Number of uplinks
+int param_k;
+int param_delta_opt[3] = {-1,0,1};
+int param_delta_final;
+int switches;
+int servers;
 
-long grps; ///< Total number of groups
-long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
+ int *param_x, *param_x2;
+ int param_tam_gal;
 
-long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
+ extern long grps; ///< Total number of groups
+ extern long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
 
-long max_paths;
+extern long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
 
-long *other_orig2map;
-long *other_map2orig;
+extern long max_paths;
 
-long ***intergroup_connections; ///< Stores the port (overall intergroup port = (next_group*param_a*param_h) + next port) connected to a given local group, switch and port; e.g., intergroup_connections[g][s][p] stores to what group is connected port p of switch s in group g. Used for several variants (Helix, Nautilux and Random).
-long **intergroup_route;		///< Stores the output port within a group that connects to another group; e.g., intergroup_route[g0][g1] stores the group port in g0 that connects to g1. Used for several variants (Helix, Nautilux and Random).
+extern long *other_orig2map;
+extern long *other_map2orig;
+
+extern long ***intergroup_connections; ///< Stores the port (overall intergroup port = (next_group*param_a*param_h) + next port) connected to a given local group, switch and port; e.g., intergroup_connections[g][s][p] stores to what group is connected port p of switch s in group g. Used for several variants (Helix, Nautilux and Random).
+extern long **intergroup_route;		///< Stores the output port within a group that connects to another group; e.g., intergroup_route[g0][g1] stores the group port in g0 that connects to g1. Used for several variants (Helix, Nautilux and Random).
+
+// Función para calcular el inverso modular (a^-1 mod m)
+int modInverse(int a, int m) {
+    a = mod(a, m);
+    for (int x = 1; x < m; x++) {
+        if (mod(a * x, m) == 1)
+            return x;
+    }
+    return 1; // Debería existir si q es primo y a != 0
+}
 
 /**
  * Calculates the neighbor for a given node and port
@@ -42,7 +60,7 @@ tuple_t connection_slimfly(long node, long port) {
     long gen_switch_id; // switch id in the general switch count
     int sw_id, sw_subgroup, grp_global, port_id; // switch (within a group), group and port id for calculating connections
     long next_grp, next_port; // group and port id of the target for calculating connections
-    //
+    // int switches = param_p*param_q*param_q;
 
 
     if( node < nprocs) { // The node is a server ESTO ES CORRECTO PARA slimflyTMBN
@@ -92,7 +110,7 @@ tuple_t connection_slimfly(long node, long port) {
                 x = sw_subgroup;
                 m=port_id;
                 c=mod((y-(m*x)%param_q + param_q),param_q);
-                res.node = nrpocs + param_q*param_q + m*param_q + c;
+                res.node = nprocs + param_q*param_q + m*param_q + c;
                 res.port = x + intra_ports + param_p;
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
@@ -106,7 +124,7 @@ tuple_t connection_slimfly(long node, long port) {
                 m = sw_subgroup;
                 x=port_id;
                 y=mod((m*x + c),param_q);
-                res.node = nrpocs + x*param_q + y;
+                res.node = nprocs + x*param_q + y;
                 res.port = m + intra_ports + param_p;
                 // printf("res.node %ld\n", res.node);
                 // printf("res.port %ld\n", res.port);
@@ -196,6 +214,9 @@ routing_r slimfly_rr (long source, long destination) {
 
 
     while(cur!=destination){
+        if (res.size >= 7) {
+            panic("Slim Fly routing loop! Check route_slimfly logic.");
+        }
         res.rr[res.size]=route_slimfly(cur,destination,proxy_grp);
         cur=network[cur].nbor[res.rr[res.size]];
         res.size++;
@@ -215,6 +236,8 @@ routing_r slimfly_rr (long source, long destination) {
 long route_slimfly(long current, long destination, long proxy) {
     long outport = 0;
     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
+    // int switches = param_p*param_q*param_q;
+    // int servers = nprocs ;
 
     dst_sw = destination/param_p;
     dst_grp_global = dst_sw/(switches/2);
@@ -225,7 +248,7 @@ long route_slimfly(long current, long destination, long proxy) {
     dst_c = dst_sw%param_q;
     dst_m = dst_grp;
 
-    ruta[0] = swInicio;
+    // ruta[0] = swInicio;
 
     if(current < servers) return 0; //el current es un server as ique puerto 0
     
@@ -345,13 +368,13 @@ long route_slimfly(long current, long destination, long proxy) {
             printf("error, no entra en ningun if dentro del routing: x: %d; y: %d; m: %d; c: %d;\n", cur_x,cur_y,dst_m,dst_c);
         }
     }
-    if(ruta[2] != 0){
-        printf("ruta de sw%d a sw%d", swInicio, swDestino);
-    for(int i = 0; i<5; i++){
-        printf("%d -> ", ruta[i]);
-    }
-    printf("\n");
-    }
+    // if(ruta[2] != 0){
+    //     printf("ruta de sw%d a sw%d", swInicio, swDestino);
+    // for(int i = 0; i<5; i++){
+    //     printf("%d -> ", ruta[i]);
+    // }
+    // printf("\n");
+    // }
     return outport;
 }
 

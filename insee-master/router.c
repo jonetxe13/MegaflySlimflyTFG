@@ -288,6 +288,10 @@ void init_network(void) {
 		create_graph();
 	else if (topo==DRAGONFLY_ABSOLUTE || topo==DRAGONFLY_RELATIVE || topo==DRAGONFLY_RND || topo==DRAGONFLY_CIRCULANT || topo==DRAGONFLY_HELIX || topo==DRAGONFLY_NAUTILUS || topo==DRAGONFLY_OTHER)
 		create_dragonfly();
+	else if (topo==MEGAFLY)
+		create_megafly();
+	else if (topo==SLIMFLY)
+		create_slimfly();
 
 	for(i=0; i<faults;i++){
 		do{

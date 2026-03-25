@@ -2527,6 +2527,68 @@ bool_t check_rr_dragonfly_dally_adap(packet_t * pkt, dim *d, way *w) {
 }
 
 /**
+ statick routing para megafly
+**/
+bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w) {
+    // Si el ID actual es el destino, el paquete ha llegado
+    if (pkt->to == id) 
+        return B_TRUE;
+
+    *w = 0; // En topologías indirectas/multistage 'way' no suele usarse
+
+    if (pkt->n_hops == 0) {
+        // Inyección desde la NIC (servidor): elegimos un VC (usualmente el 0)
+        *d = 0; 
+    } else {
+        // Obtenemos el siguiente puerto del RR (Routing Record) que calculó megafly_rr
+        long npt = get_next_hop(pkt);
+        // El puerto global final (dim) es: (PuertoSalida * TotalCanales) + CanalElegido
+        // Usamos curr_p % nchan para intentar distribuir el tráfico en VCs
+        *d = (npt * nchan) + (curr_p % nchan);
+    }
+
+    return B_FALSE;
+}
+
+bool_t check_rr_megafly_dally(packet_t * pkt, dim *d, way *w) {
+    long npt, nvc;
+
+    if (pkt->to == id) 
+        return B_TRUE;
+
+    *w = 0;
+
+    // Empezamos con el canal virtual que traía el paquete desde el puerto de entrada
+    nvc = curr_p % nchan;
+
+    if (pkt->n_hops == 0) {
+        // Inyección inicial: Siempre empezamos en el VC 0
+        *d = 0; 
+    } else {
+        npt = get_next_hop(pkt);
+
+        // LÓGICA DE ESCAPE (Dally): 
+        // Si el puerto de salida es un enlace global (hacia fuera del grupo),
+        // incrementamos el canal virtual para romper el ciclo de dependencia.
+        
+        // En tu caso, los puertos globales en el Spine Switch son (param_a/2) + algo.
+        // Una condición genérica para Megafly es detectar si el puerto es de "uplink"
+        if (npt >= (param_p + (param_a / 2))) { 
+            nvc++;
+            
+            if (nvc >= nchan) {
+                panic("¡Se han agotado los canales virtuales (VC) en Megafly! Incrementa nchan.\n");
+            }
+        }
+
+        // Cálculo del puerto físico final en el simulador
+        *d = (npt * nchan) + nvc;
+    }
+    
+    return B_FALSE;
+}
+
+/**
  * Spanning tree management for arbitrary topologies.
  *
  * Static routing through the defined spanning trees.
