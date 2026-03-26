@@ -279,12 +279,12 @@ void init_functions (void) {
         case SLIMFLY:
             // check_rr_slimfly_dally
             calc_rr = slimfly_rr;
-            // check_rr = check_rr_slimfly_dally;
+            check_rr = check_rr_slimfly_arithmetic;
             break;
         case MEGAFLY:
             // check_rr_slimfly_dally
             calc_rr = megafly_rr;
-            check_rr = check_rr_megafly_dally;
+            check_rr = check_rr_megafly_arithmetic;
             break;
         case DRAGONFLY_ABSOLUTE:
         case DRAGONFLY_RELATIVE:

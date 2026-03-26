@@ -72,6 +72,9 @@ tuple_t connection_slimfly(long node, long port) {
     else if(node < (nprocs + switches)) { // the node is a switch
         gen_switch_id = node - nprocs; // id of the switch relative to other switches
         grp_global = (gen_switch_id/(param_q*param_q)); // id of the group relative to other groups
+        if (node == 200 && port == 7) {
+        printf("DEBUG CON: nprocs=%ld, q=%d, -> TARGET=%ld\n", nprocs, param_q, res.node);
+    }
         if( port < param_p ) {// This is a downlink to a server 
             // res.node = grp_id*param_p*param_p + (gen_switch_id%(param_a/2))*param_p + port; //coger el server
             res.node = gen_switch_id * param_p + port;
@@ -153,7 +156,7 @@ void create_slimfly(){
     tuple_t res;
 
     nnics=1;
-
+    printf("param_x: %d, %d:\n param_x2: %d, %d\n", param_x[0], param_x[1],param_x2[0],param_x2[1]);
     // Initializating processors. Only 1 transit port plus injection queues.
     for (i=0; i<nprocs; i++){
         for (j=0; j<ninj; j++)
@@ -198,27 +201,61 @@ void create_slimfly(){
  * @param destination The destination node of the packet.
  * @return The routing record needed to go from source to destination.
  */
+// routing_r slimfly_rr (long source, long destination) {
+//     routing_r res;
+//     long src_grp=source/(param_p*param_a);
+//     long dst_grp=destination/(param_p*param_a);
+//     long proxy_grp=dst_grp;
+//     long cur=source;
+//
+//     if (source == destination)
+//         panic("Self-sent packet\n");
+//
+//     res.rr = alloc(16 * sizeof(long));
+//     res.rr[15] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
+//     res.size=0;
+//
+//
+//     while(cur!=destination){
+//         // if (res.size >= 15) {
+//         //     panic("Slim Fly routing loop! Check route_slimfly logic.");
+//         // }
+//         res.rr[res.size]=route_slimfly(cur,destination,proxy_grp);
+//         cur=network[cur].nbor[res.rr[res.size]];
+//         res.size++;
+//     }
+//
+//     return res;
+// }
+
 routing_r slimfly_rr (long source, long destination) {
     routing_r res;
-    long src_grp=source/(param_p*param_a);
-    long dst_grp=destination/(param_p*param_a);
-    long proxy_grp;
-    long cur=source;
+    long cur = source;
+    long next_port;
+    
+    // IMPORTANTE: Inicializar proxy_grp al grupo de destino para ruteo minimal
+    // Si no conoces el grupo, usa el destino directo si tu función lo permite
+    long dst_sw = destination / param_p;
+    long proxy_grp = dst_sw; // O el cálculo de grupo que use Slim Fly
 
-    if (source == destination)
-        panic("Self-sent packet\n");
+    if (source == destination) panic("Self-sent packet\n");
 
-    res.rr = alloc(8 * sizeof(long));
-    res.rr[7] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
-    res.size=0;
+    res.rr = alloc(16 * sizeof(long));
+    res.size = 0;
 
-
-    while(cur!=destination){
-        if (res.size >= 7) {
-            panic("Slim Fly routing loop! Check route_slimfly logic.");
+    while(cur != destination){
+        // Seguridad: En Slim Fly, más de 4 saltos es un error de diseño
+        if (res.size >= 15) {
+            printf("[SLIMFLY ERROR] Bucle detectado: Origen %ld -> Destino %ld. Actualmente en Nodo %ld\n", 
+                    cur, destination, cur);
+            panic("Slim Fly routing loop!");
         }
-        res.rr[res.size]=route_slimfly(cur,destination,proxy_grp);
-        cur=network[cur].nbor[res.rr[res.size]];
+
+        // Llamada segura
+        next_port = route_slimfly(cur, destination, 0);
+
+        res.rr[res.size] = next_port;
+        cur = network[cur].nbor[next_port];
         res.size++;
     }
 
@@ -234,7 +271,7 @@ routing_r slimfly_rr (long source, long destination) {
  * @return The port to take the next hop through.
  */
 long route_slimfly(long current, long destination, long proxy) {
-    long outport = 0;
+    long outport = -1;
     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
     // int switches = param_p*param_q*param_q;
     // int servers = nprocs ;
@@ -266,6 +303,7 @@ long route_slimfly(long current, long destination, long proxy) {
 
         if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
             outport = destination%param_p;
+                return outport;
         }
         else if(cur_x==dst_m && cur_grp_global == dst_grp_global){ //mismo subgrupo (comprobar que esté bien)
             int directo=0;
@@ -273,6 +311,7 @@ long route_slimfly(long current, long destination, long proxy) {
                 if(mod((cur_y+grupo_x[i]),param_q) == dst_c){ 
                     directo = 1;
                     outport = param_p + i; 
+                return outport;
                     break;
                 }
             }
@@ -283,6 +322,7 @@ long route_slimfly(long current, long destination, long proxy) {
                         if(mod((cur_y+grupo_x[i]+grupo_x[j]),param_q) == dst_c){ 
                             out = 1;
                             outport = param_p + i; 
+                return outport;
                             break;
                         }
                     }
@@ -301,6 +341,7 @@ long route_slimfly(long current, long destination, long proxy) {
                 
             if(dst_y_salto_global == dst_c) {
                 outport = param_p + intra_ports + dst_m;
+                return outport;
                 directo=1;
             }
 
@@ -309,6 +350,7 @@ long route_slimfly(long current, long destination, long proxy) {
 			if(mod((dst_y_salto_global+grupo_x2[i]),param_q) == dst_c){ 
 			    directo = 1;
 			    outport = param_p + intra_ports + dst_m; 
+                return outport;
 			    break;
 			}
 		    }
@@ -320,12 +362,14 @@ long route_slimfly(long current, long destination, long proxy) {
                     if(cur_grp_global == 0){
                         if(mod((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x),param_q) == dst_c){ 
                             outport = param_p + i; 
+                return outport;
                             break;
                         }
                     }
                     else{
                         if(mod((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x),param_q) == dst_c){ 
                             outport = param_p + i; 
+                return outport;
                             break;
                         }
 
@@ -362,6 +406,7 @@ long route_slimfly(long current, long destination, long proxy) {
 
             //buscar puerto que corresponde a ese switch
             outport = param_p + intra_ports + intermedio_m;
+                return outport;
         }
         else{
             outport = param_p;

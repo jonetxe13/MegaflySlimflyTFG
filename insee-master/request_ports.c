@@ -2530,61 +2530,47 @@ bool_t check_rr_dragonfly_dally_adap(packet_t * pkt, dim *d, way *w) {
  statick routing para megafly
 **/
 bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w) {
-    // Si el ID actual es el destino, el paquete ha llegado
+    // Si el nodo actual (id) es el destino final del paquete
     if (pkt->to == id) 
         return B_TRUE;
 
-    *w = 0; // En topologías indirectas/multistage 'way' no suele usarse
+    *w = 0; // Sin uso en estas topologías indirectas
 
     if (pkt->n_hops == 0) {
-        // Inyección desde la NIC (servidor): elegimos un VC (usualmente el 0)
-        *d = 0; 
+        // Estamos en la NIC (servidor): inyectamos en un VC basado en el ID o azar
+        *d = 0; // O rand() % nchan;
     } else {
-        // Obtenemos el siguiente puerto del RR (Routing Record) que calculó megafly_rr
+        // Obtenemos el puerto de salida que guardamos en el paso anterior en megafly_rr
         long npt = get_next_hop(pkt);
-        // El puerto global final (dim) es: (PuertoSalida * TotalCanales) + CanalElegido
-        // Usamos curr_p % nchan para intentar distribuir el tráfico en VCs
+        
+        // El puerto real en el simulador es (Puerto * canales_virtuales) + canal_actual
+        // Usamos curr_p % nchan para mantener el mismo VC o distribuir
         *d = (npt * nchan) + (curr_p % nchan);
     }
 
     return B_FALSE;
 }
 
-bool_t check_rr_megafly_dally(packet_t * pkt, dim *d, way *w) {
-    long npt, nvc;
-
-    if (pkt->to == id) 
+/**
+ statick routing para slimfly
+**/
+bool_t check_rr_slimfly_arithmetic(packet_t * pkt, dim *d, way *w) {
+    if (pkt->to == id)
         return B_TRUE;
 
     *w = 0;
 
-    // Empezamos con el canal virtual que traía el paquete desde el puerto de entrada
-    nvc = curr_p % nchan;
-
     if (pkt->n_hops == 0) {
-        // Inyección inicial: Siempre empezamos en el VC 0
-        *d = 0; 
+        // Inyección desde servidor
+        *d = 0;
     } else {
-        npt = get_next_hop(pkt);
-
-        // LÓGICA DE ESCAPE (Dally): 
-        // Si el puerto de salida es un enlace global (hacia fuera del grupo),
-        // incrementamos el canal virtual para romper el ciclo de dependencia.
+        // En Slim Fly, el ruteo suele ser: Switch Local -> Switch Destino -> Servidor
+        // get_next_hop lee el puerto calculado por tu función slimfly_rr
+        long npt = get_next_hop(pkt);
         
-        // En tu caso, los puertos globales en el Spine Switch son (param_a/2) + algo.
-        // Una condición genérica para Megafly es detectar si el puerto es de "uplink"
-        if (npt >= (param_p + (param_a / 2))) { 
-            nvc++;
-            
-            if (nvc >= nchan) {
-                panic("¡Se han agotado los canales virtuales (VC) en Megafly! Incrementa nchan.\n");
-            }
-        }
-
-        // Cálculo del puerto físico final en el simulador
-        *d = (npt * nchan) + nvc;
+        *d = (npt * nchan) + (curr_p % nchan);
     }
-    
+
     return B_FALSE;
 }
 
