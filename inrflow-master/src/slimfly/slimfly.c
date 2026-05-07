@@ -406,9 +406,9 @@ void finish_route_slimfly(){
 }
 
 
-int swInicio=45, swDestino=36;
-int ruta[5] = {0,0,0,0,0};
-int indice = 0;
+// int swInicio=45, swDestino=36;
+// int ruta[5] = {0,0,0,0,0};
+// int indice = 0;
 
 long route_slimfly(long current, long destination){
     long outport = 0;
@@ -423,7 +423,7 @@ long route_slimfly(long current, long destination){
     dst_c = dst_sw%param_q;
     dst_m = dst_grp;
 
-    ruta[0] = swInicio;
+    // ruta[0] = swInicio;
 
     if(current < servers) return 0; //el current es un server as ique puerto 0
     
@@ -471,10 +471,10 @@ long route_slimfly(long current, long destination){
                     if(out) break;
                 }
             }
-            if(cur_sw == ruta[indice] && dst_sw == swDestino){
-                indice++;
-                ruta[indice] = cur_y+grupo_x[outport-param_p] < param_q ? (cur_sw + grupo_x[outport-param_p]) : cur_grp_global*(switches/2) + cur_x*param_q + mod(cur_y + grupo_x[outport-param_p], param_q);
-            }
+            // if(cur_sw == ruta[indice] && dst_sw == swDestino){
+            //     indice++;
+            //     ruta[indice] = cur_y+grupo_x[outport-param_p] < param_q ? (cur_sw + grupo_x[outport-param_p]) : cur_grp_global*(switches/2) + cur_x*param_q + mod(cur_y + grupo_x[outport-param_p], param_q);
+            // }
         }
         else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global !!!!!!!!!!!!!!!!!!!!!!!!!!!!
             int directo=0;
@@ -520,20 +520,20 @@ long route_slimfly(long current, long destination){
 
             }
 
-            if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
-                indice++;
-                if(outport<param_p+intra_ports)
-                    ruta[indice] = cur_sw+mod(cur_y+grupo_x[outport-param_p],param_q);
-                else{
-                    if(!cur_grp_global){
-                        ruta[indice] = dst_y_salto_global + switches/2 + dst_m*param_q;
-                    }
-                    else{
-                        ruta[indice] = dst_y_salto_global + dst_m*param_q;
-                        
-                    }
-                }
-            }
+            // if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
+            //     indice++;
+            //     if(outport<param_p+intra_ports)
+            //         ruta[indice] = cur_sw+mod(cur_y+grupo_x[outport-param_p],param_q);
+            //     else{
+            //         if(!cur_grp_global){
+            //             ruta[indice] = dst_y_salto_global + switches/2 + dst_m*param_q;
+            //         }
+            //         else{
+            //             ruta[indice] = dst_y_salto_global + dst_m*param_q;
+            //             
+            //         }
+            //     }
+            // }
         }
         else if(cur_grp_global == dst_grp_global && cur_x != dst_m){//si no saltar al otro grupo y volver
 
@@ -578,16 +578,16 @@ long route_slimfly(long current, long destination){
             //buscar puerto que corresponde a ese switch
             outport = param_p + intra_ports + intermedio_m;
 
-            if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
-                indice++;
-                if(cur_grp_global==0){
-                    ruta[indice] = intermedio_c + switches/2 + intermedio_m*param_q;
-                }
-                else{
-                    ruta[indice] = intermedio_c + intermedio_m*param_q;
-                    
-                }
-            }
+            // if(cur_sw == ruta[indice] && dst_sw ==  swDestino){
+            //     indice++;
+            //     if(cur_grp_global==0){
+            //         ruta[indice] = intermedio_c + switches/2 + intermedio_m*param_q;
+            //     }
+            //     else{
+            //         ruta[indice] = intermedio_c + intermedio_m*param_q;
+            //         
+            //     }
+            // }
 
         }
         else{
@@ -595,13 +595,13 @@ long route_slimfly(long current, long destination){
             printf("error, no entra en ningun if dentro del routing: x: %d; y: %d; m: %d; c: %d;\n", cur_x,cur_y,dst_m,dst_c);
         }
     }
-    if(ruta[2] != 0){
-        printf("ruta de sw%d a sw%d", swInicio, swDestino);
-    for(int i = 0; i<5; i++){
-        printf("%d -> ", ruta[i]);
-    }
-    printf("\n");
-    }
+    // if(ruta[2] != 0){
+    //     printf("ruta de sw%d a sw%d", swInicio, swDestino);
+    // for(int i = 0; i<5; i++){
+    //     printf("%d -> ", ruta[i]);
+    // }
+    // printf("\n");
+    // }
     return outport;
 }
 
