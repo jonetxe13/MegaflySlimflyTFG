@@ -1,0 +1,106 @@
+DEBUG flag is on.
+Constructing electric Network
+All connections in the topology seem consistent!!!
+Wrote stats to file: ./megafly_p4_a8_h4_min_sequential_fr0.00_seed42.2026.05.12.12.47.dat
+inrflow.version                     v0.4.1              
+network                                                 
+topology                            megafly             
+p                                   8                   
+topo.version                        v0.1                
+n.servers                           272                 
+n.switches                          136                 
+switch.radix                        8                   
+n.links                             1360                
+n.cables                            680                 
+p.cable.failures                    0.000000            
+n.cable.failures                    0                   
+n.server.pairs.NN                   73984               
+n.server.pairs.NN-1                 73712               
+routing.algorithm                   min                 
+max_paths                           0                   
+traffic                                                 
+pattern                             random              
+nrndflows                           10000               
+n.flows                             10000               
+n.flows.delivered                   10000               
+p.flows.connected                   100.000000          
+placement.strategy                  sequential          
+miscelanea                                              
+r.seed                              42                  
+started.at.y.m.d.h.m                2026.05.12.12.47    
+on machine                          pop-os              
+runtime                             0.000000            
+path.info                                               
+min.link.path.length                0                   
+max.link.path.length                5                   
+mean.link.path.length               4.899800            
+median.link.path.length             5.000000            
+var.link.path.length                0.240984            
+std.link.path.length                0.490901            
+hop.info                                                
+min.server.hop.length               0                   
+max.server.hop.length               1                   
+mean.server.hop.length              0.996600            
+median.server.hop.length            1.000000            
+var.server.hop.length               0.003389            
+std.server.hop.length               0.058213            
+flow.info                                               
+min.flows.per.link                  15                  
+max.flows.per.link                  57                  
+mean.flows.per.link                 36.027941           
+median.flows.per.link               36.000000           
+var.flows.per.link                  37.675451           
+std.flows.per.link                  6.138033            
+connected.nonzero.flows.over.bottleneck.flow 1293.192982         
+connected.flows.over.bottleneck.flow 1297.964912         
+connected.nonzero.flows.over.mean.flow 2045.967591         
+connected.flows.over.mean.flow      2053.517286         
+#Server hop length histogram (server hop path length, number of occurrences)
+h    0        34
+h    1      9966
+#Path length histogram (path length, number of occurrences)
+p    0        34
+p    2       138
+p    4       418
+p    5      9410
+#Flows histogram (number of flows, number of uni-directional links with this many flows)
+f   15         1
+f   16         1
+f   18         1
+f   19         1
+f   20         2
+f   21         4
+f   22         6
+f   23         7
+f   24         9
+f   25        22
+f   26        17
+f   27        27
+f   28        34
+f   29        58
+f   30        67
+f   31        66
+f   32        91
+f   33        74
+f   34        71
+f   35        77
+f   36        92
+f   37        87
+f   38        86
+f   39        79
+f   40        59
+f   41        63
+f   42        57
+f   43        49
+f   44        38
+f   45        23
+f   46        30
+f   47        13
+f   48         8
+f   49        14
+f   50        11
+f   51         8
+f   52         4
+f   54         2
+f   57         1
+DEBUG flag is on.

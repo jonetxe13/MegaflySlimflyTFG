@@ -1,0 +1,73 @@
+DEBUG flag is on.
+Constructing electric Network
+All connections in the topology seem consistent!!!
+Wrote stats to file: ./megafly_p8_a16_h8_min_sequential_fr0.00_seed13.2026.05.12.12.47.dat
+inrflow.version                     v0.4.1              
+network                                                 
+topology                            megafly             
+p                                   16                  
+topo.version                        v0.1                
+n.servers                           4160                
+n.switches                          1040                
+switch.radix                        16                  
+n.links                             20800               
+n.cables                            10400               
+p.cable.failures                    0.000000            
+n.cable.failures                    0                   
+n.server.pairs.NN                   17305600            
+n.server.pairs.NN-1                 17301440            
+routing.algorithm                   min                 
+max_paths                           0                   
+traffic                                                 
+pattern                             alltoone            
+n.flows                             4160                
+n.flows.delivered                   4160                
+p.flows.connected                   100.000000          
+placement.strategy                  sequential          
+miscelanea                                              
+r.seed                              13                  
+started.at.y.m.d.h.m                2026.05.12.12.47    
+on machine                          pop-os              
+runtime                             0.000000            
+path.info                                               
+min.link.path.length                0                   
+max.link.path.length                5                   
+mean.link.path.length               4.980288            
+median.link.path.length             5.000000            
+var.link.path.length                0.034235            
+std.link.path.length                0.185027            
+hop.info                                                
+min.server.hop.length               0                   
+max.server.hop.length               1                   
+mean.server.hop.length              0.999760            
+median.server.hop.length            1.000000            
+var.server.hop.length               0.000240            
+std.server.hop.length               0.015504            
+flow.info                                               
+min.flows.per.link                  0                   
+max.flows.per.link                  4159                
+mean.flows.per.link                 0.996058            
+median.flows.per.link               0.000000            
+var.flows.per.link                  948.785791          
+std.flows.per.link                  30.802367           
+connected.nonzero.flows.over.bottleneck.flow 4160.000000         
+connected.flows.over.bottleneck.flow 4161.000240         
+connected.nonzero.flows.over.mean.flow 17369917.559610     
+connected.flows.over.mean.flow      17374094.024520     
+#Server hop length histogram (server hop path length, number of occurrences)
+h    0         1
+h    1      4159
+#Path length histogram (path length, number of occurrences)
+p    0         1
+p    2         7
+p    4        56
+p    5      4096
+#Flows histogram (number of flows, number of uni-directional links with this many flows)
+f    0     16049
+f    1      4159
+f    8       519
+f   64        64
+f  512         7
+f  568         1
+f 4159         1
+DEBUG flag is on.
