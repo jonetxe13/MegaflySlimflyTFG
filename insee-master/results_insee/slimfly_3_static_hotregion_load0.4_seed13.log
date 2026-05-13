@@ -1,0 +1,118 @@
+switches: 98 
+p: 6 
+servers: 588 
+switches: 18 
+p: 3 
+servers: 54 
+WARNING: nways has no sense in indirect topologies
+         Setting nways to 1!!!
+WARNING: Using global congestion control with neither TORUS nor MESH topology
+         Setting update_period to 1 cycles!!!
+param_x: 1, 2:
+ param_x2: 2, 1
+      clock, injload, accload,  avgdel,  stddel, maxdel, inj. limit, cur. occup.
+
+       1000, 0.33793, 0.25109,  121.20,  124.83,    591,       1728,        292
+       2000, 0.22163, 0.16607,  166.21,  160.65,    767,       1728,        318
+       3000, 0.14775, 0.11072,  166.21,  160.65,    767,       1728,        318
+       4000, 0.11081, 0.08304,  166.21,  160.65,    767,       1728,        318
+       5000, 0.08865, 0.06643,  166.21,  160.65,    767,       1728,        318
+       6000, 0.07388, 0.05536,  166.21,  160.65,    767,       1728,        318
+       7000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+       8000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+       9000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      10000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      11000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      12000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      13000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      14000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      15000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      16000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      17000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      18000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      19000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+      20000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+
+**********************************************
+*        Convergency timeout reached.        *
+*         Continue without converge!         *
+**********************************************
+
+      21000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 0, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      22000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 1, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      23000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 2, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      24000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 3, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      25000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 4, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      26000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 5, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      27000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 6, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      28000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 7, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      29000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 8, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+      30000, 0.00000, 0.00000,    -nan,     nan,      0,       1728,        318
+Batch 9, 1000, -nan, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -nan, nan, 0, -nan, nan, 0
+
+
+===============================================================================================================================================================
+
+Program Started at:               Wed May 13 11:23:25 2026
+Execution completed at:           Wed May 13 11:23:31 2026
+On machine:                       pop-os
+Simulation clock (cycles/us):     30000    192.000
+Total execution time:             6 secs
+Cycles per Second:                5000.000000
+
+Random seed:                      13
+
+Topology, uni(1)/bidir(2):        slimfly(1)Random link failures:             0
+
+Operation modes Inj-Req-Arb-Con:  shortest other random multiple
+Traf./Inj. queue len (pkt/ph):    4/32, 4/32, 1 injectors
+VC management:                    dragonfly-dally, 3 VCs; 
+VCs used:                         1
+
+Routing in multistage network:    static
+Parallel injection:               YES
+Dropping/Extracting packets:      NO       NO
+
+Global congestion control:        gcc=100%, update_period=1
+In-transit priority, bub. to ad:  0.000000, NO
+
+Traffic pattern:                  hotregion at load 0.40000, packets of 8 phits
+Trigger rate, packets triggered:  0.00000     0
+Warm Up Period Prov., Used:       5000 + 15000, 20000
+Conv. sampling period, threshold: 1000, 0.050000
+Sample count, size, min pkts:     10 x 1000, 0
+
+===============================================================================================================================================================
+
+  #,  BatchTime, AvDistance,    InjLoad,    AccLoad, PacketSent, PacketRcvd, PacketDrop,   AvgDelay, StDevDelay,   MaxDelay,  InjAvgDel, InjStDvDel,  InjMaxDel
+  0,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  1,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  2,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  3,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  4,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  5,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  6,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  7,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  8,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+  9,       1000,       -nan,    0.00000,    0.00000,          0,          0,          0,       -nan,        nan,          0,       -nan,        nan,          0
+
+AVG,    1000.00,       -nan,    0.00000,    0.00000,       0.00,       0.00,       0.00,       -nan,        nan,       0.00,       -nan,        nan,       0.00
+STD,       0.00,        nan,    0.00000,    0.00000,       0.00,       0.00,       0.00,        nan,        nan,       0.00,        nan,        nan,       0.00
