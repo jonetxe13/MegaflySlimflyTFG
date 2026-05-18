@@ -217,7 +217,7 @@ long init_topo_slimfly(long np, long *par) {
     sprintf(filename_params,"p%ld_a%ld_h%ld",param_p,param_a,param_h);
 
     switch(routing) {
-	    case DRAGONFLY_MINIMUM:
+	    case SLIMFLY_MINIMUM:
 		sprintf(routing_token,"min");
 		break;
 	    default:

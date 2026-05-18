@@ -85,10 +85,10 @@ long init_topo_megafly(long np, long *par) {
     sprintf(filename_params,"p%ld_a%ld_h%ld",param_p,param_a,param_h);
 
     switch(routing) {
-	    case DRAGONFLY_MINIMUM:
+	    case MEGAFLY_MINIMUM:
 		sprintf(routing_token,"min");
 		break;
-	    case DRAGONFLY_VALIANT:
+	    case MEGAFLY_VALIANT:
 		sprintf(routing_token,"valiant");
 		break;
 	    default:
@@ -245,6 +245,12 @@ long init_routing_megafly(long src, long dst) {
     long dst_grp = dst/(param_p*(param_a/2));
 
     proxy_grp = dst_grp;
+
+    if (src_grp != dst_grp) {
+        if (routing == MEGAFLY_VALIANT) {
+            proxy_grp = rand() % grps;
+        } 
+    }
     
     return 1;
 }
@@ -256,7 +262,7 @@ void finish_route_megafly(){
 long route_megafly(long current, long destination) {
     long cur_sw, dst_sw;
     long cur_grp, dst_grp;
-    long outport_grp;
+    long outport_grp=-1;
     long spine_idx_needed;  // Qué spine (0..1) tiene el enlace global
     long my_spine_idx;      // Si soy spine, cuál soy (0..1)
 
@@ -273,18 +279,20 @@ long route_megafly(long current, long destination) {
         dst_sw=destination/(param_p);
         dst_grp=dst_sw/(param_a/2);
 
+
         if(cur_sw==dst_sw){//downlink a server
             outport_grp = destination%param_p;
         }
-        else if(cur_grp==dst_grp){//mismVo grupo
+        else if(cur_grp==proxy_grp){//mismVo grupo
             outport_grp = param_p + (dst_sw%(param_a/2));
+            // proxy_grp=dst_grp;
         }
-        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
-            if(cur_grp<dst_grp){
-                 outport_grp = param_p+((dst_grp-1)/param_h);
+        else if(cur_grp!=proxy_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<proxy_grp){
+                 outport_grp = param_p+((proxy_grp-1)/param_h);
             }
             else{
-                 outport_grp = param_p+(dst_grp/param_h);
+                 outport_grp = param_p+(proxy_grp/param_h);
             }
         }
     }
@@ -294,15 +302,16 @@ long route_megafly(long current, long destination) {
         dst_sw=destination/(param_p);
         dst_grp=dst_sw/(param_a/2);
 
-        if(cur_grp==dst_grp){//mismVo grupo
+        if(cur_grp==proxy_grp){//mismVo grupo
+            proxy_grp=dst_grp;
             outport_grp = dst_sw%(param_a/2);
         }
-        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
-            if(cur_grp<dst_grp){
-                 outport_grp = (param_a/2)+(dst_grp-1)%param_h;
+        else if(cur_grp!=proxy_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<proxy_grp){
+                 outport_grp = (param_a/2)+(proxy_grp-1)%param_h;
             }
             else{
-                 outport_grp = (param_a/2)+(dst_grp%param_h);
+                 outport_grp = (param_a/2)+(proxy_grp%param_h);
             }
         }
     }
