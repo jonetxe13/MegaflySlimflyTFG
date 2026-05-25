@@ -615,10 +615,10 @@ void get_option(char *option) {
       param_h = param_q; // number of uplinks per switch
       // printf("q: %d \n", param_q);
       // printf("k: %d \n", param_k);
-      printf("switches: %d \n", switches);
-      printf("p: %d \n", param_p);
-
-      printf("servers: %d \n", servers);
+      // printf("switches: %d \n", switches);
+      // printf("p: %d \n", param_p);
+      //
+      // printf("servers: %d \n", servers);
       // Calculate some useful values from the parameters
       intra_ports = ((param_q - param_delta_final) / 2);
       grps = param_q * 2;

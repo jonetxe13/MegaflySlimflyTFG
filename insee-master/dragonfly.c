@@ -64,7 +64,7 @@ tuple_t connection_dragonfly(long node, long port) {
         sw_id = gen_switch_id % param_a; // the switch id relative to the switch group
         port_id = port - param_p - intra_ports + (sw_id*param_h); // the port id relative to the switch group
 
-        /// Let's calculate the next group and its link, based on the connection arrangement.
+        /// Let's calculate the next group and its link, based on the connection arrangement.dra
         switch(topo) {
             case DRAGONFLY_ABSOLUTE:
                 if (port_id>=grp_id){

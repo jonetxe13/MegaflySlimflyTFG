@@ -18,6 +18,7 @@ extern long param_a; ///< a: Number of switches in each group
 extern long param_h; ///< h: Number of uplinks
 
 extern long grps; ///< Total number of groups
+long proxy_grp; 
 extern long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
 
 extern long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
@@ -158,7 +159,7 @@ routing_r megafly_rr(long source, long destination) {
     // long dst_grp=destination/(param_p*param_a);
     long src_grp = source/(param_p*(param_a/2));
     long dst_grp = destination/(param_p*(param_a/2));
-    long proxy_grp;
+    // long proxy_grp;
     long cur=source;
     long next_port;
 
@@ -170,18 +171,23 @@ routing_r megafly_rr(long source, long destination) {
     res.size=0;
 
     proxy_grp=dst_grp;
+    // printf("proxy_grp es: %ld y grps es: %ld\n", proxy_grp, grps);
+    if(routing == VALIANT && src_grp != dst_grp) proxy_grp = rand() % grps;
+    // printf("proxy_grp es: %ld\n", proxy_grp);
+
     while(cur!=destination){
         if (res.size >= 16) {
             panic("¡Bucle infinito detectado en el enrutamiento Megafly!");
         }
-        next_port = route_megafly(cur, destination, proxy_grp);
-        // printf("DEBUG: Routing de %ld a %ld. Size actual: %ld; next_port: %ld\n", source, destination, res.size, next_port);
-        // if (next_port >= 0 && next_port < radix) {
-        //     printf("Destino fisico: Nodo %ld\n", network[cur].nbor[next_port]);
-        // } else {
-        //     printf("¡PUERTO INVALIDO!\n");
-        // }
+        // if(src_grp == proxy_grp) proxy_grp = dst_grp;
+        next_port = route_megafly(cur, destination, &proxy_grp);
+if (next_port < 0 || next_port >= param_p*2) {
+    panic("Puerto inválido en Megafly");
+}
+        // printf("DEBUG: Routing de %ld a %ld. Size actual: %ld;  next_port: %ld\n", source, destination, res.size, next_port);
         res.rr[res.size]=next_port;
+       //  printf("cur=%ld next_port=%ld next_node=%ld proxy=%ld\n",
+       // cur, next_port, network[cur].nbor[next_port], proxy_grp);
         cur=network[cur].nbor[res.rr[res.size]];
         res.size++;
     }
@@ -197,58 +203,62 @@ routing_r megafly_rr(long source, long destination) {
  * @param proxy The proxy to route through. If it is the local or destination group, the port is calculated as DIM, otherwise, the port is calculated using proxy routing.
  * @return The port to take the next hop through.
  */
-long route_megafly(long current, long destination, long proxy) {
+long route_megafly(long current, long destination, long *proxy_grp) {
     long cur_sw, dst_sw;
     long cur_grp, dst_grp;
     long outport_sw, outport_grp = -1;
-    long tgt_grp;	// the target group, it can be the destination group, or a proxy if valiant (or qvaliant) are used
     long tmp;
+
+    // *proxy_grp = proxy;
 
     int switches = param_a*grps;
 
-        // Constantes locales para claridad
-    long leafs_per_grp = param_a / 2;
-    long spines_per_grp = param_a / 2;
+    cur_sw = (current-nprocs >= (switches/2)) ? current-nprocs-(switches/2): current-nprocs;
+    cur_grp = cur_sw/(param_a/2);
+    dst_sw=destination/(param_p);
+    dst_grp=dst_sw/(param_a/2);
+
+    int target_grp = *proxy_grp;
 
     if (current < nprocs) { // Servidor -> Switch
         return 0;
     } 
     else if((current-nprocs) < (switches/2)){ //current es leaf switch
-        cur_sw = current-nprocs;
-        cur_grp = cur_sw/(param_a/2);
-        dst_sw=destination/(param_p);
-        dst_grp=dst_sw/(param_a/2);
+       //  printf("current=%ld cur_grp=%ld dst_grp=%ld proxy=%ld\n",
+       // current, cur_grp, dst_grp, *proxy_grp);
+        if(cur_grp==target_grp) target_grp=dst_grp;
 
         if(cur_sw==dst_sw){//downlink a server
             outport_grp = destination%param_p;
         }
-        else if(cur_grp==dst_grp){//mismVo grupo
+        else if(cur_grp==target_grp){//mismVo grupo
             outport_grp = param_p + (dst_sw%(param_a/2));
         }
-        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
-            if(cur_grp<dst_grp){
-                 outport_grp = param_p+((dst_grp-1)/param_h);
+        else if(cur_grp!=target_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<target_grp){
+                 outport_grp = param_p+((target_grp-1)/param_h);
             }
             else{
-                 outport_grp = param_p+(dst_grp/param_h);
+                 outport_grp = param_p+(target_grp/param_h);
             }
         }
     }
     else if(current-nprocs < switches){//current es spine switch
-        cur_sw = current-nprocs-(switches/2);
-        cur_grp = cur_sw/(param_a/2);
-        dst_sw=destination/(param_p);
-        dst_grp=dst_sw/(param_a/2);
+        // cur_sw = current-nprocs-(switches/2);
 
-        if(cur_grp==dst_grp){//mismVo grupo
+        // if(cur_grp==target_grp) ;
+
+        if(cur_grp==target_grp){//mismVo grupo
+            *proxy_grp = dst_grp;
+            target_grp=dst_grp;
             outport_grp = dst_sw%(param_a/2);
         }
-        else if(cur_grp!=dst_grp){//distinto grupo (hacia uplink)
-            if(cur_grp<dst_grp){
-                 outport_grp = (param_a/2)+(dst_grp-1)%param_h;
+        else if(cur_grp!=target_grp){//distinto grupo (hacia uplink)
+            if(cur_grp<target_grp){
+                 outport_grp = (param_a/2)+(target_grp-1)%param_h;
             }
             else{
-                 outport_grp = (param_a/2)+(dst_grp%param_h);
+                 outport_grp = (param_a/2)+(target_grp%param_h);
             }
         }
     }

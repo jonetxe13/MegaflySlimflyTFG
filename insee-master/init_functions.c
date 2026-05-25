@@ -81,8 +81,10 @@ void init_functions (void) {
             max_dst = nodes_x+nodes_y+nodes_z;
         else if (topo==DRAGONFLY_ABSOLUTE || topo==DRAGONFLY_RELATIVE || topo==DRAGONFLY_RND || topo==DRAGONFLY_CIRCULANT || topo==DRAGONFLY_NAUTILUS || topo==DRAGONFLY_HELIX || topo==DRAGONFLY_OTHER || topo==MEGAFLY)
             max_dst = 7;
+            if(routing==VALIANT)max_dst+=2;
         else if(topo==SLIMFLY)
                 max_dst = 5;
+                if(routing==VALIANT)max_dst+=2;
         else if (topo == RRG || topo == EXA || topo == GDBG || topo == KAUTZ)
             max_dst = nswitches;
         else if (topo<INDIRECT)

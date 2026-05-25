@@ -263,12 +263,7 @@ long route_megafly(long current, long destination) {
     long cur_sw, dst_sw;
     long cur_grp, dst_grp;
     long outport_grp=-1;
-    long spine_idx_needed;  // Qué spine (0..1) tiene el enlace global
-    long my_spine_idx;      // Si soy spine, cuál soy (0..1)
 
-    // Constantes locales para claridad
-    long leafs_per_grp = param_a / 2;
-    long spines_per_grp = param_a / 2;
 
     if (current < servers) { // Servidor -> Switch
         return 0;
@@ -278,7 +273,6 @@ long route_megafly(long current, long destination) {
         cur_grp = cur_sw/(param_a/2);
         dst_sw=destination/(param_p);
         dst_grp=dst_sw/(param_a/2);
-
 
         if(cur_sw==dst_sw){//downlink a server
             outport_grp = destination%param_p;
