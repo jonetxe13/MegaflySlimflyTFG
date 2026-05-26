@@ -29,6 +29,8 @@ int servers;
  extern long grps; ///< Total number of groups
  extern long intra_ports; ///<  Total number of ports in one group connecting to other routers in the group
 
+long proxy_sw;
+
 extern long escape_vcs; ///< How many VCs are needed to maintain deadlock-freedom. The remaining VCs ought to be adaptive.
 
 extern long max_paths;
@@ -242,6 +244,7 @@ routing_r slimfly_rr (long source, long destination) {
 
     res.rr = alloc(16 * sizeof(long));
     res.size = 0;
+    if(routing == VALIANT) proxy_sw = nprocs + (rand() % switches);
 
     while(cur != destination){
         // Seguridad: En Slim Fly, más de 4 saltos es un error de diseño
@@ -251,8 +254,7 @@ routing_r slimfly_rr (long source, long destination) {
             panic("Slim Fly routing loop!");
         }
 
-        // Llamada segura
-        next_port = route_slimfly(cur, destination, 0);
+        next_port = route_slimfly(cur, destination, &proxy_sw);
 
         res.rr[res.size] = next_port;
         cur = network[cur].nbor[next_port];
@@ -270,19 +272,20 @@ routing_r slimfly_rr (long source, long destination) {
  * @param proxy The proxy to route through. If it is the local or destination group, the port is calculated as DIM, otherwise, the port is calculated using proxy routing.
  * @return The port to take the next hop through.
  */
-long route_slimfly(long current, long destination, long proxy) {
+long route_slimfly(long current, long destination, long *proxy) {
     long outport = -1;
     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
     // int switches = param_p*param_q*param_q;
     // int servers = nprocs ;
 
-    dst_sw = destination/param_p;
-    dst_grp_global = dst_sw/(switches/2);
-    dst_grp = (dst_sw%(switches/2))/param_q;
+    if(current == *proxy) proxy_sw = *proxy;
+    else proxy_sw = destination/param_p;
+    dst_grp_global = proxy_sw/(switches/2);
+    dst_grp = (proxy_sw%(switches/2))/param_q;
 
     int dst_c, dst_m, cur_y, cur_x;
 
-    dst_c = dst_sw%param_q;
+    dst_c = proxy_sw%param_q;
     dst_m = dst_grp;
 
     // ruta[0] = swInicio;
@@ -301,7 +304,7 @@ long route_slimfly(long current, long destination, long proxy) {
         int *grupo_x = cur_grp_global ? param_x2 : param_x;
         int *grupo_x2 = cur_grp_global ? param_x : param_x2;
 
-        if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
+        if(cur_sw == proxy_sw){ //si ya estamos en el switch final que salga al server direccto
             outport = destination%param_p;
                 return outport;
         }

@@ -399,7 +399,7 @@ extern struct spanning_tree_routing_table_t *s_t_routing_table;
 
 long route_dragonfly(long current, long destination, long proxy);
 long route_megafly(long current, long destination, long *proxy);
-long route_slimfly(long current, long destination, long proxy);
+long route_slimfly(long current, long destination, long *proxy);
 
 void create_fattree();
 void create_slimtree();
