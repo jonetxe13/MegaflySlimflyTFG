@@ -64,6 +64,9 @@ tuple_t connection_slimfly(long node, long port) {
     long next_grp, next_port; // group and port id of the target for calculating connections
     // int switches = param_p*param_q*param_q;
 
+    // printf("param_p=%ld, intra_ports=%ld, param_q=%ld, switches=%d\n",
+    //    param_p, intra_ports, param_q, switches);
+    // printf("Total ports per switch: %ld\n", param_p + intra_ports + param_q);
 
     if( node < nprocs) { // The node is a server ESTO ES CORRECTO PARA slimflyTMBN
         if( port == 0 ) {
@@ -280,6 +283,7 @@ long route_slimfly(long current, long destination, long *proxy) {
 
     if(current == *proxy) proxy_sw = *proxy;
     else proxy_sw = destination/param_p;
+
     dst_grp_global = proxy_sw/(switches/2);
     dst_grp = (proxy_sw%(switches/2))/param_q;
 

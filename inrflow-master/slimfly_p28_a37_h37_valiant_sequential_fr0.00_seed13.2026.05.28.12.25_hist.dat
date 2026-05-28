@@ -1,0 +1,20 @@
+#WARNING:  Flow-histogram is invalid for n.failures>0 (i.e., this output) in the current version of INRFlow
+#Histograms for ./slimfly_p28_a37_h37_valiant_sequential_fr0.00_seed13.2026.05.28.12.25_hist.dat.
+#hi,pi,fi are indices for h, p and f, respectively. *n is normalized so that the bars add up to 1.
+#h: Server hop length histogram (server hop path length, number of occurrences)
+#p: Path length histogram (path length, number of occurrences)
+#f: Flows histogram (number of flows, number of uni-directional links with this many flows)
+       hi         h     nh        pi         p     np        fi         f     nf
+        1    100000 1.00000         2        30 0.00030         0     53338 0.17550 
+      nan       nan     nan         3         2 0.00002         1     83472 0.27465 
+      nan       nan     nan         4       113 0.00113         2     72047 0.23706 
+      nan       nan     nan         5      3948 0.03948         3     47292 0.15561 
+      nan       nan     nan         6     95907 0.95907         4     26122 0.08595 
+      nan       nan     nan       nan       nan     nan         5     12846 0.04227 
+      nan       nan     nan       nan       nan     nan         6      5582 0.01837 
+      nan       nan     nan       nan       nan     nan         7      2143 0.00705 
+      nan       nan     nan       nan       nan     nan         8       749 0.00246 
+      nan       nan     nan       nan       nan     nan         9       237 0.00078 
+      nan       nan     nan       nan       nan     nan        10        70 0.00023 
+      nan       nan     nan       nan       nan     nan        11        18 0.00006 
+      nan       nan     nan       nan       nan     nan        12         2 0.00001 

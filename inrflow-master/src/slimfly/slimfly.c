@@ -134,6 +134,7 @@ long init_topo_slimfly(long np, long *par) {
     grps = param_q*2;
     param_tam_gal = (param_q - param_delta_final)/2;
     ports = (param_k+param_p)*switches + servers;
+    printf("param_tam_gal: %d \n", param_tam_gal);
 
     //calcular el Galois Field con q
     int param_field[param_q];
@@ -141,8 +142,8 @@ long init_topo_slimfly(long np, long *par) {
         param_field[i]=i;
     }
 
-    //mirar como buscar generadores de galois fields eficientemente
-    int contador[param_q-1];
+    //mirar como buscar generadores de galois fields eficientemente (no existe forma bruh)
+    int contador[param_tam_gal*2];
 
     for (int i = 2; i<param_q; i++) {
         param_gen = i;
@@ -150,7 +151,7 @@ long init_topo_slimfly(long np, long *par) {
         for (int i2 = 0; i2<param_q-1; i2++) contador[i2] = 0;
 
         for (int j = 0; j<param_q-1; j++) {
-            int prueba_gen = (int)pow(param_gen, j);
+            long long prueba_gen = pow(param_gen, j);
 
             for (int k = 1; k<param_q; k++) {
 
@@ -174,8 +175,8 @@ long init_topo_slimfly(long np, long *par) {
         param_x = malloc(param_tam_gal*sizeof(int));
         param_x2 = malloc(param_tam_gal*sizeof(int));
         for (int i = 0; i<param_q-1; i++) {
-            if(i%2==0) param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
-            if(i%2!=0) param_x2[i/2]=mod(((int)pow(param_gen, i)),param_q);
+            if(i%2==0) param_x[i/2]=mod((long long)(pow(param_gen, i)),param_q);
+            if(i%2!=0) param_x2[i/2]=mod((long long)(pow(param_gen, i)),param_q);
             // printf("param_x: %d", param_x[i/2]);
             // printf("param_x2: %d", param_x2[i/2]);
         }
@@ -184,13 +185,13 @@ long init_topo_slimfly(long np, long *par) {
         param_x = malloc(param_tam_gal*sizeof(int));
         param_x2 = malloc(param_tam_gal*sizeof(int));
         for (int i = 0; i<(2*param_l)-1; i+=2) {
-            param_x[i/2]=mod(((int)pow(param_gen, i)),param_q);
-            param_x[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l-1+i)),param_q);
+            param_x[i/2]=mod(((long long)pow(param_gen, i)),param_q);
+            param_x[param_l+i/2]=mod(((long long)pow(param_gen, 2*param_l-1+i)),param_q);
             // printf("param_x en %d: %d**%d \n", i/2, param_gen, i);
             // printf("param_x en %d: %d**%d\n", i/2, param_gen, 2*param_l-1+i);
 
-            param_x2[i/2]=mod(((int)pow(param_gen, i+1)),param_q);
-            param_x2[param_l+i/2]=mod(((int)pow(param_gen, 2*param_l+i)),param_q);
+            param_x2[i/2]=mod(((long long)pow(param_gen, i+1)),param_q);
+            param_x2[param_l+i/2]=mod(((long long)pow(param_gen, 2*param_l+i)),param_q);
             // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, i+1);
             // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, 2*param_l+i);
             

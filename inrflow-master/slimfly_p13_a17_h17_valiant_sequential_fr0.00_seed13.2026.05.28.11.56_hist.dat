@@ -1,0 +1,57 @@
+#WARNING:  Flow-histogram is invalid for n.failures>0 (i.e., this output) in the current version of INRFlow
+#Histograms for ./slimfly_p13_a17_h17_valiant_sequential_fr0.00_seed13.2026.05.28.11.56_hist.dat.
+#hi,pi,fi are indices for h, p and f, respectively. *n is normalized so that the bars add up to 1.
+#h: Server hop length histogram (server hop path length, number of occurrences)
+#p: Path length histogram (path length, number of occurrences)
+#f: Flows histogram (number of flows, number of uni-directional links with this many flows)
+       hi         h     nh        pi         p     np        fi         f     nf
+        0        12 0.00012         0        12 0.00012         2         2 0.00007 
+        1     99988 0.99988         2       173 0.00173         3         9 0.00031 
+      nan       nan     nan         3        20 0.00020         4        30 0.00102 
+      nan       nan     nan         4       520 0.00520         5        79 0.00268 
+      nan       nan     nan         5      8353 0.08353         6       192 0.00651 
+      nan       nan     nan         6     90922 0.90922         7       374 0.01269 
+      nan       nan     nan       nan       nan     nan         8       641 0.02175 
+      nan       nan     nan       nan       nan     nan         9       909 0.03084 
+      nan       nan     nan       nan       nan     nan        10      1238 0.04200 
+      nan       nan     nan       nan       nan     nan        11      1496 0.05075 
+      nan       nan     nan       nan       nan     nan        12      1634 0.05543 
+      nan       nan     nan       nan       nan     nan        13      1663 0.05641 
+      nan       nan     nan       nan       nan     nan        14      1663 0.05641 
+      nan       nan     nan       nan       nan     nan        15      1459 0.04949 
+      nan       nan     nan       nan       nan     nan        16      1404 0.04763 
+      nan       nan     nan       nan       nan     nan        17      1149 0.03898 
+      nan       nan     nan       nan       nan     nan        18      1043 0.03538 
+      nan       nan     nan       nan       nan     nan        19       863 0.02928 
+      nan       nan     nan       nan       nan     nan        20       892 0.03026 
+      nan       nan     nan       nan       nan     nan        21       809 0.02744 
+      nan       nan     nan       nan       nan     nan        22       816 0.02768 
+      nan       nan     nan       nan       nan     nan        23       843 0.02860 
+      nan       nan     nan       nan       nan     nan        24       871 0.02955 
+      nan       nan     nan       nan       nan     nan        25       935 0.03172 
+      nan       nan     nan       nan       nan     nan        26       934 0.03168 
+      nan       nan     nan       nan       nan     nan        27       894 0.03033 
+      nan       nan     nan       nan       nan     nan        28       879 0.02982 
+      nan       nan     nan       nan       nan     nan        29       900 0.03053 
+      nan       nan     nan       nan       nan     nan        30       782 0.02653 
+      nan       nan     nan       nan       nan     nan        31       708 0.02402 
+      nan       nan     nan       nan       nan     nan        32       633 0.02147 
+      nan       nan     nan       nan       nan     nan        33       577 0.01957 
+      nan       nan     nan       nan       nan     nan        34       495 0.01679 
+      nan       nan     nan       nan       nan     nan        35       393 0.01333 
+      nan       nan     nan       nan       nan     nan        36       337 0.01143 
+      nan       nan     nan       nan       nan     nan        37       252 0.00855 
+      nan       nan     nan       nan       nan     nan        38       184 0.00624 
+      nan       nan     nan       nan       nan     nan        39       145 0.00492 
+      nan       nan     nan       nan       nan     nan        40       110 0.00373 
+      nan       nan     nan       nan       nan     nan        41        74 0.00251 
+      nan       nan     nan       nan       nan     nan        42        50 0.00170 
+      nan       nan     nan       nan       nan     nan        43        39 0.00132 
+      nan       nan     nan       nan       nan     nan        44        19 0.00064 
+      nan       nan     nan       nan       nan     nan        45        25 0.00085 
+      nan       nan     nan       nan       nan     nan        46        11 0.00037 
+      nan       nan     nan       nan       nan     nan        47        12 0.00041 
+      nan       nan     nan       nan       nan     nan        48         4 0.00014 
+      nan       nan     nan       nan       nan     nan        49         3 0.00010 
+      nan       nan     nan       nan       nan     nan        50         3 0.00010 
+      nan       nan     nan       nan       nan     nan        53         1 0.00003 

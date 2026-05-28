@@ -619,7 +619,8 @@ void get_option(char *option) {
       // printf("p: %d \n", param_p);
       //
       // printf("servers: %d \n", servers);
-      // Calculate some useful values from the parameters
+//
+      // intra_ports = ((param_q - param_delta_final) / 2);
       intra_ports = ((param_q - param_delta_final) / 2);
       grps = param_q * 2;
       param_tam_gal = (param_q - param_delta_final) / 2;
