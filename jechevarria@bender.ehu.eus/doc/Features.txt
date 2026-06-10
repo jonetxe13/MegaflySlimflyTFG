@@ -1,0 +1,16 @@
+This a TODO list of upcoming features, more or less in order of
+importance.
+
+- Change some names of global variables, like knkstar.c:(long server)
+  that conflict with externs in globals.h.
+
+- Make flow histogram work in faulty networks.  Specifically we should
+  store the flow information from a partial path separate from the
+  flow histogram, and only add it when the path succesfully reaches
+  the destination.
+
+- Include full-featured BFS functionality in inrflow.
+
+- Repeated random trials.
+
+- Simulator.

@@ -644,7 +644,7 @@ void get_option(char *option) {
           contador[i2] = 0;
 
         for (int j = 0; j < param_q - 1; j++) {
-          int prueba_gen = (int)pow(param_gen, j);
+          long long prueba_gen = pow(param_gen, j);
 
           for (int k = 1; k < param_q; k++) {
 
@@ -671,27 +671,53 @@ void get_option(char *option) {
       if (param_q % 4 == 1) {
         for (int i = 0; i < param_q - 1; i++) {
           if (i % 2 == 0)
-            param_x[i / 2] = mod(((int)pow(param_gen, i)), param_q);
+            param_x[i / 2] = mod(((long long)pow(param_gen, i)), param_q);
           if (i % 2 != 0)
-            param_x2[i / 2] = mod(((int)pow(param_gen, i)), param_q);
+            param_x2[i / 2] = mod(((long long)pow(param_gen, i)), param_q);
           // printf("param_x: %d", param_x[i/2]);
           // printf("param_x2: %d", param_x2[i/2]);
         }
       } else if (param_q % 4 == 3) {
         for (int i = 0; i < (2 * param_l) - 1; i += 2) {
-          param_x[i / 2] = mod(((int)pow(param_gen, i)), param_q);
+          param_x[i / 2] = mod(((long long)pow(param_gen, i)), param_q);
           param_x[param_l + i / 2] =
-              mod(((int)pow(param_gen, 2 * param_l - 1 + i)), param_q);
+              mod(((long long)pow(param_gen, 2 * param_l - 1 + i)), param_q);
           // printf("param_x en %d: %d**%d \n", i/2, param_gen, i);
           // printf("param_x en %d: %d**%d\n", i/2, param_gen, 2*param_l-1+i);
 
-          param_x2[i / 2] = mod(((int)pow(param_gen, i + 1)), param_q);
+          param_x2[i / 2] = mod(((long long)pow(param_gen, i + 1)), param_q);
           param_x2[param_l + i / 2] =
-              mod(((int)pow(param_gen, 2 * param_l + i)), param_q);
+              mod(((long long)pow(param_gen, 2 * param_l + i)), param_q);
           // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, i+1);
           // printf("param_x2 en %d: %d**%d\n", i/2, param_gen, 2*param_l+i);
         }
       }
+
+        int aux = 0;
+        int aux2 = 0;
+
+        for(int i = 0; i<param_tam_gal; i++){
+            for(int j = i+1; j<param_tam_gal; j++){
+                if(param_x[i]>param_x[j]){
+                    aux = param_x[i];
+                     param_x[i] = param_x[j];
+                    param_x[j] = aux;
+                }
+                if(param_x2[i]>param_x2[j]){
+                    aux2 = param_x2[i];
+                     param_x2[i] = param_x2[j];
+                    param_x2[j] = aux2;
+                }
+            }
+        }
+
+        for(int i = 0; i<param_tam_gal; i++)
+            printf("x[%d]=%d\n", i, param_x[i]);
+
+        for(int i = 0; i<param_tam_gal; i++)
+            printf("x2[%d]=%d\n", i, param_x2[i]);
+
+
 
     } else if (topo == ICUBE) {
       param = strtok(NULL, sep);

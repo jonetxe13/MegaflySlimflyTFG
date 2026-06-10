@@ -1,0 +1,208 @@
+DEBUG flag is on.
+Constructing electric Network
+All connections in the topology seem consistent!!!
+Wrote stats to file: ./megafly_p4_a8_h4_min_sequential_fr0.00_seed13.2026.05.12.12.47.dat
+inrflow.version                     v0.4.1              
+network                                                 
+topology                            megafly             
+p                                   8                   
+topo.version                        v0.1                
+n.servers                           272                 
+n.switches                          136                 
+switch.radix                        8                   
+n.links                             1360                
+n.cables                            680                 
+p.cable.failures                    0.000000            
+n.cable.failures                    0                   
+n.server.pairs.NN                   73984               
+n.server.pairs.NN-1                 73712               
+routing.algorithm                   min                 
+max_paths                           0                   
+traffic                                                 
+pattern                             random              
+nrndflows                           100000              
+n.flows                             100000              
+n.flows.delivered                   100000              
+p.flows.connected                   100.000000          
+placement.strategy                  sequential          
+miscelanea                                              
+r.seed                              13                  
+started.at.y.m.d.h.m                2026.05.12.12.47    
+on machine                          pop-os              
+runtime                             0.000000            
+path.info                                               
+min.link.path.length                0                   
+max.link.path.length                5                   
+mean.link.path.length               4.903050            
+median.link.path.length             5.000000            
+var.link.path.length                0.228673            
+std.link.path.length                0.478198            
+hop.info                                                
+min.server.hop.length               0                   
+max.server.hop.length               1                   
+mean.server.hop.length              0.996310            
+median.server.hop.length            1.000000            
+var.server.hop.length               0.003676            
+std.server.hop.length               0.060633            
+flow.info                                               
+min.flows.per.link                  274                 
+max.flows.per.link                  454                 
+mean.flows.per.link                 360.518382          
+median.flows.per.link               359.000000          
+var.flows.per.link                  629.783326          
+std.flows.per.link                  25.095484           
+connected.nonzero.flows.over.bottleneck.flow 162.361233          
+connected.flows.over.bottleneck.flow 162.960352          
+connected.nonzero.flows.over.mean.flow 204.461142          
+connected.flows.over.mean.flow      205.215611          
+#Server hop length histogram (server hop path length, number of occurrences)
+h    0       369
+h    1     99631
+#Path length histogram (path length, number of occurrences)
+p    0       369
+p    2      1122
+p    4      4484
+p    5     94025
+#Flows histogram (number of flows, number of uni-directional links with this many flows)
+f  274         1
+f  293         1
+f  294         1
+f  296         2
+f  301         1
+f  302         2
+f  303         1
+f  306         1
+f  307         1
+f  308         2
+f  309         4
+f  310         1
+f  311         1
+f  312         4
+f  313         4
+f  314         8
+f  315         5
+f  316         6
+f  317         4
+f  318         4
+f  319         4
+f  320         5
+f  321         6
+f  322         2
+f  323         7
+f  324         7
+f  325        13
+f  326         6
+f  327         9
+f  328        10
+f  329         9
+f  330         9
+f  331        13
+f  332        14
+f  333         9
+f  334        10
+f  335        12
+f  336        14
+f  337        13
+f  338        17
+f  339        20
+f  340        15
+f  341        19
+f  342        21
+f  343        30
+f  344        10
+f  345        23
+f  346        23
+f  347        26
+f  348        15
+f  349        20
+f  350        18
+f  351        22
+f  352        26
+f  353        24
+f  354        18
+f  355        24
+f  356        17
+f  357        18
+f  358        26
+f  359        26
+f  360        21
+f  361        22
+f  362        25
+f  363        34
+f  364        23
+f  365        16
+f  366        19
+f  367        24
+f  368        16
+f  369        20
+f  370        21
+f  371        17
+f  372        21
+f  373        19
+f  374        12
+f  375        20
+f  376        14
+f  377        18
+f  378        14
+f  379        16
+f  380        18
+f  381        12
+f  382        16
+f  383        12
+f  384        13
+f  385         8
+f  386         9
+f  387        12
+f  388        14
+f  389         9
+f  390        10
+f  391         5
+f  392         6
+f  393         9
+f  394         7
+f  395        10
+f  396         5
+f  397         6
+f  398        13
+f  399         3
+f  400         4
+f  401         7
+f  402         4
+f  403         4
+f  404         6
+f  405         5
+f  406         5
+f  407         1
+f  408         2
+f  409         5
+f  410         2
+f  411         1
+f  412         2
+f  413         1
+f  414         2
+f  415         3
+f  416         1
+f  417         1
+f  418         3
+f  419         1
+f  421         1
+f  422         3
+f  423         1
+f  424         2
+f  425         1
+f  426         1
+f  427         3
+f  428         3
+f  431         1
+f  434         1
+f  436         1
+f  437         1
+f  439         1
+f  442         1
+f  443         1
+f  446         1
+f  448         1
+f  450         1
+f  453         1
+f  454         1
+DEBUG flag is on.

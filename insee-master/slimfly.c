@@ -41,6 +41,7 @@ extern long *other_map2orig;
 extern long ***intergroup_connections; ///< Stores the port (overall intergroup port = (next_group*param_a*param_h) + next port) connected to a given local group, switch and port; e.g., intergroup_connections[g][s][p] stores to what group is connected port p of switch s in group g. Used for several variants (Helix, Nautilux and Random).
 extern long **intergroup_route;		///< Stores the output port within a group that connects to another group; e.g., intergroup_route[g0][g1] stores the group port in g0 that connects to g1. Used for several variants (Helix, Nautilux and Random).
 
+
 // Función para calcular el inverso modular (a^-1 mod m)
 int modInverse(int a, int m) {
     a = mod(a, m);
@@ -78,7 +79,7 @@ tuple_t connection_slimfly(long node, long port) {
         gen_switch_id = node - nprocs; // id of the switch relative to other switches
         grp_global = (gen_switch_id/(param_q*param_q)); // id of the group relative to other groups
         if (node == 200 && port == 7) {
-        printf("DEBUG CON: nprocs=%ld, q=%d, -> TARGET=%ld\n", nprocs, param_q, res.node);
+        // printf("DEBUG CON: nprocs=%ld, q=%d, -> TARGET=%ld\n", nprocs, param_q, res.node);
     }
         if( port < param_p ) {// This is a downlink to a server 
             // res.node = grp_id*param_p*param_p + (gen_switch_id%(param_a/2))*param_p + port; //coger el server
@@ -161,7 +162,7 @@ void create_slimfly(){
     tuple_t res;
 
     nnics=1;
-    printf("param_x: %d, %d:\n param_x2: %d, %d\n", param_x[0], param_x[1],param_x2[0],param_x2[1]);
+    // printf("param_x: %d, %d:\n param_x2: %d, %d\n", param_x[0], param_x[1],param_x2[0],param_x2[1]);
     // Initializating processors. Only 1 transit port plus injection queues.
     for (i=0; i<nprocs; i++){
         for (j=0; j<ninj; j++)
@@ -183,7 +184,7 @@ void create_slimfly(){
     }
 
 
-    // Initializing switches. No injection queues needed.
+    // Initializing switches.
     for (i=nprocs; i< NUMNODES; i++ ){
         init_ports(i);
         for (j=0; j < radix; j++ ){
@@ -206,58 +207,34 @@ void create_slimfly(){
  * @param destination The destination node of the packet.
  * @return The routing record needed to go from source to destination.
  */
-// routing_r slimfly_rr (long source, long destination) {
-//     routing_r res;
-//     long src_grp=source/(param_p*param_a);
-//     long dst_grp=destination/(param_p*param_a);
-//     long proxy_grp=dst_grp;
-//     long cur=source;
-//
-//     if (source == destination)
-//         panic("Self-sent packet\n");
-//
-//     res.rr = alloc(16 * sizeof(long));
-//     res.rr[15] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
-//     res.size=0;
-//
-//
-//     while(cur!=destination){
-//         // if (res.size >= 15) {
-//         //     panic("Slim Fly routing loop! Check route_slimfly logic.");
-//         // }
-//         res.rr[res.size]=route_slimfly(cur,destination,proxy_grp);
-//         cur=network[cur].nbor[res.rr[res.size]];
-//         res.size++;
-//     }
-//
-//     return res;
-// }
-
 routing_r slimfly_rr (long source, long destination) {
     routing_r res;
     long cur = source;
     long next_port;
     
-    // IMPORTANTE: Inicializar proxy_grp al grupo de destino para ruteo minimal
-    // Si no conoces el grupo, usa el destino directo si tu función lo permite
     long dst_sw = destination / param_p;
-    long proxy_grp = dst_sw; // O el cálculo de grupo que use Slim Fly
+    long proxy_grp = dst_sw; 
 
     if (source == destination) panic("Self-sent packet\n");
 
-    res.rr = alloc(16 * sizeof(long));
+    res.rr = alloc(8 * sizeof(long));
+    res.rr[7] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
     res.size = 0;
+    // if (proxy_grp!=src_grp && proxy_grp!=dst_grp) // Make sure the proxy is neither the source or the destination group and set to 1.
+    //     res.rr[7] = 1;
+for (int i = 0; i < 8; i++) res.rr[i] = -1;
     if(routing == VALIANT) proxy_sw = nprocs + (rand() % switches);
+    else proxy_sw = dst_sw;
 
     while(cur != destination){
-        // Seguridad: En Slim Fly, más de 4 saltos es un error de diseño
+        // Seguridad: En Slim Fly, más de 4 saltos es  error de diseño
         if (res.size >= 15) {
             printf("[SLIMFLY ERROR] Bucle detectado: Origen %ld -> Destino %ld. Actualmente en Nodo %ld\n", 
                     cur, destination, cur);
             panic("Slim Fly routing loop!");
         }
 
-        next_port = route_slimfly(cur, destination, &proxy_sw);
+        next_port = route_slimfly(cur, destination, proxy_sw);
 
         res.rr[res.size] = next_port;
         cur = network[cur].nbor[next_port];
@@ -275,13 +252,13 @@ routing_r slimfly_rr (long source, long destination) {
  * @param proxy The proxy to route through. If it is the local or destination group, the port is calculated as DIM, otherwise, the port is calculated using proxy routing.
  * @return The port to take the next hop through.
  */
-long route_slimfly(long current, long destination, long *proxy) {
+long route_slimfly(long current, long destination, long proxy) {
     long outport = -1;
     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
     // int switches = param_p*param_q*param_q;
     // int servers = nprocs ;
 
-    if(current == *proxy) proxy_sw = *proxy;
+    if(current == proxy) proxy_sw = proxy;
     else proxy_sw = destination/param_p;
 
     dst_grp_global = proxy_sw/(switches/2);
@@ -348,8 +325,8 @@ long route_slimfly(long current, long destination, long *proxy) {
                 
             if(dst_y_salto_global == dst_c) {
                 outport = param_p + intra_ports + dst_m;
-                return outport;
                 directo=1;
+                return outport;
             }
 
             if(!directo){

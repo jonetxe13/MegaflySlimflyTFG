@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "misc.h"
 #include "spanning_tree.h"
 #include "globals.h"
 
@@ -166,21 +167,23 @@ routing_r megafly_rr(long source, long destination) {
     if (source == destination)
         panic("Self-sent packet\n");
 
-    res.rr = alloc(16 * sizeof(long));
-    res.rr[15] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
+    res.rr = alloc(8 * sizeof(long));
+    res.rr[7] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
     res.size=0;
 
     proxy_grp=dst_grp;
     // printf("proxy_grp es: %ld y grps es: %ld\n", proxy_grp, grps);
     if(routing == VALIANT && src_grp != dst_grp) proxy_grp = rand() % grps;
+    if (proxy_grp!=src_grp && proxy_grp!=dst_grp) // Make sure the proxy is neither the source or the destination group and set to 1.
+        res.rr[7] = 1;
     // printf("proxy_grp es: %ld\n", proxy_grp);
 
     while(cur!=destination){
-        if (res.size >= 16) {
+        if (res.size >= 9) {
             panic("¡Bucle infinito detectado en el enrutamiento Megafly!");
         }
         // if(src_grp == proxy_grp) proxy_grp = dst_grp;
-        next_port = route_megafly(cur, destination, &proxy_grp);
+        next_port = route_megafly(cur, destination, proxy_grp);
 if (next_port < 0 || next_port >= param_p*2) {
     panic("Puerto inválido en Megafly");
 }
@@ -203,7 +206,7 @@ if (next_port < 0 || next_port >= param_p*2) {
  * @param proxy The proxy to route through. If it is the local or destination group, the port is calculated as DIM, otherwise, the port is calculated using proxy routing.
  * @return The port to take the next hop through.
  */
-long route_megafly(long current, long destination, long *proxy_grp) {
+long route_megafly(long current, long destination, long proxy_grp) {
     long cur_sw, dst_sw;
     long cur_grp, dst_grp;
     long outport_sw, outport_grp = -1;
@@ -218,7 +221,9 @@ long route_megafly(long current, long destination, long *proxy_grp) {
     dst_sw=destination/(param_p);
     dst_grp=dst_sw/(param_a/2);
 
-    int target_grp = *proxy_grp;
+    int target_grp;
+    if(routing==VALIANT) target_grp = proxy_grp;
+    else target_grp = dst_grp;
 
     if (current < nprocs) { // Servidor -> Switch
         return 0;
@@ -249,7 +254,7 @@ long route_megafly(long current, long destination, long *proxy_grp) {
         // if(cur_grp==target_grp) ;
 
         if(cur_grp==target_grp){//mismVo grupo
-            *proxy_grp = dst_grp;
+            proxy_grp = dst_grp;
             target_grp=dst_grp;
             outport_grp = dst_sw%(param_a/2);
         }

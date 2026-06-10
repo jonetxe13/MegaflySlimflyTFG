@@ -2529,47 +2529,75 @@ bool_t check_rr_dragonfly_dally_adap(packet_t * pkt, dim *d, way *w) {
 /**
  statick routing para megafly
 **/
-bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w) {
-    // Si el nodo actual (id) es el destino final del paquete
-    if (pkt->to == id) 
+bool_t check_rr_megafly_arithmetic(packet_t *pkt, dim *d, way *w) {
+    if (pkt->to == id)
         return B_TRUE;
 
-    *w = 0; // Sin uso en estas topologías indirectas
+    *w = 0; // Way has no sense in multistage
 
-    if (pkt->n_hops == 0) {
-        // Estamos en la NIC (servidor): inyectamos en un VC basado en el ID o azar
-        *d = 0; // O rand() % nchan;
-    } else {
-        // Obtenemos el puerto de salida que guardamos en el paso anterior en megafly_rr
-        long npt = get_next_hop(pkt);
-        
-        // El puerto real en el simulador es (Puerto * canales_virtuales) + canal_actual
-        // Usamos curr_p % nchan para mantener el mismo VC o distribuir
-        *d = (npt * nchan) + (curr_p % nchan);
-    }
+    if (pkt->n_hops == 0) // NIC: choose VC at random
+        *d = rand() % nchan;
+    else
+        *d = (route_megafly(id, pkt->to, pkt->rr.size) * nchan) + (curr_p % nchan);
+        // rr.size stores the proxy group for non-minimal routing
 
     return B_FALSE;
 }
+// bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w) {
+//     // Si el nodo actual (id) es el destino final del paquete
+//     if (pkt->to == id) 
+//         return B_TRUE;
+//
+//     *w = 0; // Sin uso en estas topologías indirectas
+//
+//     if (pkt->n_hops == 0) {
+//         // Estamos en la NIC (servidor): inyectamos en un VC basado en el ID o azar
+//         *d = 0; // O rand() % nchan;
+//     } else {
+//         // Obtenemos el puerto de salida que guardamos en el paso anterior en megafly_rr
+//         long npt = get_next_hop(pkt);
+//         
+//         // El puerto real en el simulador es (Puerto * canales_virtuales) + canal_actual
+//         // Usamos curr_p % nchan para mantener el mismo VC o distribuir
+//         *d = (npt * nchan) + (curr_p % nchan);
+//     }
+//
+//     return B_FALSE;
+// }
 
 /**
  statick routing para slimfly
 **/
-bool_t check_rr_slimfly_arithmetic(packet_t * pkt, dim *d, way *w) {
+// bool_t check_rr_slimfly_arithmetic(packet_t * pkt, dim *d, way *w) {
+//     if (pkt->to == id)
+//         return B_TRUE;
+//
+//     *w = 0;
+//
+//     if (pkt->n_hops == 0) {
+//         // Inyección desde servidor
+//         *d = 0;
+//     } else {
+//         // En Slim Fly, el ruteo suele ser: Switch Local -> Switch Destino -> Servidor
+//         // get_next_hop lee el puerto calculado por tu función slimfly_rr
+//         long npt = get_next_hop(pkt);
+//         
+//         *d = (npt * nchan) + (curr_p % nchan);
+//     }
+//
+//     return B_FALSE;
+// }
+bool_t check_rr_slimfly_arithmetic(packet_t *pkt, dim *d, way *w) {
     if (pkt->to == id)
         return B_TRUE;
 
-    *w = 0;
+    *w = 0; // Way has no sense in multistage
 
-    if (pkt->n_hops == 0) {
-        // Inyección desde servidor
-        *d = 0;
-    } else {
-        // En Slim Fly, el ruteo suele ser: Switch Local -> Switch Destino -> Servidor
-        // get_next_hop lee el puerto calculado por tu función slimfly_rr
-        long npt = get_next_hop(pkt);
-        
-        *d = (npt * nchan) + (curr_p % nchan);
-    }
+    if (pkt->n_hops == 0) // NIC: choose VC at random
+        *d = rand() % nchan;
+    else
+        *d = (route_slimfly(id, pkt->to, pkt->rr.size) * nchan) + (curr_p % nchan);
+        // rr.size stores the proxy switch (valiant) or 0 (minimal)
 
     return B_FALSE;
 }

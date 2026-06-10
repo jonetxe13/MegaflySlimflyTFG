@@ -1,0 +1,79 @@
+DEBUG flag is on.
+param_delta_final: -1
+switches: 18 
+p: 3 
+servers: 54 
+x[0]=1
+x[1]=2
+x[0]=1
+x[1]=2
+Constructing electric Network
+All connections in the topology seem consistent!!!
+Wrote stats to file: ./slimfly_p3_a3_h3_min_sequential_fr0.00_seed42.2026.05.12.12.47.dat
+inrflow.version                     v0.4.1              
+network                                                 
+topology                            slimfly             
+p                                   3                   
+topo.version                        v0.1                
+n.servers                           54                  
+n.switches                          18                  
+switch.radix                        8                   
+n.links                             198                 
+n.cables                            99                  
+p.cable.failures                    0.000000            
+n.cable.failures                    0                   
+n.server.pairs.NN                   2916                
+n.server.pairs.NN-1                 2862                
+routing.algorithm                   min                 
+max_paths                           0                   
+traffic                                                 
+pattern                             onetoall            
+n.flows                             54                  
+n.flows.delivered                   54                  
+p.flows.connected                   100.000000          
+placement.strategy                  sequential          
+miscelanea                                              
+r.seed                              42                  
+started.at.y.m.d.h.m                2026.05.12.12.47    
+on machine                          pop-os              
+runtime                             0.000000            
+path.info                                               
+min.link.path.length                0                   
+max.link.path.length                4                   
+mean.link.path.length               3.574074            
+median.link.path.length             4.000000            
+var.link.path.length                0.551013            
+std.link.path.length                0.742303            
+hop.info                                                
+min.server.hop.length               0                   
+max.server.hop.length               1                   
+mean.server.hop.length              0.981481            
+median.server.hop.length            1.000000            
+var.server.hop.length               0.018519            
+std.server.hop.length               0.136083            
+flow.info                                               
+min.flows.per.link                  0                   
+max.flows.per.link                  53                  
+mean.flows.per.link                 0.974747            
+median.flows.per.link               0.000000            
+var.flows.per.link                  17.638953           
+std.flows.per.link                  4.199875            
+connected.nonzero.flows.over.bottleneck.flow 54.000000           
+connected.flows.over.bottleneck.flow 55.018868           
+connected.nonzero.flows.over.mean.flow 2936.145078         
+connected.flows.over.mean.flow      2991.544041         
+#Server hop length histogram (server hop path length, number of occurrences)
+h    0         1
+h    1        53
+#Path length histogram (path length, number of occurrences)
+p    0         1
+p    2         2
+p    3        15
+p    4        36
+#Flows histogram (number of flows, number of uni-directional links with this many flows)
+f    0       127
+f    1        53
+f    3        14
+f   15         3
+f   53         1
+DEBUG flag is on.

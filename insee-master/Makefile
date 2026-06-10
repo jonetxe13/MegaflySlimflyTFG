@@ -14,7 +14,7 @@ LIBS = -lm
 	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS) $(LIBS)
 
 insee: $(OBJ)
-	gcc -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LIBS)
+	gcc -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LIBS) -O3
 
 .PHONY: clean
 

@@ -1,0 +1,10 @@
+DYNAMIC MODE
+
+This is a new version of the execution engine that allows the actual 
+simulation of the network resources consumed by the applications. This 
+mode must be enabled using the option mode=dynamic in inrflow.conf. By default,
+inrflow will use the option mode=static.
+
+
+
+
