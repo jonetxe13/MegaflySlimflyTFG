@@ -214,6 +214,7 @@ routing_r slimfly_rr (long source, long destination) {
     
     long dst_sw = destination / param_p;
     long proxy_grp = dst_sw; 
+    // long proxy_sw;
 
     if (source == destination) panic("Self-sent packet\n");
 
@@ -222,13 +223,14 @@ routing_r slimfly_rr (long source, long destination) {
     res.size = 0;
     // if (proxy_grp!=src_grp && proxy_grp!=dst_grp) // Make sure the proxy is neither the source or the destination group and set to 1.
     //     res.rr[7] = 1;
-for (int i = 0; i < 8; i++) res.rr[i] = -1;
-    if(routing == VALIANT) proxy_sw = nprocs + (rand() % switches);
-    else proxy_sw = dst_sw;
+// for (int i = 0; i < 8; i++) res.rr[i] = -1;
+    proxy_sw = dst_sw;
+    if(routing == VALIANT && (source/param_p) != (destination/param_p)) proxy_sw = (rand() % switches);
+    
 
     while(cur != destination){
         // Seguridad: En Slim Fly, más de 4 saltos es  error de diseño
-        if (res.size >= 15) {
+        if (res.size >= 9) {
             printf("[SLIMFLY ERROR] Bucle detectado: Origen %ld -> Destino %ld. Actualmente en Nodo %ld\n", 
                     cur, destination, cur);
             panic("Slim Fly routing loop!");
@@ -252,29 +254,37 @@ for (int i = 0; i < 8; i++) res.rr[i] = -1;
  * @param proxy The proxy to route through. If it is the local or destination group, the port is calculated as DIM, otherwise, the port is calculated using proxy routing.
  * @return The port to take the next hop through.
  */
-long route_slimfly(long current, long destination, long proxy) {
+long route_slimfly(long current, long destination, long proxy_sw) {
     long outport = -1;
     int cur_sw, dst_sw, cur_grp, dst_grp, cur_grp_global, dst_grp_global;
     // int switches = param_p*param_q*param_q;
     // int servers = nprocs ;
 
-    if(current == proxy) proxy_sw = proxy;
-    else proxy_sw = destination/param_p;
+    // if(current == proxy_sw) proxy_sw = proxy;
+    // else proxy_sw = destination/param_p;
 
-    dst_grp_global = proxy_sw/(switches/2);
-    dst_grp = (proxy_sw%(switches/2))/param_q;
+    if(current < servers) return 0; //el current es un server as ique puerto 0
+
+    cur_sw = current-servers;
+    dst_sw = destination/param_p;
+
+    int target_sw;
+    if(routing==VALIANT && cur_sw!=proxy_sw) target_sw = proxy_sw;
+    else target_sw = dst_sw;
+    
+
+    dst_grp_global = target_sw/(switches/2);
+    dst_grp = (target_sw%(switches/2))/param_q;
 
     int dst_c, dst_m, cur_y, cur_x;
 
-    dst_c = proxy_sw%param_q;
+    dst_c = target_sw%param_q;
     dst_m = dst_grp;
 
     // ruta[0] = swInicio;
 
-    if(current < servers) return 0; //el current es un server as ique puerto 0
     
-    else{
-        cur_sw = current - servers;
+    if(current >= servers){
         cur_grp_global = cur_sw/(switches/2);
         cur_grp = (cur_sw%(switches/2))/param_q;
 
@@ -285,8 +295,9 @@ long route_slimfly(long current, long destination, long proxy) {
         int *grupo_x = cur_grp_global ? param_x2 : param_x;
         int *grupo_x2 = cur_grp_global ? param_x : param_x2;
 
-        if(cur_sw == proxy_sw){ //si ya estamos en el switch final que salga al server direccto
+        if(cur_sw == dst_sw){ //si ya estamos en el switch final que salga al server direccto
             outport = destination%param_p;
+            
                 return outport;
         }
         else if(cur_x==dst_m && cur_grp_global == dst_grp_global){ //mismo subgrupo (comprobar que esté bien)
