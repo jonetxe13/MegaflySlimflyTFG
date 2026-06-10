@@ -216,6 +216,7 @@ literal_t topology_l[] = {
     {SLIMTREE, "slim"},
     {SLIMTREE, "slendertree"},
     {SLIMTREE, "slender"},
+    {SLIMFLY, "slimfly"},
     {ICUBE, "tricube"},
     {ICUBE, "icube"},
     {RRG, "rrg"},
@@ -238,7 +239,6 @@ literal_t topology_l[] = {
     {DRAGONFLY_HELIX, "dragonfly-helix"},
     {DRAGONFLY_OTHER, "dragonfly-other"}, // What is this variant???
     {MEGAFLY, "megafly"},
-    {SLIMFLY, "slimfly"},
     LITERAL_END};
 
 /**
@@ -717,7 +717,8 @@ void get_option(char *option) {
         for(int i = 0; i<param_tam_gal; i++)
             printf("x2[%d]=%d\n", i, param_x2[i]);
 
-
+      free(param_x);
+      free(param_x2);
 
     } else if (topo == ICUBE) {
       param = strtok(NULL, sep);
