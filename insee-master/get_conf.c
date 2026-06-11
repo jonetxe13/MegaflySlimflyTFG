@@ -634,7 +634,7 @@ void get_option(char *option) {
       }
 
       // mirar como buscar generadores de galois fields eficientemente
-      int contador[param_q - 1];
+      int contador[param_q*2];
       int param_gen;
 
       for (int i = 2; i < param_q; i++) {
@@ -644,7 +644,7 @@ void get_option(char *option) {
           contador[i2] = 0;
 
         for (int j = 0; j < param_q - 1; j++) {
-          long long prueba_gen = pow(param_gen, j);
+          long prueba_gen = pow(param_gen, j);
 
           for (int k = 1; k < param_q; k++) {
 
@@ -717,8 +717,6 @@ void get_option(char *option) {
         for(int i = 0; i<param_tam_gal; i++)
             printf("x2[%d]=%d\n", i, param_x2[i]);
 
-      free(param_x);
-      free(param_x2);
 
     } else if (topo == ICUBE) {
       param = strtok(NULL, sep);

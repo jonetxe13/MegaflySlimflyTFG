@@ -74,7 +74,7 @@ tuple_t connection_slimfly(long node, long port) {
             res.node = nprocs + (node / param_p) ; // The server's router
             res.port = node % param_p; // The server's port number
         } // servers only have one connection
-        printf("SW %ld port %ld -> node %ld port %ld\n", node, port, res.node, res.port);
+        // printf("SW %ld port %ld -> node %ld port %ld\n", node, port, res.node, res.port);
     }
     else if(node < (nprocs + switches)) { // the node is a switch
         gen_switch_id = node - nprocs; // id of the switch relative to other switches
@@ -174,9 +174,9 @@ void create_slimfly(){
         network[i].nbor[0] = nr;
         network[i].nborp[0] = np;
         network[i].op_i[0] = ESCAPE;
-        //		network[nr].nbor[np] = i;
-        //		network[nr].nborp[np] = 0;
-        //		network[nr].op_i[np] = ESCAPE;
+        	// network[nr].nbor[np] = i;
+        	// network[nr].nborp[np] = 0;
+        	// network[nr].op_i[np] = ESCAPE;
         for (j=1; j<radix; j++){
             network[i].nbor[j] = NULL_PORT;
             network[i].nborp[j] = NULL_PORT;
@@ -193,11 +193,11 @@ void create_slimfly(){
             network[i].nbor[j] = res.node;			// neighbor router
             network[i].nborp[j] = res.port;			// neighbor's port
             network[i].op_i[j] = ESCAPE;
-            if(res.node >= nprocs){
-            network[res.node].nbor[res.port]=i;			// neighbor router's neighbor
-            network[res.node].nborp[res.port]=j;		// neighbor router's neighbor's port
-            network[res.node].op_i[res.port] = ESCAPE;
-}
+            // if(res.node >= nprocs){
+            // network[res.node].nbor[res.port]=i;			// neighbor router's neighbor
+            // network[res.node].nborp[res.port]=j;		// neighbor router's neighbor's port
+            // network[res.node].op_i[res.port] = ESCAPE;
+        // }
         }
     }
     // printf("network 5 port 0: %ld, %ld, %ld, %ld", network[5].nbor[0], network[5].nborp[0], network[5].p[0].sip,network[5].p[0].aop);
@@ -205,7 +205,7 @@ void create_slimfly(){
 }
 
 /**
- * Generates the routing record for a dragonfly.
+ * Generates the routing record for a slimfly.
  *
  * @param source The source node of the packet.
  * @param destination The destination node of the packet.
@@ -222,8 +222,8 @@ routing_r slimfly_rr (long source, long destination) {
 
     if (source == destination) panic("Self-sent packet\n");
 
-    res.rr = alloc(8 * sizeof(long));
-    res.rr[7] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
+    res.rr = alloc(16 * sizeof(long));
+    res.rr[15] = 0;	// Are we using a proxy? Used to decide in which virtual channel to inject the paper for the Dally mechanism
     res.size = 0;
     // if (proxy_grp!=src_grp && proxy_grp!=dst_grp) // Make sure the proxy is neither the source or the destination group and set to 1.
     //     res.rr[7] = 1;
@@ -234,13 +234,13 @@ routing_r slimfly_rr (long source, long destination) {
 
     while(cur != destination){
         // Seguridad: En Slim Fly, más de 4 saltos es  error de diseño
-        if (res.size >= 9) {
+        if (res.size >= 17) {
             printf("[SLIMFLY ERROR] Bucle detectado: Origen %ld -> Destino %ld. Actualmente en Nodo %ld\n", 
                     cur, destination, cur);
             panic("Slim Fly routing loop!");
         }
 
-        printf("\ncurrent: %ld\n", cur);
+        // printf("\ncurrent: %ld\n", cur);
         next_port = route_slimfly(cur, destination, proxy_sw);
 
         res.rr[res.size] = next_port;
@@ -309,6 +309,7 @@ long route_slimfly(long current, long destination, long proxy_sw) {
             for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
                 if(mod((cur_y+grupo_x[i]),param_q) == dst_c){ 
                     outport = param_p + i; 
+                    // if(current == 224) printf("\n\n\nel outport para el switch 24 es: %ld\n\n\n", outport);
                     return outport;
                 }
             }
@@ -316,12 +317,60 @@ long route_slimfly(long current, long destination, long proxy_sw) {
                 for(int j = 0; j<param_tam_gal; j++){
                     if(mod((cur_y+grupo_x[i]+grupo_x[j]),param_q) == dst_c){ 
                         outport = param_p + i; 
+                    // if(current == 224) printf("\n\n\nel outport para el switch 24 es: %ld\n\n\n", outport);
                         return outport;
                     }
                 }
             }
+//             if(current == 224 && destination == 95) printf("\n\n\n no se ha encontrado el outport para el switch 24 es: %ld\n\n\n", outport);
+// if (destination == 95 && (current == 224 || current == 229 || current == 201 || current == 97)) {
+//     printf("DBG: current=%ld cur_sw=%d cur_grp_global=%d cur_grp=%d cur_x=%d cur_y=%d\n",
+//            current, cur_sw, cur_grp_global, cur_grp, cur_x, cur_y);
+//     printf("DBG: target_sw=%d dst_sw=%d dst_grp_global=%d dst_grp=%d dst_m=%d dst_c=%d\n",
+//            target_sw, dst_sw, dst_grp_global, dst_grp, dst_m, dst_c);
+//     printf("DBG: param_tam_gal=%d, grupo_x[]=", param_tam_gal);
+//     for (int i=0; i<param_tam_gal; i++) printf(" %d", grupo_x[i]);
+//     printf("\n");
+// }
+            // if(current == 224 && destination == 95) return param_p +2;
         }
         else if((cur_grp_global != dst_grp_global)){//salto al otro grupo global !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // int directo=0;
+            // //caso en el que el salto global del switch actual ya deja a distancia 1
+            // int dst_y_salto_global;
+            // if(cur_grp_global == 0) //calcular la "y o c" a la que saltar
+            //     dst_y_salto_global = mod((cur_y - dst_m*cur_x),param_q);
+            // else
+            //     dst_y_salto_global = mod((cur_y + cur_x*dst_m),param_q);
+            //     
+            // if(dst_y_salto_global == dst_c) {
+            //     outport = param_p + intra_ports + dst_m;
+            //     return outport;
+            // }
+            //
+            // for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
+            //     if(mod((dst_y_salto_global+grupo_x2[i]),param_q) == dst_c){ 
+            //         directo = 1;
+            //         outport = param_p + intra_ports + dst_m; 
+            //         return outport;
+            //     }
+            // }
+            //
+            // //caso en el que el salto global del switch actual no deja a distancia 1
+            // for(int i = 0; i<param_tam_gal; i++){
+            //     if(cur_grp_global == 0){
+            //         if(mod((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x),param_q) == dst_c){ 
+            //             outport = param_p + i; 
+            //             return outport;
+            //         }
+            //     }
+            //     else{
+            //         if(mod((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x),param_q) == dst_c){ 
+            //             outport = param_p + i; 
+            //             return outport;
+            //         }
+            //     }
+            // }
             int directo=0;
             //caso en el que el salto global del switch actual ya deja a distancia 1
             int dst_y_salto_global;
@@ -332,32 +381,39 @@ long route_slimfly(long current, long destination, long proxy_sw) {
                 
             if(dst_y_salto_global == dst_c) {
                 outport = param_p + intra_ports + dst_m;
-                return outport;
+                directo=1;
             }
 
+            if(!directo){
             for(int i = 0; i<param_tam_gal; i++){ //buscar primero si con un solo salto se puede llegar
                 if(mod((dst_y_salto_global+grupo_x2[i]),param_q) == dst_c){ 
                     directo = 1;
                     outport = param_p + intra_ports + dst_m; 
-                    return outport;
+                    break;
                 }
+            }
             }
 
             //caso en el que el salto global del switch actual no deja a distancia 1
-            for(int i = 0; i<param_tam_gal; i++){
-                if(cur_grp_global == 0){
-                    if(mod((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x),param_q) == dst_c){ 
-                        outport = param_p + i; 
-                        return outport;
+            if(!directo){//buscar el switch dentro del subgrupo desde el que se llega directo??
+                for(int i = 0; i<param_tam_gal; i++){
+                    if(cur_grp_global == 0){
+                        if(mod((((cur_y+grupo_x[i])%param_q) - dst_m*cur_x),param_q) == dst_c){ 
+                            outport = param_p + i; 
+                            break;
+                        }
+                    }
+                    else{
+                        if(mod((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x),param_q) == dst_c){ 
+                            outport = param_p + i; 
+                            break;
+                        }
+
                     }
                 }
-                else{
-                    if(mod((((cur_y+grupo_x[i])%param_q) + dst_m*cur_x),param_q) == dst_c){ 
-                        outport = param_p + i; 
-                        return outport;
-                    }
-                }
+
             }
+
         }
         else if(cur_grp_global == dst_grp_global && cur_x != dst_m){//si no saltar al otro grupo y volver
             int intermedio_m, intermedio_c;
@@ -407,5 +463,7 @@ long route_slimfly(long current, long destination, long proxy_sw) {
  * Frees the data structures used by the dragonfly.
  */
 void finish_slimfly(){
+      free(param_x);
+      free(param_x2);
 
 }

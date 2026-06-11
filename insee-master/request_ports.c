@@ -2543,60 +2543,20 @@ bool_t check_rr_megafly_arithmetic(packet_t *pkt, dim *d, way *w) {
 
     return B_FALSE;
 }
-// bool_t check_rr_megafly_arithmetic(packet_t * pkt, dim *d, way *w) {
-//     // Si el nodo actual (id) es el destino final del paquete
-//     if (pkt->to == id) 
-//         return B_TRUE;
-//
-//     *w = 0; // Sin uso en estas topologías indirectas
-//
-//     if (pkt->n_hops == 0) {
-//         // Estamos en la NIC (servidor): inyectamos en un VC basado en el ID o azar
-//         *d = 0; // O rand() % nchan;
-//     } else {
-//         // Obtenemos el puerto de salida que guardamos en el paso anterior en megafly_rr
-//         long npt = get_next_hop(pkt);
-//         
-//         // El puerto real en el simulador es (Puerto * canales_virtuales) + canal_actual
-//         // Usamos curr_p % nchan para mantener el mismo VC o distribuir
-//         *d = (npt * nchan) + (curr_p % nchan);
-//     }
-//
-//     return B_FALSE;
-// }
 
-/**
- statick routing para slimfly
-**/
-// bool_t check_rr_slimfly_arithmetic(packet_t * pkt, dim *d, way *w) {
-//     if (pkt->to == id)
-//         return B_TRUE;
-//
-//     *w = 0;
-//
-//     if (pkt->n_hops == 0) {
-//         // Inyección desde servidor
-//         *d = 0;
-//     } else {
-//         // En Slim Fly, el ruteo suele ser: Switch Local -> Switch Destino -> Servidor
-//         // get_next_hop lee el puerto calculado por tu función slimfly_rr
-//         long npt = get_next_hop(pkt);
-//         
-//         *d = (npt * nchan) + (curr_p % nchan);
-//     }
-//
-//     return B_FALSE;
-// }
 bool_t check_rr_slimfly_arithmetic(packet_t *pkt, dim *d, way *w) {
     if (pkt->to == id)
         return B_TRUE;
 
-    *w = 0; // Way has no sense in multistage
+    // *w = 0; // Way has no sense in multistage
 
-    if (pkt->n_hops == 0) // NIC: choose VC at random
-        *d = rand() % nchan;
+    if (pkt->n_hops == 0 ) // NIC: choose VC0
+        *d = 0;
+    else if(pkt->n_hops==1){
+        *d = (route_slimfly(id, pkt->to, pkt->rr.size)*nchan);
+    }
     else
-        *d = (route_slimfly(id, pkt->to, pkt->rr.size) * nchan) + (curr_p % nchan);
+        *d = (route_slimfly(id, pkt->to, pkt->rr.size)*nchan + 1);
         // rr.size stores the proxy switch (valiant) or 0 (minimal)
 
     return B_FALSE;

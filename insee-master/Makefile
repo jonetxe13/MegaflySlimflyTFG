@@ -1,6 +1,8 @@
 CC=gcc
-CFLAGS = -Wall -ggdb #-O0 -fno-omit-frame-pointer -fsanitize=address,undefined
-LDFLAGS = -fsanitize=address,undefined 
+CFLAGS = -Wall -ggdb 
+#-O0 -fno-omit-frame-pointer -fsanitize=address,undefined
+LDFLAGS = 
+#-fsanitize=address,undefined 
 
 ODIR=obj
 
